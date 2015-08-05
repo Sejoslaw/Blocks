@@ -1,6 +1,7 @@
 package seia.gra;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -50,6 +51,25 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		this.setFocusTraversalKeysEnabled(false);
 	}
 	
+	public void paintComponent(Graphics g)
+	{
+		world.paintComponent(g);
+		for(int i = 0; i < enemyNumber; i++)
+		{
+			if((player.X == enemy.get(i).X) && (player.Y == enemy.get(i).Y))
+			{
+				JOptionPane.showMessageDialog(this, "Game Over :(");
+				System.exit(0);
+			}
+		}
+		for(int  i = 0; i < enemyNumber; i++)
+		{
+			enemy.get(i).paintComponent(g);
+		}
+		player.paintComponent(g);
+		repaint();
+	}
+	
 	public static void main(String[] args) 
 	{
 		int szer = 1000;
@@ -72,7 +92,35 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	
 	@Override
 	public void keyPressed(KeyEvent e) 
-	{	
+	{
+		if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) 
+		{
+			player.moveUp(world);
+			for(int i = 0; i < enemy.size(); i++)
+				if(enemy.get(i).moveDown(world))
+					enemy.get(i).moveDown(world);
+		}
+		if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) 
+		{
+			player.moveDown(world);
+			for(int i = 0; i < enemy.size(); i++)
+				if(enemy.get(i).moveUp(world))
+					enemy.get(i).moveUp(world);
+		}
+		if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) 
+		{
+			player.moveLeft(world);
+			for(int i = 0; i < enemy.size(); i++)
+				if(enemy.get(i).moveRight(world))
+					enemy.get(i).moveRight(world);
+		}
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) 
+		{
+			player.moveRight(world);
+			for(int i = 0; i < enemy.size(); i++)
+				if(enemy.get(i).moveLeft(world))
+					enemy.get(i).moveLeft(world);
+		}
 	}
 
 	@Override
