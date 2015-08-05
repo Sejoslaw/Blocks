@@ -15,7 +15,16 @@ public class BlockMovable extends Block
 	
 	public boolean moveUp(World world)
 	{
-		if((world.world[X][Y - 1].getColor() != Color.BLACK) && (world.world[X][Y - 1].getColor() != world.world[X][Y].getColor()))
+		boolean can = true;
+		if(world.world[X][Y - 1].getColor() == Color.BLACK)
+		{
+			can = false;
+		}
+		if(world.world[X][Y - 1].getColor() == world.world[X][Y].getColor())
+		{
+			can = false;
+		}
+		if(can)
 		{
 			Y--;
 			return true;
@@ -25,7 +34,16 @@ public class BlockMovable extends Block
 	
 	public boolean moveDown(World world)
 	{
-		if((world.world[X][Y + 1].getColor() != Color.BLACK) && (world.world[X][Y + 1].getColor() != world.world[X][Y].getColor()))
+		boolean can = true;
+		if(world.world[X][Y + 1].getColor() == Color.BLACK)
+		{
+			can = false;
+		}
+		if(world.world[X][Y + 1].getColor() == world.world[X][Y].getColor())
+		{
+			can = false;
+		}
+		if(can)
 		{
 			Y++;
 			return true;
@@ -35,7 +53,16 @@ public class BlockMovable extends Block
 	
 	public boolean moveLeft(World world)
 	{
-		if((world.world[X - 1][Y].getColor() != Color.BLACK) && (world.world[X - 1][Y].getColor() != world.world[X][Y].getColor()))
+		boolean can = true;
+		if(world.world[X - 1][Y].getColor() == Color.BLACK)
+		{
+			can = false;
+		}
+		if(world.world[X - 1][Y].getColor() == world.world[X][Y].getColor())
+		{
+			can = false;
+		}
+		if(can)
 		{
 			X--;
 			return true;
@@ -45,7 +72,16 @@ public class BlockMovable extends Block
 	
 	public boolean moveRight(World world)
 	{
-		if((world.world[X + 1][Y].getColor() != Color.BLACK) && (world.world[X + 1][Y].getColor() != world.world[X][Y].getColor()))
+		boolean can = true;
+		if(world.world[X + 1][Y].getColor() == Color.BLACK)
+		{
+			can = false;
+		}
+		if(world.world[X + 1][Y].getColor() == world.world[X][Y].getColor())
+		{
+			can = false;
+		}
+		if(can)
 		{
 			X++;
 			return true;
