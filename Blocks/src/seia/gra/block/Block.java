@@ -40,4 +40,10 @@ public class Block extends JPanel
 	{
 		return c;
 	}
+	
+	public boolean setColor(Color c)
+	{
+		this.c = c;
+		return true;
+	}
 }
