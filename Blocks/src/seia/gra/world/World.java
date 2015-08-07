@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seia.gra.block.Block;
+import seia.gra.world.worldelement.WorldElement;
+import seia.gra.world.worldelement.WorldElementLevelValue;
 
 public class World 
 {
