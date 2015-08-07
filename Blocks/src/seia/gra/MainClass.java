@@ -17,6 +17,7 @@ import javax.swing.Timer;
 import seia.gra.block.Block;
 import seia.gra.block.BlockEnemy;
 import seia.gra.block.BlockPlayer;
+import seia.gra.event.EventCheckCollisionWithEnemy;
 import seia.gra.utils.Key;
 import seia.gra.world.World;
 
@@ -73,13 +74,6 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	public void paintComponent(Graphics g)
 	{
 		world.paintComponent(g);
-		for(int i = 0; i < enemy.size(); i++)
-		{
-			if((player.X == enemy.get(i).X) && (player.Y == enemy.get(i).Y))
-			{
-				gameOver();
-			}
-		}
 		for(int  i = 0; i < enemy.size(); i++)
 		{
 			enemy.get(i).paintComponent(g);
@@ -131,36 +125,48 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		{
 			if(e.getKeyCode() == Key.UP[k])
 			{
-				player.moveUpPlayer(world);
-				for(int i = 0; i < enemy.size(); i++)
-					enemy.get(i).moveDownEnemy(world);
+				if(EventCheckCollisionWithEnemy.canPlayerMoveUp(this))
+				{
+					player.moveUpPlayer(world);
+					for(int i = 0; i < enemy.size(); i++)
+						enemy.get(i).moveDownEnemy(world);
+				}
 			}
 		}
 		for(int k = 0; k < Key.DOWN.length; k++)
 		{
 			if(e.getKeyCode() == Key.DOWN[k])
 			{
-				player.moveDownPlayer(world);
-				for(int i = 0; i < enemy.size(); i++)
-					enemy.get(i).moveUpEnemy(world);
+				if(EventCheckCollisionWithEnemy.canPlayerMoveDown(this))
+				{
+					player.moveDownPlayer(world);
+					for(int i = 0; i < enemy.size(); i++)
+						enemy.get(i).moveUpEnemy(world);
+				}
 			}
 		}
 		for(int k = 0; k < Key.LEFT.length; k++)
 		{
 			if(e.getKeyCode() == Key.LEFT[k])
 			{
-				player.moveLeftPlayer(world);
-				for(int i = 0; i < enemy.size(); i++)
-					enemy.get(i).moveRightEnemy(world);
+				if(EventCheckCollisionWithEnemy.canPlayerMoveLeft(this))
+				{
+					player.moveLeftPlayer(world);
+					for(int i = 0; i < enemy.size(); i++)
+						enemy.get(i).moveRightEnemy(world);
+				}
 			}
 		}
 		for(int k = 0; k < Key.RIGHT.length; k++)
 		{
 			if(e.getKeyCode() == Key.RIGHT[k])
 			{
-				player.moveRightPlayer(world);
-				for(int i = 0; i < enemy.size(); i++)
-					enemy.get(i).moveLeftEnemy(world);
+				if(EventCheckCollisionWithEnemy.canPlayerMoveRight(this))
+				{
+					player.moveRightPlayer(world);
+					for(int i = 0; i < enemy.size(); i++)
+						enemy.get(i).moveLeftEnemy(world);
+				}
 			}
 		}
 	}
