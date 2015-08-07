@@ -23,10 +23,6 @@ public class BlockMovable extends Block
 			{
 				can = false;
 			}
-			if(world.world[X][Y - 1].getColor() == player.getColor())
-			{
-				can = false;
-			}
 			if(can)
 			{
 				Y--;
@@ -45,9 +41,10 @@ public class BlockMovable extends Block
 			{
 				can = false;
 			}
-			if(world.world[X][Y - 1].getColor() == enemy.getColor())
+			for(int i = 0; i < MainClass.getEnemyList().size(); i++)
 			{
-				can = false;
+				if((Y - 1 == MainClass.getEnemyList().get(i).Y) && (X == MainClass.getEnemyList().get(i).X))
+					can = false;
 			}
 			if(can)
 			{
@@ -67,10 +64,6 @@ public class BlockMovable extends Block
 			{
 				can = false;
 			}
-			if(world.world[X][Y + 1].getColor() == player.getColor())
-			{
-				can = false;
-			}
 			if(can)
 			{
 				Y++;
@@ -80,7 +73,7 @@ public class BlockMovable extends Block
 		return false;
 	}
 	
-	public boolean moveDownEnemy(BlockEnemy enemy, World world)
+	public boolean moveDownEnemy(World world)
 	{
 		if(Y + 1 < MainClass.getHeightInBlocks() - 1)
 		{
@@ -89,9 +82,10 @@ public class BlockMovable extends Block
 			{
 				can = false;
 			}
-			if(world.world[X][Y + 1].getColor() == enemy.getColor())
+			for(int i = 0; i < MainClass.getEnemyList().size(); i++)
 			{
-				can = false;
+				if((Y + 1 == MainClass.getEnemyList().get(i).Y) && (X == MainClass.getEnemyList().get(i).X))
+					can = false;
 			}
 			if(can)
 			{
@@ -108,10 +102,6 @@ public class BlockMovable extends Block
 		{
 			boolean can = true;
 			if(world.world[X - 1][Y].getColor() == Color.BLACK)
-			{
-				can = false;
-			}
-			if(world.world[X - 1][Y].getColor() == player.getColor())
 			{
 				can = false;
 			}
@@ -133,9 +123,10 @@ public class BlockMovable extends Block
 			{
 				can = false;
 			}
-			if(world.world[X - 1][Y].getColor() == enemy.getColor())
+			for(int i = 0; i < MainClass.getEnemyList().size(); i++)
 			{
-				can = false;
+				if((Y == MainClass.getEnemyList().get(i).Y) && (X - 1 == MainClass.getEnemyList().get(i).X))
+					can = false;
 			}
 			if(can)
 			{
@@ -152,10 +143,6 @@ public class BlockMovable extends Block
 		{
 			boolean can = true;
 			if(world.world[X + 1][Y].getColor() == Color.BLACK)
-			{
-				can = false;
-			}
-			if(world.world[X + 1][Y].getColor() == player.getColor())
 			{
 				can = false;
 			}
@@ -177,9 +164,10 @@ public class BlockMovable extends Block
 			{
 				can = false;
 			}
-			if(world.world[X + 1][Y].getColor() == enemy.getColor())
+			for(int i = 0; i < MainClass.getEnemyList().size(); i++)
 			{
-				can = false;
+				if((Y == MainClass.getEnemyList().get(i).Y) && (X + 1 == MainClass.getEnemyList().get(i).X))
+					can = false;
 			}
 			if(can)
 			{

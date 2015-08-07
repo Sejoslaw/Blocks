@@ -27,10 +27,9 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	public Timer tm = new Timer(5, null);
 	private static int SZER, WYS;
 	public int enemyNumber;
-	public int rX, rY;
 	public World world;
 	public BlockPlayer player;
-	public List<BlockEnemy> enemy = new ArrayList<BlockEnemy>();
+	private static List<BlockEnemy> enemy = new ArrayList<BlockEnemy>();
 
 	public MainClass(int szer, int wys)
 	{
@@ -49,10 +48,10 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		this.setFocusTraversalKeysEnabled(false);
 	}
 	
-	private boolean addEnemy() 
+	public static boolean addEnemy() 
 	{
-		rX = new Random().nextInt(SZER / Block.BLOCK_SIZE);
-		rY = new Random().nextInt(WYS / Block.BLOCK_SIZE);
+		int rX = new Random().nextInt(SZER / Block.BLOCK_SIZE);
+		int rY = new Random().nextInt(WYS / Block.BLOCK_SIZE);
 		if((rX != 1) && (rY != 1))
 		{
 			enemy.add(new BlockEnemy(rX, rY));
@@ -63,6 +62,12 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 			addEnemy();
 		}
 		return false;
+	}
+	
+	public static List<BlockEnemy> getEnemyList()
+	{
+		List<BlockEnemy> cpy = enemy;
+		return cpy;
 	}
 
 	public void paintComponent(Graphics g)
@@ -123,7 +128,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 			{
 				player.moveUpPlayer(player, world);
 				for(int i = 0; i < enemy.size(); i++)
-					enemy.get(i).moveDownEnemy(enemy.get(i), world);
+					enemy.get(i).moveDownEnemy(world);
 			}
 		}
 		for(int k = 0; k < Key.DOWN.length; k++)
