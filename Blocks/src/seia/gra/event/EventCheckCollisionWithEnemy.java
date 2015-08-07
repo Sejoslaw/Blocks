@@ -17,6 +17,11 @@ public class EventCheckCollisionWithEnemy extends Event
 				mc.gameOver();
 				return false;
 			}
+			if((player.X == enemy.X) && (player.Y - 2 == enemy.Y))
+			{
+				mc.gameOver();
+				return false;
+			}
 		}
 		return true;
 	}
@@ -28,6 +33,11 @@ public class EventCheckCollisionWithEnemy extends Event
 		{
 			BlockEnemy enemy = MainClass.getEnemyList().get(i);
 			if((player.X == enemy.X) && (player.Y + 1 == enemy.Y))
+			{
+				mc.gameOver();
+				return false;
+			}
+			if((player.X == enemy.X) && (player.Y + 2 == enemy.Y))
 			{
 				mc.gameOver();
 				return false;
@@ -47,6 +57,11 @@ public class EventCheckCollisionWithEnemy extends Event
 				mc.gameOver();
 				return false;
 			}
+			if((player.X - 2 == enemy.X) && (player.Y == enemy.Y))
+			{
+				mc.gameOver();
+				return false;
+			}
 		}
 		return true;
 	}
@@ -58,6 +73,11 @@ public class EventCheckCollisionWithEnemy extends Event
 		{
 			BlockEnemy enemy = MainClass.getEnemyList().get(i);
 			if((player.X + 1 == enemy.X) && (player.Y == enemy.Y))
+			{
+				mc.gameOver();
+				return false;
+			}
+			if((player.X + 2 == enemy.X) && (player.Y == enemy.Y))
 			{
 				mc.gameOver();
 				return false;
