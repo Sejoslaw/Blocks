@@ -1,4 +1,4 @@
-package seia.gra.world;
+package seia.gra.world.worldelement;
 
 import java.awt.Color;
 import java.awt.Graphics;

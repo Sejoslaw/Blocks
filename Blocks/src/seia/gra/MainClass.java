@@ -22,7 +22,7 @@ import seia.gra.event.EventCheckCollisionWithEnemy;
 import seia.gra.event.EventCheckForNextLevel;
 import seia.gra.utils.Key;
 import seia.gra.world.World;
-import seia.gra.world.WorldElementLevelValue;
+import seia.gra.world.worldelement.WorldElementLevelValue;
 
 public class MainClass extends JPanel implements ActionListener, KeyListener
 {
