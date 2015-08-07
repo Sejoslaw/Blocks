@@ -17,6 +17,7 @@ import javax.swing.Timer;
 import seia.gra.block.Block;
 import seia.gra.block.BlockEnemy;
 import seia.gra.block.BlockPlayer;
+import seia.gra.utils.Key;
 import seia.gra.world.World;
 
 public class MainClass extends JPanel implements ActionListener, KeyListener
@@ -110,35 +111,47 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		f.setResizable(false);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JOptionPane.showMessageDialog(mc, "Nie dotykaj czerwonych !!! (Chodzisz strzalkami)");
+		JOptionPane.showMessageDialog(mc, "Nie dotykaj czerwonych !!!");
 	}
 	
 	@Override
 	public void keyPressed(KeyEvent e) 
 	{
-		if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) 
+		for(int k = 0; k < Key.UP.length; k++)
 		{
-			player.moveUpPlayer(player, world);
-			for(int i = 0; i < enemy.size(); i++)
-				enemy.get(i).moveDownEnemy(enemy.get(i), world);
+			if(e.getKeyCode() == Key.UP[k])
+			{
+				player.moveUpPlayer(player, world);
+				for(int i = 0; i < enemy.size(); i++)
+					enemy.get(i).moveDownEnemy(enemy.get(i), world);
+			}
 		}
-		if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) 
+		for(int k = 0; k < Key.DOWN.length; k++)
 		{
-			player.moveDownPlayer(player, world);
-			for(int i = 0; i < enemy.size(); i++)
-				enemy.get(i).moveUpEnemy(enemy.get(i), world);
+			if(e.getKeyCode() == Key.DOWN[k])
+			{
+				player.moveDownPlayer(player, world);
+				for(int i = 0; i < enemy.size(); i++)
+					enemy.get(i).moveUpEnemy(enemy.get(i), world);
+			}
 		}
-		if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) 
+		for(int k = 0; k < Key.LEFT.length; k++)
 		{
-			player.moveLeftPlayer(player, world);
-			for(int i = 0; i < enemy.size(); i++)
-				enemy.get(i).moveRightEnemy(enemy.get(i), world);
+			if(e.getKeyCode() == Key.LEFT[k])
+			{
+				player.moveLeftPlayer(player, world);
+				for(int i = 0; i < enemy.size(); i++)
+					enemy.get(i).moveRightEnemy(enemy.get(i), world);
+			}
 		}
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) 
+		for(int k = 0; k < Key.RIGHT.length; k++)
 		{
-			player.moveRightPlayer(player, world);
-			for(int i = 0; i < enemy.size(); i++)
-				enemy.get(i).moveLeftEnemy(enemy.get(i), world);
+			if(e.getKeyCode() == Key.RIGHT[k])
+			{
+				player.moveRightPlayer(player, world);
+				for(int i = 0; i < enemy.size(); i++)
+					enemy.get(i).moveLeftEnemy(enemy.get(i), world);
+			}
 		}
 	}
 
