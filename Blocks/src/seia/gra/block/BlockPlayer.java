@@ -6,8 +6,14 @@ public class BlockPlayer extends BlockMovable
 {
 	private static final long serialVersionUID = 1L;
 
-	public BlockPlayer(Color c, int x, int y) 
+	public BlockPlayer(int x, int y) 
 	{
-		super(c, x, y);
+		super(Color.GREEN, x, y);
+	}
+	
+	@Override
+	public Color getColor()
+	{
+		return Color.GREEN;
 	}
 }

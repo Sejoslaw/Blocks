@@ -4,17 +4,18 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import seia.gra.block.Block;
+import seia.gra.block.BlockMovable;
 
 public class World 
 {
-	public Block[][] world;
+	public BlockMovable[][] world;
 	public int SZER, WYS;
 	
 	public World(int szer, int wys)
 	{
 		SZER = szer;
 		WYS = wys;
-		world = new Block[szer / Block.BLOCK_SIZE][wys / Block.BLOCK_SIZE];
+		world = new BlockMovable[szer / Block.BLOCK_SIZE][wys / Block.BLOCK_SIZE];
 	}
 	
 	public void paintComponent(Graphics g)
@@ -25,12 +26,12 @@ public class World
 			{
 				if(x == 0 || y == 0 || x == (SZER / 50) - 1 || y == (WYS / 50) - 1)
 				{
-					world[x][y] = new Block(Color.BLACK, x, y);
+					world[x][y] = new BlockMovable(Color.BLACK, x, y);
 					world[x][y].paintComponent(g);
 				}
 				else
 				{
-					world[x][y] = new Block(Color.BLUE, x, y);
+					world[x][y] = new BlockMovable(Color.BLUE, x, y);
 					world[x][y].paintComponent(g);
 				}
 			}

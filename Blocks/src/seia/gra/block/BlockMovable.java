@@ -14,89 +14,181 @@ public class BlockMovable extends Block
 		super(c, x, y);
 	}
 	
-	public boolean moveUp(World world)
+	public boolean moveUp(Block block, World world)
 	{
-		if(Y - 1 > 0)
+		if(block instanceof BlockPlayer)
 		{
-			boolean can = true;
-			if(world.world[X][Y - 1].getColor() == Color.BLACK)
+			if(Y - 1 > 0)
 			{
-				can = false;
+				boolean can = true;
+				if(((BlockPlayer)world.world[X][Y - 1]).getColor() == Color.BLACK)
+				{
+					can = false;
+				}
+				if(((BlockPlayer)world.world[X][Y - 1]).getColor() == world.world[X][Y].getColor())
+				{
+					can = false;
+				}
+				if(can)
+				{
+					Y--;
+					return true;
+				}
 			}
-			if(world.world[X][Y - 1].getColor() == world.world[X][Y].getColor())
+		}
+		if(block instanceof BlockEnemy)
+		{
+			if(Y - 1 > 0)
 			{
-				can = false;
-			}
-			if(can)
-			{
-				Y--;
-				return true;
+				boolean can = true;
+				if(((BlockEnemy)world.world[X][Y - 1]).getColor() == Color.BLACK)
+				{
+					can = false;
+				}
+				if(((BlockEnemy)world.world[X][Y - 1]).getColor() == world.world[X][Y].getColor())
+				{
+					can = false;
+				}
+				if(can)
+				{
+					Y--;
+					return true;
+				}
 			}
 		}
 		return false;
 	}
 	
-	public boolean moveDown(World world)
+	public boolean moveDown(Block block, World world)
 	{
-		if(Y + 1 < MainClass.getHeightInBlocks())
+		if(block instanceof BlockPlayer)
 		{
-			boolean can = true;
-			if(world.world[X][Y + 1].getColor() == Color.BLACK)
+			if(Y + 1 < MainClass.getHeightInBlocks())
 			{
-				can = false;
+				boolean can = true;
+				if(((BlockPlayer)world.world[X][Y + 1]).getColor() == Color.BLACK)
+				{
+					can = false;
+				}
+				if(((BlockPlayer)world.world[X][Y + 1]).getColor() == world.world[X][Y].getColor())
+				{
+					can = false;
+				}
+				if(can)
+				{
+					Y++;
+					return true;
+				}
 			}
-			if(world.world[X][Y + 1].getColor() == world.world[X][Y].getColor())
+		}
+		if(block instanceof BlockEnemy)
+		{
+			if(Y + 1 < MainClass.getHeightInBlocks())
 			{
-				can = false;
-			}
-			if(can)
-			{
-				Y++;
-				return true;
+				boolean can = true;
+				if(((BlockEnemy)world.world[X][Y + 1]).getColor() == Color.BLACK)
+				{
+					can = false;
+				}
+				if(((BlockEnemy)world.world[X][Y + 1]).getColor() == world.world[X][Y].getColor())
+				{
+					can = false;
+				}
+				if(can)
+				{
+					Y++;
+					return true;
+				}
 			}
 		}
 		return false;
 	}
 	
-	public boolean moveLeft(World world)
+	public boolean moveLeft(Block block, World world)
 	{
-		if(X - 1 > 0)
+		if(block instanceof BlockPlayer)
 		{
-			boolean can = true;
-			if(world.world[X - 1][Y].getColor() == Color.BLACK)
+			if(X - 1 > 0)
 			{
-				can = false;
+				boolean can = true;
+				if(((BlockPlayer)world.world[X - 1][Y]).getColor() == Color.BLACK)
+				{
+					can = false;
+				}
+				if(((BlockPlayer)world.world[X - 1][Y]).getColor() == world.world[X][Y].getColor())
+				{
+					can = false;
+				}
+				if(can)
+				{
+					X--;
+					return true;
+				}
 			}
-			if(world.world[X - 1][Y].getColor() == world.world[X][Y].getColor())
+		}
+		if(block instanceof BlockEnemy)
+		{
+			if(X - 1 > 0)
 			{
-				can = false;
-			}
-			if(can)
-			{
-				X--;
-				return true;
+				boolean can = true;
+				if(((BlockEnemy)world.world[X - 1][Y]).getColor() == Color.BLACK)
+				{
+					can = false;
+				}
+				if(((BlockEnemy)world.world[X - 1][Y]).getColor() == world.world[X][Y].getColor())
+				{
+					can = false;
+				}
+				if(can)
+				{
+					X--;
+					return true;
+				}
 			}
 		}
 		return false;
 	}
 	
-	public boolean moveRight(World world)
+	public boolean moveRight(Block block, World world)
 	{
-		if(X + 1 < MainClass.getWidthInBlocks())
+		if(block instanceof BlockPlayer)
 		{
-			boolean can = true;
-			if(world.world[X + 1][Y].getColor() == Color.BLACK)
+			if(X + 1 < MainClass.getWidthInBlocks())
 			{
-				can = false;
+				boolean can = true;
+				if(((BlockPlayer)world.world[X + 1][Y]).getColor() == Color.BLACK)
+				{
+					can = false;
+				}
+				if(((BlockPlayer)world.world[X + 1][Y]).getColor() == world.world[X][Y].getColor())
+				{
+					can = false;
+				}
+				if(can)
+				{
+					X++;
+					return true;
+				}
 			}
-			if(world.world[X + 1][Y].getColor() == world.world[X][Y].getColor())
+		}
+		if(block instanceof BlockEnemy)
+		{
+			if(X + 1 < MainClass.getWidthInBlocks())
 			{
-				can = false;
-			}
-			if(can)
-			{
-				X++;
-				return true;
+				boolean can = true;
+				if(((BlockEnemy)world.world[X + 1][Y]).getColor() == Color.BLACK)
+				{
+					can = false;
+				}
+				if(((BlockEnemy)world.world[X + 1][Y]).getColor() == world.world[X][Y].getColor())
+				{
+					can = false;
+				}
+				if(can)
+				{
+					X++;
+					return true;
+				}
 			}
 		}
 		return false;

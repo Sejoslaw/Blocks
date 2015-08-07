@@ -38,7 +38,7 @@ public class Block extends JPanel
 	
 	public Color getColor() 
 	{
-		return c;
+		return null;
 	}
 	
 	public boolean setColor(Color c)

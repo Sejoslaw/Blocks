@@ -1,6 +1,5 @@
 package seia.gra;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,14 +36,14 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		tm.start();
 		SZER = szer;
 		WYS = wys;
-		player = new BlockPlayer(Color.GREEN, 1, 1);
+		player = new BlockPlayer(1, 1);
 		world = new World(szer, wys);
 		enemyNumber = new Random().nextInt(10);
 		for(int i = 0; i < enemyNumber; i++)
 		{
 			rX = new Random().nextInt(SZER / 50);
 			rY = new Random().nextInt(WYS / 50);
-			enemy.add(new BlockEnemy(Color.RED, rX, rY));
+			enemy.add(new BlockEnemy(rX, rY));
 		}
 		this.addKeyListener(this);
 		this.setFocusable(true);
@@ -105,31 +104,31 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	{
 		if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) 
 		{
-			player.moveUp(world);
+			player.moveUp(player, world);
 			for(int i = 0; i < enemy.size(); i++)
-				if(enemy.get(i).moveDown(world))
-					enemy.get(i).moveDown(world);
+				if(enemy.get(i).moveDown(enemy.get(i), world))
+					enemy.get(i).moveDown(enemy.get(i), world);
 		}
 		if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) 
 		{
-			player.moveDown(world);
+			player.moveDown(player, world);
 			for(int i = 0; i < enemy.size(); i++)
-				if(enemy.get(i).moveUp(world))
-					enemy.get(i).moveUp(world);
+				if(enemy.get(i).moveUp(enemy.get(i), world))
+					enemy.get(i).moveUp(enemy.get(i), world);
 		}
 		if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) 
 		{
-			player.moveLeft(world);
+			player.moveLeft(player, world);
 			for(int i = 0; i < enemy.size(); i++)
-				if(enemy.get(i).moveRight(world))
-					enemy.get(i).moveRight(world);
+				if(enemy.get(i).moveRight(enemy.get(i), world))
+					enemy.get(i).moveRight(enemy.get(i), world);
 		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) 
 		{
-			player.moveRight(world);
+			player.moveRight(player, world);
 			for(int i = 0; i < enemy.size(); i++)
-				if(enemy.get(i).moveLeft(world))
-					enemy.get(i).moveLeft(world);
+				if(enemy.get(i).moveLeft(enemy.get(i), world))
+					enemy.get(i).moveLeft(enemy.get(i), world);
 		}
 	}
 

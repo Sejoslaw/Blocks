@@ -6,8 +6,14 @@ public class BlockEnemy extends BlockMovable
 {
 	public static final long serialVersionUID = 1L;
 
-	public BlockEnemy(Color c, int x, int y) 
+	public BlockEnemy(int x, int y) 
 	{
-		super(c, x, y);
+		super(Color.RED, x, y);
+	}
+	
+	@Override
+	public Color getColor()
+	{
+		return Color.RED;
 	}
 }
