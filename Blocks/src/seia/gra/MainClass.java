@@ -54,7 +54,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		f.setResizable(false);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	
+
 	public void losEnemy()
 	{
 		for(int i = 0; i < enemyNumber; i++)
@@ -67,7 +67,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	{
 		int rX = new Random().nextInt(SZER / Block.BLOCK_SIZE);
 		int rY = new Random().nextInt(WYS / Block.BLOCK_SIZE);
-		if((rX != 1) && (rY != 1))
+		if((rX != 1) && (rY != 1) && (rX != 0) && (rY != 0) && (rX != getWidthInBlocks() - 1) && (rY != getHeightInBlocks() - 1))
 		{
 			enemy.add(new BlockEnemy(rX, rY));
 			return true;

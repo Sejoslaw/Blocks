@@ -9,7 +9,6 @@ public abstract class WorldElement
 {
 	public Color c;
 	public int pixelX, pixelY;
-	public static final List<WorldElement> WORLD_ELEMENT_BUS = new ArrayList<WorldElement>();
 	
 	public WorldElement(Color c, int pixelX, int pixelY)
 	{

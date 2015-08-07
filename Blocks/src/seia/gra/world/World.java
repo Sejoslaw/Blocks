@@ -2,6 +2,8 @@ package seia.gra.world;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.List;
 
 import seia.gra.block.Block;
 
@@ -14,12 +16,23 @@ public class World
 	 */
 	public Block[][] world;
 	public int SZER, WYS;
+	public List<WorldElement> worldElement = new ArrayList<WorldElement>();
 	
 	public World(int szer, int wys)
 	{
 		SZER = szer;
 		WYS = wys;
 		world = new Block[szer / Block.BLOCK_SIZE][wys / Block.BLOCK_SIZE];
+		
+		try 
+		{
+			WorldElementLevelValue levelValue = new WorldElementLevelValue(13, 25);
+			worldElement.add(levelValue);
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	public void paintComponent(Graphics g)
@@ -39,6 +52,10 @@ public class World
 					world[x][y].paintComponent(g);
 				}
 			}
+		}
+		for(int i = 0; i < worldElement.size(); i++)
+		{
+			worldElement.get(i).paintComponent(g);
 		}
 	}
 	
