@@ -28,7 +28,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 {
 	private static final long serialVersionUID = 1L;
 	
-	public Timer tm = new Timer(5, null); //miliseconds
+	public Timer tm = new Timer(5, null); //milisecondss
 	private static int SZER, WYS;
 	public int enemyNumber;
 	public World world;
