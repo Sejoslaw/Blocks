@@ -3,6 +3,8 @@ package seia.gra.block;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import seia.gra.world.World;
+
 public class Block
 {
 	private static final int SIZE = 50;
@@ -30,6 +32,26 @@ public class Block
 			g.setColor(Color.RED);
 			g.drawRect(SIZE * X, SIZE * Y, SIZE, SIZE);
 		}
+	}
+	
+	public Block getBlockOnLeft(World world)
+	{
+		return world.world[X - 1][Y];
+	}
+	
+	public Block getBlockOnRight(World world)
+	{
+		return world.world[X + 1][Y];
+	}
+	
+	public Block getBlockOnTop(World world)
+	{
+		return world.world[X][Y - 1];
+	}
+	
+	public Block getBlockUnder(World world)
+	{
+		return world.world[X][Y + 1];
 	}
 	
 	public Color getColor() 

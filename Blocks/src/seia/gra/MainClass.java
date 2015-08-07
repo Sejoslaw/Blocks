@@ -19,6 +19,7 @@ import seia.gra.block.movable.BlockEnemy;
 import seia.gra.block.movable.BlockPlayer;
 import seia.gra.block.nonmovable.BlockNextLevel;
 import seia.gra.event.EventCheckCollisionWithEnemy;
+import seia.gra.event.EventCheckForNextLevel;
 import seia.gra.utils.Key;
 import seia.gra.world.World;
 
@@ -159,9 +160,12 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 			{
 				if(EventCheckCollisionWithEnemy.canPlayerMoveRight(this))
 				{
-					player.moveRightPlayer(world);
-					for(int i = 0; i < enemy.size(); i++)
-						enemy.get(i).moveLeftEnemy(world);
+					if(!EventCheckForNextLevel.check(this))
+					{
+						player.moveRightPlayer(world);
+						for(int i = 0; i < enemy.size(); i++)
+							enemy.get(i).moveLeftEnemy(world);
+					}
 				}
 			}
 		}

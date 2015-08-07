@@ -18,7 +18,7 @@ public class BlockMovable extends Block
 		if(Y - 1 > 0)
 		{
 			boolean can = true;
-			if(world.world[X][Y - 1].getColor() == Color.BLACK)
+			if(getBlockOnTop(world).getColor() == Color.BLACK)
 			{
 				can = false;
 			}
@@ -36,7 +36,7 @@ public class BlockMovable extends Block
 		if(Y - 1 > 0)
 		{
 			boolean can = true;
-			if(world.world[X][Y - 1].getColor() == Color.BLACK)
+			if(getBlockOnTop(world).getColor() == Color.BLACK)
 			{
 				can = false;
 			}
@@ -59,7 +59,7 @@ public class BlockMovable extends Block
 		if(Y + 1 < MainClass.getHeightInBlocks() - 1)
 		{
 			boolean can = true;
-			if(world.world[X][Y + 1].getColor() == Color.BLACK)
+			if(getBlockUnder(world).getColor() == Color.BLACK)
 			{
 				can = false;
 			}
@@ -77,7 +77,7 @@ public class BlockMovable extends Block
 		if(Y + 1 < MainClass.getHeightInBlocks() - 1)
 		{
 			boolean can = true;
-			if(world.world[X][Y + 1].getColor() == Color.BLACK)
+			if(getBlockUnder(world).getColor() == Color.BLACK)
 			{
 				can = false;
 			}
@@ -100,7 +100,7 @@ public class BlockMovable extends Block
 		if(X - 1 > 0)
 		{
 			boolean can = true;
-			if(world.world[X - 1][Y].getColor() == Color.BLACK)
+			if(getBlockOnLeft(world).getColor() == Color.BLACK)
 			{
 				can = false;
 			}
@@ -118,7 +118,7 @@ public class BlockMovable extends Block
 		if(X - 1 > 0)
 		{
 			boolean can = true;
-			if(world.world[X - 1][Y].getColor() == Color.BLACK)
+			if(getBlockOnLeft(world).getColor() == Color.BLACK)
 			{
 				can = false;
 			}
@@ -141,7 +141,7 @@ public class BlockMovable extends Block
 		if(X + 1 < MainClass.getWidthInBlocks() - 1)
 		{
 			boolean can = true;
-			if(world.world[X + 1][Y].getColor() == Color.BLACK)
+			if(getBlockOnRight(world).getColor() == Color.BLACK)
 			{
 				can = false;
 			}
@@ -159,7 +159,7 @@ public class BlockMovable extends Block
 		if(X + 1 < MainClass.getWidthInBlocks() - 1)
 		{
 			boolean can = true;
-			if(world.world[X + 1][Y].getColor() == Color.BLACK)
+			if(getBlockOnRight(world).getColor() == Color.BLACK)
 			{
 				can = false;
 			}
