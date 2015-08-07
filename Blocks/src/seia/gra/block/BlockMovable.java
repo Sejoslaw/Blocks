@@ -14,7 +14,7 @@ public class BlockMovable extends Block
 		super(c, x, y);
 	}
 	
-	public boolean moveUpPlayer(BlockPlayer player, World world)
+	public boolean moveUpPlayer(World world)
 	{
 		if(Y - 1 > 0)
 		{
@@ -32,7 +32,7 @@ public class BlockMovable extends Block
 		return false;
 	}
 	
-	public boolean moveUpEnemy(BlockEnemy enemy, World world)
+	public boolean moveUpEnemy(World world)
 	{
 		if(Y - 1 > 0)
 		{
@@ -55,7 +55,7 @@ public class BlockMovable extends Block
 		return false;
 	}
 	
-	public boolean moveDownPlayer(BlockPlayer player, World world)
+	public boolean moveDownPlayer(World world)
 	{
 		if(Y + 1 < MainClass.getHeightInBlocks() - 1)
 		{
@@ -96,7 +96,7 @@ public class BlockMovable extends Block
 		return false;
 	}
 	
-	public boolean moveLeftPlayer(BlockPlayer player, World world)
+	public boolean moveLeftPlayer(World world)
 	{
 		if(X - 1 > 0)
 		{
@@ -114,7 +114,7 @@ public class BlockMovable extends Block
 		return false;
 	}
 	
-	public boolean moveLeftEnemy(BlockEnemy enemy, World world)
+	public boolean moveLeftEnemy(World world)
 	{
 		if(X - 1 > 0)
 		{
@@ -137,7 +137,7 @@ public class BlockMovable extends Block
 		return false;
 	}
 	
-	public boolean moveRightPlayer(BlockPlayer player, World world)
+	public boolean moveRightPlayer(World world)
 	{
 		if(X + 1 < MainClass.getWidthInBlocks() - 1)
 		{
@@ -155,7 +155,7 @@ public class BlockMovable extends Block
 		return false;
 	}
 	
-	public boolean moveRightEnemy(BlockEnemy enemy, World world)
+	public boolean moveRightEnemy(World world)
 	{
 		if(X + 1 < MainClass.getWidthInBlocks() - 1)
 		{
