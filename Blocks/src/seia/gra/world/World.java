@@ -7,6 +7,11 @@ import seia.gra.block.Block;
 
 public class World 
 {
+	/**
+	 * TODO: Swiat mozna przerobic na liste list -  List<List<Block>>
+	 * Wtedy moglby sie rozszerzac.
+	 * Jednak trzebaby przerobic wymiary swiata oraz przesowanie ekranu za graczem.
+	 */
 	public Block[][] world;
 	public int SZER, WYS;
 	
