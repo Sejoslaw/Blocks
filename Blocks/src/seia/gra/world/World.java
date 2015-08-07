@@ -36,4 +36,18 @@ public class World
 			}
 		}
 	}
+	
+	public boolean setWidth(int newWidth)
+	{
+		SZER = newWidth;
+		if(SZER == newWidth) return true;
+		return false;
+	}
+	
+	public boolean setHeight(int newHeight)
+	{
+		WYS = newHeight;
+		if(WYS == newHeight) return true;
+		return false;
+	}
 }

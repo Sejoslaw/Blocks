@@ -41,9 +41,24 @@ public class Block extends JPanel
 		return null;
 	}
 	
-	public boolean setColor(Color c)
+	public boolean setColor(Color newColor)
 	{
-		this.c = c;
-		return true;
+		c = newColor;
+		if((c.getRGB() == newColor.getRGB())) return true;
+		return false;
+	}
+	
+	public boolean setX(int newX)
+	{
+		X = newX;
+		if(X == newX) return true;
+		return false;
+	}
+	
+	public boolean setY(int newY)
+	{
+		Y = newY;
+		if(Y == newY) return true;
+		return false;
 	}
 }
