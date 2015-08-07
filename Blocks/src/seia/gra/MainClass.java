@@ -104,31 +104,31 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	{
 		if(e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) 
 		{
-			player.moveUp(player, world);
+			player.moveUpPlayer(player, world);
 			for(int i = 0; i < enemy.size(); i++)
-				if(enemy.get(i).moveDown(enemy.get(i), world))
-					enemy.get(i).moveDown(enemy.get(i), world);
+				if(enemy.get(i).moveDownEnemy(enemy.get(i), world))
+					enemy.get(i).moveDownEnemy(enemy.get(i), world);
 		}
 		if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) 
 		{
-			player.moveDown(player, world);
+			player.moveDownPlayer(player, world);
 			for(int i = 0; i < enemy.size(); i++)
-				if(enemy.get(i).moveUp(enemy.get(i), world))
-					enemy.get(i).moveUp(enemy.get(i), world);
+				if(enemy.get(i).moveUpEnemy(enemy.get(i), world))
+					enemy.get(i).moveUpEnemy(enemy.get(i), world);
 		}
 		if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) 
 		{
-			player.moveLeft(player, world);
+			player.moveLeftPlayer(player, world);
 			for(int i = 0; i < enemy.size(); i++)
-				if(enemy.get(i).moveRight(enemy.get(i), world))
-					enemy.get(i).moveRight(enemy.get(i), world);
+				if(enemy.get(i).moveRightEnemy(enemy.get(i), world))
+					enemy.get(i).moveRightEnemy(enemy.get(i), world);
 		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) 
 		{
-			player.moveRight(player, world);
+			player.moveRightPlayer(player, world);
 			for(int i = 0; i < enemy.size(); i++)
-				if(enemy.get(i).moveLeft(enemy.get(i), world))
-					enemy.get(i).moveLeft(enemy.get(i), world);
+				if(enemy.get(i).moveLeftEnemy(enemy.get(i), world))
+					enemy.get(i).moveLeftEnemy(enemy.get(i), world);
 		}
 	}
 
