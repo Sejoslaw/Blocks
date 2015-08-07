@@ -15,8 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import seia.gra.block.Block;
-import seia.gra.block.BlockEnemy;
-import seia.gra.block.BlockPlayer;
+import seia.gra.block.movable.BlockEnemy;
+import seia.gra.block.movable.BlockPlayer;
+import seia.gra.block.nonmovable.BlockNextLevel;
 import seia.gra.event.EventCheckCollisionWithEnemy;
 import seia.gra.utils.Key;
 import seia.gra.world.World;
@@ -31,6 +32,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	public World world;
 	public BlockPlayer player;
 	private static List<BlockEnemy> enemy = new ArrayList<BlockEnemy>();
+	public BlockNextLevel nextLevel;
 
 	public MainClass(int szer, int wys)
 	{
@@ -40,13 +42,25 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		player = new BlockPlayer(1, 1);
 		world = new World(szer, wys);
 		enemyNumber = new Random().nextInt(150);
+		losEnemy();
+		this.addKeyListener(this);
+		this.setFocusable(true);
+		this.setFocusTraversalKeysEnabled(false);
+		
+		JFrame f = new JFrame("Blocks");
+		f.setSize(szer, wys);
+		f.setVisible(true);
+		f.add(this);
+		f.setResizable(false);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	public void losEnemy()
+	{
 		for(int i = 0; i < enemyNumber; i++)
 		{
 			addEnemy();
 		}
-		this.addKeyListener(this);
-		this.setFocusable(true);
-		this.setFocusTraversalKeysEnabled(false);
 	}
 	
 	public static boolean addEnemy() 
@@ -97,27 +111,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	{
 		return WYS / Block.BLOCK_SIZE;
 	}
-	
-	public static void main(String[] args) 
-	{
-		int szer = 1000;
-		int wys = 600;
-		
-		String s1 = JOptionPane.showInputDialog("Czy pokazac linie ? (true / false)");
-		boolean line = Boolean.parseBoolean(s1.toLowerCase());
-		Block.isShowingLines = line;
-		
-		MainClass mc = new MainClass(szer, wys);
-		JFrame f = new JFrame("Blocks");
-		f.setSize(szer, wys);
-		f.setVisible(true);
-		f.add(mc);
-		f.setResizable(false);
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		JOptionPane.showMessageDialog(mc, "Nie dotykaj czerwonych !!!");
-	}
-	
+
 	@Override
 	public void keyPressed(KeyEvent e) 
 	{
@@ -183,5 +177,19 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
+	}
+	
+	public static void main(String[] args) 
+	{
+		int szer = 1000;
+		int wys = 600;
+		
+		String s1 = JOptionPane.showInputDialog("Czy pokazac linie ? (true / false)");
+		boolean line = Boolean.parseBoolean(s1.toLowerCase());
+		Block.isShowingLines = line;
+		
+		MainClass mc = new MainClass(szer, wys);
+		
+		JOptionPane.showMessageDialog(mc, "Nie dotykaj czerwonych !!! Zolty -> Next Level.");
 	}
 }

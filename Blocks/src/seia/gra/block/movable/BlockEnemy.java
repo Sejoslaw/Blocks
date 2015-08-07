@@ -1,19 +1,19 @@
-package seia.gra.block;
+package seia.gra.block.movable;
 
 import java.awt.Color;
 
 public class BlockEnemy extends BlockMovable
 {
-	public static final long serialVersionUID = 1L;
-
+	private static Color color = Color.RED;
+	
 	public BlockEnemy(int x, int y) 
 	{
-		super(Color.RED, x, y);
+		super(color, x, y);
 	}
 	
 	@Override
 	public Color getColor()
 	{
-		return Color.RED;
+		return color;
 	}
 }

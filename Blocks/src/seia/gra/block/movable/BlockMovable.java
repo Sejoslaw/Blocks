@@ -1,14 +1,13 @@
-package seia.gra.block;
+package seia.gra.block.movable;
 
 import java.awt.Color;
 
 import seia.gra.MainClass;
+import seia.gra.block.Block;
 import seia.gra.world.World;
 
 public class BlockMovable extends Block
 {
-	private static final long serialVersionUID = 1L;
-
 	public BlockMovable(Color c, int x, int y) 
 	{
 		super(c, x, y);

@@ -3,12 +3,8 @@ package seia.gra.block;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import javax.swing.JPanel;
-
-public class Block extends JPanel
+public class Block
 {
-	private static final long serialVersionUID = 1L;
-	
 	private static final int SIZE = 50;
 	public static final int BLOCK_SIZE = SIZE;
 	
@@ -38,7 +34,7 @@ public class Block extends JPanel
 	
 	public Color getColor() 
 	{
-		return null;
+		return c;
 	}
 	
 	public boolean setColor(Color newColor)

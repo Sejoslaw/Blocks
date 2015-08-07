@@ -1,19 +1,19 @@
-package seia.gra.block;
+package seia.gra.block.movable;
 
 import java.awt.Color;
 
 public class BlockPlayer extends BlockMovable
 {
-	private static final long serialVersionUID = 1L;
-
+	private static Color color = Color.GREEN;
+	
 	public BlockPlayer(int x, int y) 
 	{
-		super(Color.GREEN, x, y);
+		super(color, x, y);
 	}
 	
 	@Override
 	public Color getColor()
 	{
-		return Color.GREEN;
+		return color;
 	}
 }
