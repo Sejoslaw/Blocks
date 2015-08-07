@@ -39,7 +39,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		WYS = wys;
 		player = new BlockPlayer(1, 1);
 		world = new World(szer, wys);
-		enemyNumber = new Random().nextInt(10);
+		enemyNumber = new Random().nextInt(150);
 		for(int i = 0; i < enemyNumber; i++)
 		{
 			addEnemy();
