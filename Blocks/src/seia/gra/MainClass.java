@@ -41,6 +41,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		WYS = wys;
 		player = new BlockPlayer(1, 1);
 		world = new World(szer, wys);
+		nextLevel = new BlockNextLevel(BlockNextLevel.getWidth(), BlockNextLevel.getRandHeight());
 		enemyNumber = new Random().nextInt(150);
 		losEnemy();
 		this.addKeyListener(this);
@@ -92,6 +93,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		{
 			enemy.get(i).paintComponent(g);
 		}
+		nextLevel.paintComponent(g);
 		player.paintComponent(g);
 		repaint();
 	}
