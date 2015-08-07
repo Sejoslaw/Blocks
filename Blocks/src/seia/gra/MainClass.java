@@ -25,7 +25,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	private static final long serialVersionUID = 1L;
 	
 	public Timer tm = new Timer(5, null);
-	public int SZER, WYS;
+	private static int SZER, WYS;
 	public int enemyNumber;
 	public int rX, rY;
 	public World world;
@@ -68,6 +68,16 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		}
 		player.paintComponent(g);
 		repaint();
+	}
+	
+	public static int getWidthInBlocks()
+	{
+		return SZER / Block.BLOCK_SIZE;
+	}
+	
+	public static int getHeightInBlocks()
+	{
+		return WYS / Block.BLOCK_SIZE;
 	}
 	
 	public static void main(String[] args) 
