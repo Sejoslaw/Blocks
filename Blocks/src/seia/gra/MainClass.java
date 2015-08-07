@@ -41,15 +41,29 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		enemyNumber = new Random().nextInt(10);
 		for(int i = 0; i < enemyNumber; i++)
 		{
-			rX = new Random().nextInt(SZER / 50);
-			rY = new Random().nextInt(WYS / 50);
-			enemy.add(new BlockEnemy(rX, rY));
+			addEnemy();
 		}
 		this.addKeyListener(this);
 		this.setFocusable(true);
 		this.setFocusTraversalKeysEnabled(false);
 	}
 	
+	private boolean addEnemy() 
+	{
+		rX = new Random().nextInt(SZER / Block.BLOCK_SIZE);
+		rY = new Random().nextInt(WYS / Block.BLOCK_SIZE);
+		if((rX != 1) && (rY != 1))
+		{
+			enemy.add(new BlockEnemy(rX, rY));
+			return true;
+		}
+		else
+		{
+			addEnemy();
+		}
+		return false;
+	}
+
 	public void paintComponent(Graphics g)
 	{
 		world.paintComponent(g);
@@ -106,29 +120,25 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		{
 			player.moveUpPlayer(player, world);
 			for(int i = 0; i < enemy.size(); i++)
-				if(enemy.get(i).moveDownEnemy(enemy.get(i), world))
-					enemy.get(i).moveDownEnemy(enemy.get(i), world);
+				enemy.get(i).moveDownEnemy(enemy.get(i), world);
 		}
 		if(e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_S) 
 		{
 			player.moveDownPlayer(player, world);
 			for(int i = 0; i < enemy.size(); i++)
-				if(enemy.get(i).moveUpEnemy(enemy.get(i), world))
-					enemy.get(i).moveUpEnemy(enemy.get(i), world);
+				enemy.get(i).moveUpEnemy(enemy.get(i), world);
 		}
 		if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) 
 		{
 			player.moveLeftPlayer(player, world);
 			for(int i = 0; i < enemy.size(); i++)
-				if(enemy.get(i).moveRightEnemy(enemy.get(i), world))
-					enemy.get(i).moveRightEnemy(enemy.get(i), world);
+				enemy.get(i).moveRightEnemy(enemy.get(i), world);
 		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) 
 		{
 			player.moveRightPlayer(player, world);
 			for(int i = 0; i < enemy.size(); i++)
-				if(enemy.get(i).moveLeftEnemy(enemy.get(i), world))
-					enemy.get(i).moveLeftEnemy(enemy.get(i), world);
+				enemy.get(i).moveLeftEnemy(enemy.get(i), world);
 		}
 	}
 
