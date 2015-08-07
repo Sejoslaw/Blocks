@@ -6,6 +6,11 @@ import seia.gra.block.movable.BlockPlayer;
 
 public class EventCheckCollisionWithEnemy extends Event
 {
+	private static void action(MainClass mc)
+	{
+		mc.newGame();
+	}
+	
 	public static boolean canPlayerMoveUp(MainClass mc)
 	{
 		BlockPlayer player = mc.player;
@@ -14,12 +19,12 @@ public class EventCheckCollisionWithEnemy extends Event
 			BlockEnemy enemy = MainClass.getEnemyList().get(i);
 			if((player.X == enemy.X) && (player.Y - 1 == enemy.Y))
 			{
-				mc.gameOver();
+				action(mc);
 				return false;
 			}
 			if((player.X == enemy.X) && (player.Y - 2 == enemy.Y))
 			{
-				mc.gameOver();
+				action(mc);
 				return false;
 			}
 		}
@@ -34,12 +39,12 @@ public class EventCheckCollisionWithEnemy extends Event
 			BlockEnemy enemy = MainClass.getEnemyList().get(i);
 			if((player.X == enemy.X) && (player.Y + 1 == enemy.Y))
 			{
-				mc.gameOver();
+				action(mc);
 				return false;
 			}
 			if((player.X == enemy.X) && (player.Y + 2 == enemy.Y))
 			{
-				mc.gameOver();
+				action(mc);
 				return false;
 			}
 		}
@@ -54,12 +59,12 @@ public class EventCheckCollisionWithEnemy extends Event
 			BlockEnemy enemy = MainClass.getEnemyList().get(i);
 			if((player.X - 1 == enemy.X) && (player.Y == enemy.Y))
 			{
-				mc.gameOver();
+				action(mc);
 				return false;
 			}
 			if((player.X - 2 == enemy.X) && (player.Y == enemy.Y))
 			{
-				mc.gameOver();
+				action(mc);
 				return false;
 			}
 		}
@@ -74,16 +79,15 @@ public class EventCheckCollisionWithEnemy extends Event
 			BlockEnemy enemy = MainClass.getEnemyList().get(i);
 			if((player.X + 1 == enemy.X) && (player.Y == enemy.Y))
 			{
-				mc.gameOver();
+				action(mc);
 				return false;
 			}
 			if((player.X + 2 == enemy.X) && (player.Y == enemy.Y))
 			{
-				mc.gameOver();
+				action(mc);
 				return false;
 			}
 		}
 		return true;
 	}
-	
 }

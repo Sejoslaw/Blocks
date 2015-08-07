@@ -22,6 +22,7 @@ import seia.gra.event.EventCheckCollisionWithEnemy;
 import seia.gra.event.EventCheckForNextLevel;
 import seia.gra.utils.Key;
 import seia.gra.world.World;
+import seia.gra.world.WorldElementLevelValue;
 
 public class MainClass extends JPanel implements ActionListener, KeyListener
 {
@@ -55,6 +56,46 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		f.add(this);
 		f.setResizable(false);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	public void newGame()
+	{
+		JOptionPane.showMessageDialog(this, "Game Over :(");
+		reloadPanel();
+		updateLevelValue(0);
+	}
+	
+	public void reloadPanel() 
+	{
+		player.X = 1;
+		player.Y = new Random().nextInt(getHeightInBlocks() - 2) + 1;
+		nextLevel.X = BlockNextLevel.getWidth();
+		nextLevel.Y = BlockNextLevel.getRandHeight();
+		enemy.clear();
+		enemyNumber = new Random().nextInt(150);
+		losEnemy();
+	}
+	
+	public void updateLevelValue() 
+	{
+		for(int i = 0; i < world.worldElement.size(); i++)
+		{
+			if(world.worldElement.get(i).getClass().getName() == WorldElementLevelValue.class.getName())
+			{
+				((WorldElementLevelValue)world.worldElement.get(i)).level++;
+			}
+		}
+	}
+	
+	public void updateLevelValue(int level) 
+	{
+		for(int i = 0; i < world.worldElement.size(); i++)
+		{
+			if(world.worldElement.get(i).getClass().getName() == WorldElementLevelValue.class.getName())
+			{
+				((WorldElementLevelValue)world.worldElement.get(i)).level = level;
+			}
+		}
 	}
 
 	public void losEnemy()
