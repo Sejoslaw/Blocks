@@ -27,11 +27,8 @@ public class BlockNextLevel extends BlockNonMovable
 
 	public static int getRandHeight() 
 	{
-		int rand = new Random().nextInt(MainClass.getHeightInBlocks());
-		if(rand == 0) 
-			rand++;
-		if(rand == MainClass.getHeightInBlocks())
-			rand--;
+		int rand = new Random().nextInt((3 * MainClass.getHeightInBlocks()) / 4);
+		if(rand <= 0) rand = 1;
 		return rand;
 	}
 }

@@ -67,12 +67,13 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	
 	public void reloadPanel() 
 	{
+		world.setCurrentRendererRandom();
 		player.X = 1;
 		player.Y = new Random().nextInt(getHeightInBlocks() - 2) + 1;
 		nextLevel.X = BlockNextLevel.getWidth();
 		nextLevel.Y = BlockNextLevel.getRandHeight();
 		enemy.clear();
-		enemyNumber = new Random().nextInt(150);
+		enemyNumber = 90;//new Random().nextInt(150);
 		losEnemy();
 	}
 	

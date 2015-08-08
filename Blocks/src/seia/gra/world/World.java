@@ -1,11 +1,12 @@
 package seia.gra.world;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-import seia.gra.block.Block;
+import seia.gra.world.renderer.WorldRenderer;
+import seia.gra.world.renderer.WorldRendererSquare;
 import seia.gra.world.worldelement.WorldElement;
 import seia.gra.world.worldelement.WorldElementLevelValue;
 
@@ -16,16 +17,22 @@ public class World
 	 * Wtedy moglby sie rozszerzac.
 	 * Jednak trzebaby przerobic wymiary swiata oraz przesowanie ekranu za graczem.
 	 */
-	public Block[][] world;
-	public int SZER, WYS;
 	public List<WorldElement> worldElement = new ArrayList<WorldElement>();
+	public List<WorldRenderer> worldRenderer = new ArrayList<WorldRenderer>();
+	public WorldRenderer currentRenderer;
+	public int SZER, WYS;
 	
 	public World(int szer, int wys)
 	{
 		SZER = szer;
 		WYS = wys;
-		world = new Block[szer / Block.BLOCK_SIZE][wys / Block.BLOCK_SIZE];
-		
+		addElements();
+		addRenderers();
+		currentRenderer = worldRenderer.get(0);
+	}
+	
+	public boolean addElements()
+	{
 		try 
 		{
 			WorldElementLevelValue levelValue = new WorldElementLevelValue(13, 25);
@@ -34,44 +41,48 @@ public class World
 		catch (Exception e) 
 		{
 			e.printStackTrace();
+			return false;
 		}
+		return true;
+	}
+	
+	public boolean addRenderers()
+	{
+		try
+		{
+			WorldRendererSquare square = new WorldRendererSquare(SZER, WYS);
+			worldRenderer.add(square);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 	
 	public void paintComponent(Graphics g)
 	{
-		for(int x = 0; x < SZER / 50; x++)
-		{
-			for(int y = 0; y < WYS / 50; y++)
-			{
-				if(x == 0 || y == 0 || x == (SZER / 50) - 1 || y == (WYS / 50) - 1)
-				{
-					world[x][y] = new Block(Color.BLACK, x, y);
-					world[x][y].paintComponent(g);
-				}
-				else
-				{
-					world[x][y] = new Block(Color.BLUE, x, y);
-					world[x][y].paintComponent(g);
-				}
-			}
-		}
+		for(int i = 0; i < worldRenderer.size(); i++)
+			if(worldRenderer.get(i).getRendererID() == currentRenderer.getRendererID())
+				worldRenderer.get(i).paintWorld(g);
 		for(int i = 0; i < worldElement.size(); i++)
-		{
 			worldElement.get(i).paintComponent(g);
-		}
 	}
 	
-	public boolean setWidth(int newWidth)
+	public boolean setCurrentRenderer(WorldRenderer renderer)
 	{
-		SZER = newWidth;
-		if(SZER == newWidth) return true;
+		currentRenderer = renderer;
+		if(currentRenderer.getRendererID() == renderer.getRendererID()) return true;
 		return false;
 	}
 	
-	public boolean setHeight(int newHeight)
+	public boolean setCurrentRendererRandom()
 	{
-		WYS = newHeight;
-		if(WYS == newHeight) return true;
+		int rand = new Random().nextInt(worldRenderer.size()) - 1;
+		if(rand < 0) rand = 0;
+		currentRenderer = worldRenderer.get(rand);
+		if(currentRenderer.getRendererID() == worldRenderer.get(rand).getRendererID()) return true;
 		return false;
 	}
 }
