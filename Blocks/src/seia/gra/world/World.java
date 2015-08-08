@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import seia.gra.world.renderer.WorldRenderer;
+import seia.gra.world.renderer.WorldRendererHeart;
 import seia.gra.world.renderer.WorldRendererSquare;
 import seia.gra.world.worldelement.WorldElement;
 import seia.gra.world.worldelement.WorldElementLevelValue;
@@ -22,13 +23,16 @@ public class World
 	public WorldRenderer currentRenderer;
 	public int SZER, WYS;
 	
-	public World(int szer, int wys)
+	public World(int szer, int wys, boolean b1)
 	{
 		SZER = szer;
 		WYS = wys;
 		addElements();
 		addRenderers();
-		currentRenderer = worldRenderer.get(0);
+		if(b1)
+			currentRenderer = worldRenderer.get(1);
+		else
+			currentRenderer = worldRenderer.get(0);
 	}
 	
 	public boolean addElements()
@@ -52,6 +56,8 @@ public class World
 		{
 			WorldRendererSquare square = new WorldRendererSquare(SZER, WYS);
 			worldRenderer.add(square);
+			WorldRendererHeart wrh = new WorldRendererHeart(SZER, WYS);
+			worldRenderer.add(wrh);
 		}
 		catch(Exception e)
 		{
@@ -73,7 +79,8 @@ public class World
 	public boolean setCurrentRenderer(WorldRenderer renderer)
 	{
 		currentRenderer = renderer;
-		if(currentRenderer.getRendererID() == renderer.getRendererID()) return true;
+		if(currentRenderer.getRendererID() == renderer.getRendererID()) 
+			return true;
 		return false;
 	}
 	
@@ -82,7 +89,8 @@ public class World
 		int rand = new Random().nextInt(worldRenderer.size()) - 1;
 		if(rand < 0) rand = 0;
 		currentRenderer = worldRenderer.get(rand);
-		if(currentRenderer.getRendererID() == worldRenderer.get(rand).getRendererID()) return true;
+		if(currentRenderer.getRendererID() == worldRenderer.get(rand).getRendererID()) 
+			return true;
 		return false;
 	}
 }

@@ -22,6 +22,7 @@ import seia.gra.event.EventCheckCollisionWithEnemy;
 import seia.gra.event.EventCheckForNextLevel;
 import seia.gra.utils.Key;
 import seia.gra.world.World;
+import seia.gra.world.renderer.WorldRendererHeart;
 import seia.gra.world.worldelement.WorldElementLevelValue;
 
 public class MainClass extends JPanel implements ActionListener, KeyListener
@@ -35,16 +36,25 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	public BlockPlayer player;
 	private static List<BlockEnemy> enemy = new ArrayList<BlockEnemy>();
 	public BlockNextLevel nextLevel;
+	private boolean setHeart;
 
-	public MainClass(int szer, int wys)
+	public MainClass(int szer, int wys, boolean setHeart)
 	{
 		tm.start();
 		SZER = szer;
 		WYS = wys;
+		this.setHeart = setHeart;
 		player = new BlockPlayer(1, 1);
-		world = new World(szer, wys);
+		world = new World(szer, wys, setHeart);
 		nextLevel = new BlockNextLevel(BlockNextLevel.getWidth(), BlockNextLevel.getRandHeight());
-		enemyNumber = new Random().nextInt(150);
+		if(setHeart)
+		{
+			enemyNumber = 0;
+		}
+		else
+		{
+			enemyNumber = 90;//new Random().nextInt(95);
+		}
 		losEnemy();
 		this.addKeyListener(this);
 		this.setFocusable(true);
@@ -73,7 +83,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		nextLevel.X = BlockNextLevel.getWidth();
 		nextLevel.Y = BlockNextLevel.getRandHeight();
 		enemy.clear();
-		enemyNumber = 90;//new Random().nextInt(150);
+		enemyNumber = 90; //new Random().nextInt(95);
 		losEnemy();
 	}
 	
@@ -127,6 +137,11 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	{
 		List<BlockEnemy> cpy = enemy;
 		return cpy;
+	}
+	
+	public boolean getSetHeart()
+	{
+		return setHeart;
 	}
 
 	public void paintComponent(Graphics g)
@@ -231,13 +246,19 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	{
 		int szer = 1000;
 		int wys = 600;
+		boolean b1 = false;
 		
 		String s1 = JOptionPane.showInputDialog("Czy pokazac linie ? (true / false)");
-		boolean line = Boolean.parseBoolean(s1.toLowerCase());
-		Block.isShowingLines = line;
-		
-		MainClass mc = new MainClass(szer, wys);
-		
+		if(s1.toLowerCase().equals(WorldRendererHeart.input.toLowerCase()))
+		{
+			b1 = true;
+		}
+		else
+		{
+			boolean line = Boolean.parseBoolean(s1.toLowerCase());
+			Block.isShowingLines = line;
+		}
+		MainClass mc = new MainClass(szer, wys, b1);
 		JOptionPane.showMessageDialog(mc, "Nie dotykaj czerwonych !!! Zolty -> Next Level.");
 	}
 }

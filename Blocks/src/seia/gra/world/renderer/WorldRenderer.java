@@ -19,14 +19,16 @@ public abstract class WorldRenderer
 	public boolean setWidth(int newWidth)
 	{
 		SZER = newWidth;
-		if(SZER == newWidth) return true;
+		if(SZER == newWidth) 
+			return true;
 		return false;
 	}
 	
 	public boolean setHeight(int newHeight)
 	{
 		WYS = newHeight;
-		if(WYS == newHeight) return true;
+		if(WYS == newHeight) 
+			return true;
 		return false;
 	}
 	
