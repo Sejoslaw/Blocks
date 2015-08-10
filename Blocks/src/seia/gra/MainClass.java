@@ -1,5 +1,6 @@
 package seia.gra;
 
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.swing.AbstractButton;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -31,12 +34,13 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	
 	public Timer tm = new Timer(5, null); //miliseconds
 	private static int SZER, WYS;
-	public int enemyNumber;
 	public World world;
 	public BlockPlayer player;
 	private static List<BlockEnemy> enemy = new ArrayList<BlockEnemy>();
 	public BlockNextLevel nextLevel;
 	private boolean setHeart;
+	public JFrame frame;
+	public JButton buttonShowLines;
 
 	public MainClass(int szer, int wys, boolean setHeart)
 	{
@@ -49,30 +53,48 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		nextLevel = new BlockNextLevel(BlockNextLevel.getWidth(), BlockNextLevel.getRandHeight());
 		if(setHeart)
 		{
-			enemyNumber = 0;
+			losEnemy(0);
 		}
 		else
 		{
-			enemyNumber = 90;//new Random().nextInt(95);
+			losEnemy(90);//new Random().nextInt(95);
 		}
-		losEnemy();
 		this.addKeyListener(this);
 		this.setFocusable(true);
 		this.setFocusTraversalKeysEnabled(false);
 		
-		JFrame f = new JFrame("Blocks");
-		f.setSize(szer, wys);
-		f.setVisible(true);
-		f.add(this);
-		f.setResizable(false);
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame = new JFrame("Blocks");
+		frame.setSize(szer, wys);
+		addItemsToFrame(); //frame.add(this);
+		frame.setResizable(false);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+	}
+	
+	public void addItemsToFrame()
+	{
+		frame.add(this);
+		//addAdditionalItems();
+	}
+	
+	public void addAdditionalItems()
+	{
+		buttonShowLines = new JButton("Lines");
+		buttonShowLines.setVerticalTextPosition(AbstractButton.CENTER);
+		buttonShowLines.setBounds(100, 100, 50, 50);
+		buttonShowLines.setVisible(true);
+		buttonShowLines.addActionListener(this);
+		buttonShowLines.setLayout(new FlowLayout());
+		buttonShowLines.setActionCommand("lines");
+		buttonShowLines.setEnabled(true);
+		frame.add(buttonShowLines);
 	}
 	
 	public void newGame()
 	{
 		JOptionPane.showMessageDialog(this, "Game Over :(");
 		reloadPanel();
-		updateLevelValue(0);
+		updateLevelValue(1);
 	}
 	
 	public void reloadPanel() 
@@ -83,8 +105,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		nextLevel.X = BlockNextLevel.getWidth();
 		nextLevel.Y = BlockNextLevel.getRandHeight();
 		enemy.clear();
-		enemyNumber = 90; //new Random().nextInt(95);
-		losEnemy();
+		losEnemy(90); //new Random().nextInt(95);
 	}
 	
 	public void updateLevelValue() 
@@ -109,9 +130,9 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		}
 	}
 
-	public void losEnemy()
+	public void losEnemy(int ile)
 	{
-		for(int i = 0; i < enemyNumber; i++)
+		for(int i = 0; i < ile; i++)
 		{
 			addEnemy();
 		}
@@ -240,6 +261,13 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
+		if("lines".equals(e.getActionCommand()))
+		{
+			if(Block.isShowingLines)
+				Block.isShowingLines = false;
+			else
+				Block.isShowingLines = true;
+		}
 	}
 	
 	public static void main(String[] args) 

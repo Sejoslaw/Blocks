@@ -11,7 +11,7 @@ public class WorldElementLevelValue extends WorldElement
 	public WorldElementLevelValue(int pixelX, int pixelY) 
 	{
 		super(color, pixelX, pixelY);
-		level = 0;
+		level = 1;
 	}
 	
 	@Override
