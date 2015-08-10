@@ -10,6 +10,7 @@ import seia.gra.world.renderer.WorldRendererHeart;
 import seia.gra.world.renderer.WorldRendererSquare;
 import seia.gra.world.worldelement.WorldElement;
 import seia.gra.world.worldelement.WorldElementLevelValue;
+import seia.gra.world.worldelement.WorldElementNick;
 
 public class World 
 {
@@ -43,6 +44,9 @@ public class World
 		{
 			WorldElementLevelValue levelValue = new WorldElementLevelValue(13, 25);
 			worldElement.add(levelValue);
+			
+			WorldElementNick nick = new WorldElementNick(200, 25);
+			worldElement.add(nick);
 		} 
 		catch (Exception e) 
 		{

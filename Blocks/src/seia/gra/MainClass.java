@@ -23,10 +23,12 @@ import seia.gra.block.movable.BlockPlayer;
 import seia.gra.block.nonmovable.BlockNextLevel;
 import seia.gra.event.EventCheckCollisionWithEnemy;
 import seia.gra.event.EventCheckForNextLevel;
+import seia.gra.utils.FileConfig;
 import seia.gra.utils.Key;
 import seia.gra.world.World;
 import seia.gra.world.renderer.WorldRendererHeart;
 import seia.gra.world.worldelement.WorldElementLevelValue;
+import seia.gra.world.worldelement.WorldElementNick;
 
 public class MainClass extends JPanel implements ActionListener, KeyListener
 {
@@ -42,8 +44,9 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	public JFrame frame;
 	public JButton buttonShowLines;
 
-	public MainClass(int szer, int wys, boolean setHeart)
+	public MainClass(int szer, int wys, boolean setHeart, String nick)
 	{
+		FileConfig.checkConfig();
 		tm.start();
 		SZER = szer;
 		WYS = wys;
@@ -51,6 +54,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		player = new BlockPlayer(1, 1);
 		world = new World(szer, wys, setHeart);
 		nextLevel = new BlockNextLevel(BlockNextLevel.getWidth(), BlockNextLevel.getRandHeight());
+		setNick(nick);
 		if(setHeart)
 		{
 			losEnemy(0);
@@ -70,7 +74,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
-	
+
 	public void addItemsToFrame()
 	{
 		frame.add(this);
@@ -108,6 +112,18 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		losEnemy(90); //new Random().nextInt(95);
 	}
 	
+	public void setNick(String nick)
+	{
+		for(int i = 0; i < world.worldElement.size(); i++)
+		{
+			if(world.worldElement.get(i).getClass().getName() == WorldElementNick.class.getName())
+			{
+				((WorldElementNick)world.worldElement.get(i)).nick = nick;
+				return;
+			}
+		}
+	}
+	
 	public void updateLevelValue() 
 	{
 		for(int i = 0; i < world.worldElement.size(); i++)
@@ -115,6 +131,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 			if(world.worldElement.get(i).getClass().getName() == WorldElementLevelValue.class.getName())
 			{
 				((WorldElementLevelValue)world.worldElement.get(i)).level++;
+				return;
 			}
 		}
 	}
@@ -126,6 +143,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 			if(world.worldElement.get(i).getClass().getName() == WorldElementLevelValue.class.getName())
 			{
 				((WorldElementLevelValue)world.worldElement.get(i)).level = level;
+				return;
 			}
 		}
 	}
@@ -276,17 +294,12 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		int wys = 600;
 		boolean b1 = false;
 		
-		String s1 = JOptionPane.showInputDialog("Czy pokazac linie ? (true / false)");
+		String s1 = JOptionPane.showInputDialog("Podaj nick:");
 		if(s1.toLowerCase().equals(WorldRendererHeart.input.toLowerCase()))
 		{
 			b1 = true;
 		}
-		else
-		{
-			boolean line = Boolean.parseBoolean(s1.toLowerCase());
-			Block.isShowingLines = line;
-		}
-		MainClass mc = new MainClass(szer, wys, b1);
+		MainClass mc = new MainClass(szer, wys, b1, s1);
 		JOptionPane.showMessageDialog(mc, "Nie dotykaj czerwonych !!! Zolty -> Next Level.");
 	}
 }
