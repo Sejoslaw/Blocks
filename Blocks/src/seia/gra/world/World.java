@@ -22,11 +22,13 @@ public class World
 	public List<WorldRenderer> worldRenderer = new ArrayList<WorldRenderer>();
 	public WorldRenderer currentRenderer;
 	public int SZER, WYS;
+	boolean b1;
 	
 	public World(int szer, int wys, boolean b1)
 	{
 		SZER = szer;
 		WYS = wys;
+		this.b1 = b1;
 		addElements();
 		addRenderers();
 		if(b1)
@@ -56,8 +58,11 @@ public class World
 		{
 			WorldRendererSquare square = new WorldRendererSquare(SZER, WYS);
 			worldRenderer.add(square);
-			WorldRendererHeart wrh = new WorldRendererHeart(SZER, WYS);
-			worldRenderer.add(wrh);
+			if(b1)
+			{
+				WorldRendererHeart wrh = new WorldRendererHeart(SZER, WYS);
+				worldRenderer.add(wrh);
+			}
 		}
 		catch(Exception e)
 		{
