@@ -56,6 +56,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		world = new World(szer, wys, setHeart);
 		nextLevel = new BlockNextLevel(BlockNextLevel.getWidth(), BlockNextLevel.getRandHeight());
 		setNick(nick);
+		setAvailableHits();
 		if(setHeart)
 		{
 			losEnemy(0);
