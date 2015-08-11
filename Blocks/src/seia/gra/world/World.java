@@ -72,6 +72,14 @@ public class World
 		losEnemy(90); //new Random().nextInt(95);
 	}
 	
+	public boolean isEnemyAtCoords(int x, int y)
+	{
+		for(int i = 0; i < enemy.size(); i++)
+			if((enemy.get(i).X == x) && (enemy.get(i).Y == y))
+				return true;
+		return false;
+	}
+	
 	public void killEnemy(BlockEnemy enemyToKill)
 	{
 		for(int i = 0; i < enemy.size(); i++)

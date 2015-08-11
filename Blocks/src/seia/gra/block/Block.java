@@ -34,6 +34,18 @@ public class Block
 		}
 	}
 	
+	public boolean isPlayer(World world)
+	{
+		if((world.player.X == X) && (world.player.Y == Y))
+			return true;
+		return false;
+	}
+	
+	public boolean isEnemy(World world)
+	{
+		return world.isEnemyAtCoords(X, Y);
+	}
+	
 	public Block getBlockOnLeft(World world)
 	{
 		return world.currentRenderer.world[X - 1][Y];
