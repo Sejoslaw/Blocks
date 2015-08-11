@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import seia.gra.MainClass;
 import seia.gra.block.Block;
 
 public class FileConfig 
@@ -18,10 +19,11 @@ public class FileConfig
 	 */
 	private static void addToList() 
 	{
-		configLines.add("showlines=false");
+		configLines.add("show_lines=false");
+		configLines.add("basic_available_hits=3");
 	}
 	
-	public static void checkConfig() 
+	public static void checkConfig(MainClass mc) 
 	{
 		if(FilesHandler.CONFIG.exists())
 		{
@@ -44,7 +46,7 @@ public class FileConfig
 			{
 				e.printStackTrace();
 			}
-			checkConfig();
+			checkConfig(mc);
 		}
 	}
 
@@ -79,6 +81,12 @@ public class FileConfig
 	public static boolean getShowLines()
 	{
 		String[] tab = readConfig();
-		return Boolean.parseBoolean(tab[0].substring(10, tab[0].length()));
+		return Boolean.parseBoolean(tab[0].substring(11, tab[0].length()));
+	}
+	
+	public static int getBasicAvailableHits()
+	{
+		String[] tab = readConfig();
+		return Integer.parseInt(tab[1].substring(21, tab[1].length()));
 	}
 }

@@ -9,6 +9,7 @@ import seia.gra.world.renderer.WorldRenderer;
 import seia.gra.world.renderer.WorldRendererHeart;
 import seia.gra.world.renderer.WorldRendererSquare;
 import seia.gra.world.worldelement.WorldElement;
+import seia.gra.world.worldelement.WorldElementAvailableHits;
 import seia.gra.world.worldelement.WorldElementLevelValue;
 import seia.gra.world.worldelement.WorldElementNick;
 
@@ -47,6 +48,9 @@ public class World
 			
 			WorldElementNick nick = new WorldElementNick(200, 25);
 			worldElement.add(nick);
+			
+			WorldElementAvailableHits hits = new WorldElementAvailableHits(400, 25);
+			worldElement.add(hits);
 		} 
 		catch (Exception e) 
 		{

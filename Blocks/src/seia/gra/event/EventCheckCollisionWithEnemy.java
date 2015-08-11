@@ -19,13 +19,29 @@ public class EventCheckCollisionWithEnemy extends Event
 			BlockEnemy enemy = MainClass.getEnemyList().get(i);
 			if((player.X == enemy.X) && (player.Y - 1 == enemy.Y))
 			{
-				action(mc);
-				return false;
+				if(!EventCanHit.checkIfCanHit(mc))
+				{
+					action(mc);
+					return false;
+				}
+				else
+				{
+					mc.killEnemy(enemy);
+					mc.decreaseAfterHit();
+				}
 			}
 			if((player.X == enemy.X) && (player.Y - 2 == enemy.Y))
 			{
-				action(mc);
-				return false;
+				if(!EventCanHit.checkIfCanHit(mc))
+				{
+					action(mc);
+					return false;
+				}
+				else
+				{
+					mc.killEnemy(enemy);
+					mc.decreaseAfterHit();
+				}
 			}
 		}
 		return true;
@@ -39,13 +55,29 @@ public class EventCheckCollisionWithEnemy extends Event
 			BlockEnemy enemy = MainClass.getEnemyList().get(i);
 			if((player.X == enemy.X) && (player.Y + 1 == enemy.Y))
 			{
-				action(mc);
-				return false;
+				if(!EventCanHit.checkIfCanHit(mc))
+				{
+					action(mc);
+					return false;
+				}
+				else
+				{
+					mc.killEnemy(enemy);
+					mc.decreaseAfterHit();
+				}
 			}
 			if((player.X == enemy.X) && (player.Y + 2 == enemy.Y))
 			{
-				action(mc);
-				return false;
+				if(!EventCanHit.checkIfCanHit(mc))
+				{
+					action(mc);
+					return false;
+				}
+				else
+				{
+					mc.killEnemy(enemy);
+					mc.decreaseAfterHit();
+				}
 			}
 		}
 		return true;
@@ -59,13 +91,29 @@ public class EventCheckCollisionWithEnemy extends Event
 			BlockEnemy enemy = MainClass.getEnemyList().get(i);
 			if((player.X - 1 == enemy.X) && (player.Y == enemy.Y))
 			{
-				action(mc);
-				return false;
+				if(!EventCanHit.checkIfCanHit(mc))
+				{
+					action(mc);
+					return false;
+				}
+				else
+				{
+					mc.killEnemy(enemy);
+					mc.decreaseAfterHit();
+				}
 			}
 			if((player.X - 2 == enemy.X) && (player.Y == enemy.Y))
 			{
-				action(mc);
-				return false;
+				if(!EventCanHit.checkIfCanHit(mc))
+				{
+					action(mc);
+					return false;
+				}
+				else
+				{
+					mc.killEnemy(enemy);
+					mc.decreaseAfterHit();
+				}
 			}
 		}
 		return true;
@@ -79,13 +127,29 @@ public class EventCheckCollisionWithEnemy extends Event
 			BlockEnemy enemy = MainClass.getEnemyList().get(i);
 			if((player.X + 1 == enemy.X) && (player.Y == enemy.Y))
 			{
-				action(mc);
-				return false;
+				if(!EventCanHit.checkIfCanHit(mc))
+				{
+					action(mc);
+					return false;
+				}
+				else
+				{
+					mc.killEnemy(enemy);
+					mc.decreaseAfterHit();
+				}
 			}
 			if((player.X + 2 == enemy.X) && (player.Y == enemy.Y))
 			{
-				action(mc);
-				return false;
+				if(!EventCanHit.checkIfCanHit(mc))
+				{
+					action(mc);
+					return false;
+				}
+				else
+				{
+					mc.killEnemy(enemy);
+					mc.decreaseAfterHit();
+				}
 			}
 		}
 		return true;

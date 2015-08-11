@@ -39,9 +39,19 @@ public class Block
 		return world.currentRenderer.world[X - 1][Y];
 	}
 	
+	public Block getBlockOnLeft(World world, int ileWLewo)
+	{
+		return world.currentRenderer.world[X - ileWLewo][Y];
+	}
+	
 	public Block getBlockOnRight(World world)
 	{
 		return world.currentRenderer.world[X + 1][Y];
+	}
+	
+	public Block getBlockOnRight(World world, int ileWPrawo)
+	{
+		return world.currentRenderer.world[X + ileWPrawo][Y];
 	}
 	
 	public Block getBlockOnTop(World world)
@@ -49,9 +59,19 @@ public class Block
 		return world.currentRenderer.world[X][Y - 1];
 	}
 	
+	public Block getBlockOnTop(World world, int ileWyzej)
+	{
+		return world.currentRenderer.world[X][Y - ileWyzej];
+	}
+	
 	public Block getBlockUnder(World world)
 	{
 		return world.currentRenderer.world[X][Y + 1];
+	}
+	
+	public Block getBlockUnder(World world, int ileNizej)
+	{
+		return world.currentRenderer.world[X][Y + ileNizej];
 	}
 	
 	public Color getColor() 

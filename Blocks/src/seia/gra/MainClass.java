@@ -27,6 +27,7 @@ import seia.gra.file.FileConfig;
 import seia.gra.utils.Key;
 import seia.gra.world.World;
 import seia.gra.world.renderer.WorldRendererHeart;
+import seia.gra.world.worldelement.WorldElementAvailableHits;
 import seia.gra.world.worldelement.WorldElementLevelValue;
 import seia.gra.world.worldelement.WorldElementNick;
 
@@ -50,7 +51,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		SZER = szer;
 		WYS = wys;
 		this.setHeart = setHeart;
-		FileConfig.checkConfig();
+		FileConfig.checkConfig(this);
 		player = new BlockPlayer(1, 1);
 		world = new World(szer, wys, setHeart);
 		nextLevel = new BlockNextLevel(BlockNextLevel.getWidth(), BlockNextLevel.getRandHeight());
@@ -97,9 +98,10 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	public void newGame()
 	{
 		JOptionPane.showMessageDialog(this, "Game Over :(");
-		FileConfig.checkConfig();
+		FileConfig.checkConfig(this);
 		reloadPanel();
 		updateLevelValue(1);
+		setAvailableHits();
 	}
 	
 	public void reloadPanel() 
@@ -113,11 +115,52 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		losEnemy(90); //new Random().nextInt(95);
 	}
 	
+	public static List<BlockEnemy> getEnemyList()
+	{
+		return enemy;
+	}
+	
+	public void killEnemy(BlockEnemy enemyToKill)
+	{
+		for(int i = 0; i < enemy.size(); i++)
+		{
+			if((enemy.get(i).X == enemyToKill.X) && (enemy.get(i).Y == enemyToKill.Y))
+			{
+				enemy.remove(i);
+				return;
+			}
+		}
+	}
+	
+	public void decreaseAfterHit()
+	{
+		for(int i = 0; i < world.worldElement.size(); i++)
+		{
+			if(world.worldElement.get(i).getClass().getName().equals(WorldElementAvailableHits.class.getName()))
+			{
+				((WorldElementAvailableHits)world.worldElement.get(i)).availableHits--;
+				return;
+			}
+		}
+	}
+	
+	public void setAvailableHits()
+	{
+		for(int i = 0; i < world.worldElement.size(); i++)
+		{
+			if(world.worldElement.get(i).getClass().getName().equals(WorldElementAvailableHits.class.getName()))
+			{
+				((WorldElementAvailableHits)world.worldElement.get(i)).availableHits = FileConfig.getBasicAvailableHits();
+				return;
+			}
+		}
+	}
+	
 	public void setNick(String nick)
 	{
 		for(int i = 0; i < world.worldElement.size(); i++)
 		{
-			if(world.worldElement.get(i).getClass().getName() == WorldElementNick.class.getName())
+			if(world.worldElement.get(i).getClass().getName().equals(WorldElementNick.class.getName()))
 			{
 				((WorldElementNick)world.worldElement.get(i)).nick = nick;
 				return;
@@ -129,7 +172,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	{
 		for(int i = 0; i < world.worldElement.size(); i++)
 		{
-			if(world.worldElement.get(i).getClass().getName() == WorldElementLevelValue.class.getName())
+			if(world.worldElement.get(i).getClass().getName().equals(WorldElementLevelValue.class.getName()))
 			{
 				((WorldElementLevelValue)world.worldElement.get(i)).level++;
 				return;
@@ -141,7 +184,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	{
 		for(int i = 0; i < world.worldElement.size(); i++)
 		{
-			if(world.worldElement.get(i).getClass().getName() == WorldElementLevelValue.class.getName())
+			if(world.worldElement.get(i).getClass().getName().equals(WorldElementLevelValue.class.getName()))
 			{
 				((WorldElementLevelValue)world.worldElement.get(i)).level = level;
 				return;
@@ -171,12 +214,6 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 			addEnemy();
 		}
 		return false;
-	}
-	
-	public static List<BlockEnemy> getEnemyList()
-	{
-		List<BlockEnemy> cpy = enemy;
-		return cpy;
 	}
 	
 	public boolean getSetHeart()

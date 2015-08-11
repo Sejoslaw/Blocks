@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 public class WorldElementNick extends WorldElement
 {
-	private static final Color color = Color.YELLOW;
+	private static final Color color = Color.ORANGE;
 	public String nick;
 	
 	public WorldElementNick(int pixelX, int pixelY) 
