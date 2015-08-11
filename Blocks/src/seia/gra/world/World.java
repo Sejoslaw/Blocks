@@ -110,8 +110,16 @@ public class World
 		{
 			if(worldElement.get(i).getClass().getName().equals(WorldElementAvailableHits.class.getName()))
 			{
-				((WorldElementAvailableHits)worldElement.get(i)).availableHits = FileConfig.getBasicAvailableHits();
-				return;
+				try
+				{
+					((WorldElementAvailableHits)worldElement.get(i)).availableHits = FileConfig.getBasicAvailableHits();
+					return;
+				}
+				catch(Exception e)
+				{
+					((WorldElementAvailableHits)worldElement.get(i)).availableHits = Integer.MAX_VALUE;
+					return;
+				}
 			}
 		}
 	}
