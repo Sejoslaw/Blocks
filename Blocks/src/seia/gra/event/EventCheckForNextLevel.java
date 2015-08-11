@@ -1,17 +1,17 @@
 package seia.gra.event;
 
-import seia.gra.MainClass;
+import seia.gra.world.World;
 
 public class EventCheckForNextLevel extends Event
 {
-	public static boolean check(MainClass mc) 
+	public static boolean check(World world) 
 	{
-		if(mc.player.Y == mc.nextLevel.Y)
+		if(world.player.Y == world.nextLevel.Y)
 		{
-			if(mc.player.X + 1 == mc.nextLevel.X)
+			if(world.player.X + 1 == world.nextLevel.X)
 			{
-				mc.reloadPanel();
-				mc.updateLevelValue();
+				world.reloadPanel();
+				world.updateLevelValue();
 			}
 		}
 		return false;

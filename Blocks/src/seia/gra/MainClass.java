@@ -38,9 +38,6 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	public Timer tm = new Timer(1, null); //miliseconds
 	private static int SZER, WYS;
 	public World world;
-	public BlockPlayer player;
-	private static List<BlockEnemy> enemy = new ArrayList<BlockEnemy>();
-	public BlockNextLevel nextLevel;
 	private boolean setHeart;
 	public JFrame frame;
 	public JButton buttonShowLines;
@@ -52,19 +49,8 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		WYS = wys;
 		this.setHeart = setHeart;
 		FileConfig.checkConfig(this);
-		player = new BlockPlayer(1, 1);
-		world = new World(szer, wys, setHeart);
-		nextLevel = new BlockNextLevel(BlockNextLevel.getWidth(), BlockNextLevel.getRandHeight());
-		setNick(nick);
-		setAvailableHits();
-		if(setHeart)
-		{
-			losEnemy(0);
-		}
-		else
-		{
-			losEnemy(90);//new Random().nextInt(95);
-		}
+		world = new World(szer, wys, setHeart, nick);
+		
 		this.addKeyListener(this);
 		this.setFocusable(true);
 		this.setFocusTraversalKeysEnabled(false);
@@ -100,121 +86,9 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	{
 		JOptionPane.showMessageDialog(this, "Game Over :(");
 		FileConfig.checkConfig(this);
-		reloadPanel();
-		updateLevelValue(1);
-		setAvailableHits();
-	}
-	
-	public void reloadPanel() 
-	{
-		world.setCurrentRendererRandom();
-		player.X = 1;
-		player.Y = new Random().nextInt(getHeightInBlocks() - 2) + 1;
-		nextLevel.X = BlockNextLevel.getWidth();
-		nextLevel.Y = BlockNextLevel.getRandHeight();
-		enemy.clear();
-		losEnemy(90); //new Random().nextInt(95);
-	}
-	
-	public static List<BlockEnemy> getEnemyList()
-	{
-		return enemy;
-	}
-	
-	public void killEnemy(BlockEnemy enemyToKill)
-	{
-		for(int i = 0; i < enemy.size(); i++)
-		{
-			if((enemy.get(i).X == enemyToKill.X) && (enemy.get(i).Y == enemyToKill.Y))
-			{
-				enemy.remove(i);
-				return;
-			}
-		}
-	}
-	
-	public void decreaseAfterHit()
-	{
-		for(int i = 0; i < world.worldElement.size(); i++)
-		{
-			if(world.worldElement.get(i).getClass().getName().equals(WorldElementAvailableHits.class.getName()))
-			{
-				((WorldElementAvailableHits)world.worldElement.get(i)).availableHits--;
-				return;
-			}
-		}
-	}
-	
-	public void setAvailableHits()
-	{
-		for(int i = 0; i < world.worldElement.size(); i++)
-		{
-			if(world.worldElement.get(i).getClass().getName().equals(WorldElementAvailableHits.class.getName()))
-			{
-				((WorldElementAvailableHits)world.worldElement.get(i)).availableHits = FileConfig.getBasicAvailableHits();
-				return;
-			}
-		}
-	}
-	
-	public void setNick(String nick)
-	{
-		for(int i = 0; i < world.worldElement.size(); i++)
-		{
-			if(world.worldElement.get(i).getClass().getName().equals(WorldElementNick.class.getName()))
-			{
-				((WorldElementNick)world.worldElement.get(i)).nick = nick;
-				return;
-			}
-		}
-	}
-	
-	public void updateLevelValue() 
-	{
-		for(int i = 0; i < world.worldElement.size(); i++)
-		{
-			if(world.worldElement.get(i).getClass().getName().equals(WorldElementLevelValue.class.getName()))
-			{
-				((WorldElementLevelValue)world.worldElement.get(i)).level++;
-				return;
-			}
-		}
-	}
-	
-	public void updateLevelValue(int level) 
-	{
-		for(int i = 0; i < world.worldElement.size(); i++)
-		{
-			if(world.worldElement.get(i).getClass().getName().equals(WorldElementLevelValue.class.getName()))
-			{
-				((WorldElementLevelValue)world.worldElement.get(i)).level = level;
-				return;
-			}
-		}
-	}
-
-	public void losEnemy(int ile)
-	{
-		for(int i = 0; i < ile; i++)
-		{
-			addEnemy();
-		}
-	}
-	
-	public static boolean addEnemy() 
-	{
-		int rX = new Random().nextInt(SZER / Block.BLOCK_SIZE);
-		int rY = new Random().nextInt(WYS / Block.BLOCK_SIZE);
-		if((rX != 1) && (rY != 1) && (rX != 0) && (rY != 0) && (rX != getWidthInBlocks() - 1) && (rY != getHeightInBlocks() - 1))
-		{
-			enemy.add(new BlockEnemy(rX, rY));
-			return true;
-		}
-		else
-		{
-			addEnemy();
-		}
-		return false;
+		world.reloadPanel();
+		world.updateLevelValue(1);
+		world.setAvailableHits();
 	}
 	
 	public boolean getSetHeart()
@@ -225,12 +99,6 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	public void paintComponent(Graphics g)
 	{
 		world.paintComponent(g);
-		for(int  i = 0; i < enemy.size(); i++)
-		{
-			enemy.get(i).paintComponent(g);
-		}
-		nextLevel.paintComponent(g);
-		player.paintComponent(g);
 		repaint();
 	}
 	
@@ -259,9 +127,9 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 			{
 				if(EventCheckCollisionWithEnemy.canPlayerMoveUp(this))
 				{
-					player.moveUpPlayer(world);
-					for(int i = 0; i < enemy.size(); i++)
-						enemy.get(i).moveDownEnemy(world);
+					world.player.moveUpPlayer(world);
+					for(int i = 0; i < world.enemy.size(); i++)
+						world.enemy.get(i).moveDownEnemy(world);
 				}
 			}
 		}
@@ -271,9 +139,9 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 			{
 				if(EventCheckCollisionWithEnemy.canPlayerMoveDown(this))
 				{
-					player.moveDownPlayer(world);
-					for(int i = 0; i < enemy.size(); i++)
-						enemy.get(i).moveUpEnemy(world);
+					world.player.moveDownPlayer(world);
+					for(int i = 0; i < world.enemy.size(); i++)
+						world.enemy.get(i).moveUpEnemy(world);
 				}
 			}
 		}
@@ -283,9 +151,9 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 			{
 				if(EventCheckCollisionWithEnemy.canPlayerMoveLeft(this))
 				{
-					player.moveLeftPlayer(world);
-					for(int i = 0; i < enemy.size(); i++)
-						enemy.get(i).moveRightEnemy(world);
+					world.player.moveLeftPlayer(world);
+					for(int i = 0; i < world.enemy.size(); i++)
+						world.enemy.get(i).moveRightEnemy(world);
 				}
 			}
 		}
@@ -295,11 +163,11 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 			{
 				if(EventCheckCollisionWithEnemy.canPlayerMoveRight(this))
 				{
-					if(!EventCheckForNextLevel.check(this))
+					if(!EventCheckForNextLevel.check(world))
 					{
-						player.moveRightPlayer(world);
-						for(int i = 0; i < enemy.size(); i++)
-							enemy.get(i).moveLeftEnemy(world);
+						world.player.moveRightPlayer(world);
+						for(int i = 0; i < world.enemy.size(); i++)
+							world.enemy.get(i).moveLeftEnemy(world);
 					}
 				}
 			}

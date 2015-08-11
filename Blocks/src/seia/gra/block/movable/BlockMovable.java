@@ -40,9 +40,9 @@ public class BlockMovable extends Block
 			{
 				can = false;
 			}
-			for(int i = 0; i < MainClass.getEnemyList().size(); i++)
+			for(int i = 0; i < world.enemy.size(); i++)
 			{
-				if((Y - 1 == MainClass.getEnemyList().get(i).Y) && (X == MainClass.getEnemyList().get(i).X))
+				if((Y - 1 == world.enemy.get(i).Y) && (X == world.enemy.get(i).X))
 					can = false;
 			}
 			if(can)
@@ -81,9 +81,9 @@ public class BlockMovable extends Block
 			{
 				can = false;
 			}
-			for(int i = 0; i < MainClass.getEnemyList().size(); i++)
+			for(int i = 0; i < world.enemy.size(); i++)
 			{
-				if((Y + 1 == MainClass.getEnemyList().get(i).Y) && (X == MainClass.getEnemyList().get(i).X))
+				if((Y + 1 == world.enemy.get(i).Y) && (X == world.enemy.get(i).X))
 					can = false;
 			}
 			if(can)
@@ -122,9 +122,9 @@ public class BlockMovable extends Block
 			{
 				can = false;
 			}
-			for(int i = 0; i < MainClass.getEnemyList().size(); i++)
+			for(int i = 0; i < world.enemy.size(); i++)
 			{
-				if((Y == MainClass.getEnemyList().get(i).Y) && (X - 1 == MainClass.getEnemyList().get(i).X))
+				if((Y == world.enemy.get(i).Y) && (X - 1 == world.enemy.get(i).X))
 					can = false;
 			}
 			if(can)
@@ -163,9 +163,9 @@ public class BlockMovable extends Block
 			{
 				can = false;
 			}
-			for(int i = 0; i < MainClass.getEnemyList().size(); i++)
+			for(int i = 0; i < world.enemy.size(); i++)
 			{
-				if((Y == MainClass.getEnemyList().get(i).Y) && (X + 1 == MainClass.getEnemyList().get(i).X))
+				if((Y == world.enemy.get(i).Y) && (X + 1 == world.enemy.get(i).X))
 					can = false;
 			}
 			if(can)
