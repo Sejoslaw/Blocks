@@ -1,7 +1,6 @@
-package seia.gra.utils;
+package seia.gra.file;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -11,12 +10,20 @@ import seia.gra.block.Block;
 
 public class FileConfig 
 {
-	public static final File CONFIG = new File("Blocks_Config.bl");
 	public static List<String> configLines = new ArrayList<String>();
 
+	/**
+	 * Dodawanie linijek do Blocks.Config
+	 * Wraz z domyslna wartoscia
+	 */
+	private static void addToList() 
+	{
+		configLines.add("showlines=false");
+	}
+	
 	public static void checkConfig() 
 	{
-		if(CONFIG.exists())
+		if(FilesHandler.CONFIG.exists())
 		{
 			Block.isShowingLines = getShowLines();
 		}
@@ -24,8 +31,8 @@ public class FileConfig
 		{
 			try 
 			{
-				CONFIG.createNewFile();
-				PrintWriter writer = new PrintWriter(CONFIG);
+				FilesHandler.CONFIG.createNewFile();
+				PrintWriter writer = new PrintWriter(FilesHandler.CONFIG);
 				addToList();
 				for(int i = 0; i < configLines.size(); i++)
 				{
@@ -40,11 +47,6 @@ public class FileConfig
 			checkConfig();
 		}
 	}
-	
-	private static void addToList() 
-	{
-		configLines.add("showlines=false");
-	}
 
 	public static String[] readConfig()
 	{
@@ -52,7 +54,7 @@ public class FileConfig
 		String[] tab = null;
 		try
 		{
-			BufferedReader br = new BufferedReader(new FileReader(CONFIG));
+			BufferedReader br = new BufferedReader(new FileReader(FilesHandler.CONFIG));
 			StringBuilder sb = new StringBuilder();
 			String line = br.readLine();
 			list.add(line);

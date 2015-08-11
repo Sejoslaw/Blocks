@@ -23,7 +23,7 @@ import seia.gra.block.movable.BlockPlayer;
 import seia.gra.block.nonmovable.BlockNextLevel;
 import seia.gra.event.EventCheckCollisionWithEnemy;
 import seia.gra.event.EventCheckForNextLevel;
-import seia.gra.utils.FileConfig;
+import seia.gra.file.FileConfig;
 import seia.gra.utils.Key;
 import seia.gra.world.World;
 import seia.gra.world.renderer.WorldRendererHeart;
@@ -34,7 +34,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 {
 	private static final long serialVersionUID = 1L;
 	
-	public Timer tm = new Timer(5, null); //miliseconds
+	public Timer tm = new Timer(1, null); //miliseconds
 	private static int SZER, WYS;
 	public World world;
 	public BlockPlayer player;
@@ -46,11 +46,11 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 
 	public MainClass(int szer, int wys, boolean setHeart, String nick)
 	{
-		FileConfig.checkConfig();
 		tm.start();
 		SZER = szer;
 		WYS = wys;
 		this.setHeart = setHeart;
+		FileConfig.checkConfig();
 		player = new BlockPlayer(1, 1);
 		world = new World(szer, wys, setHeart);
 		nextLevel = new BlockNextLevel(BlockNextLevel.getWidth(), BlockNextLevel.getRandHeight());
@@ -97,6 +97,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	public void newGame()
 	{
 		JOptionPane.showMessageDialog(this, "Game Over :(");
+		FileConfig.checkConfig();
 		reloadPanel();
 		updateLevelValue(1);
 	}
