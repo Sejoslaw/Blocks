@@ -6,9 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 import javax.swing.AbstractButton;
 import javax.swing.JButton;
@@ -18,18 +15,12 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import seia.gra.block.Block;
-import seia.gra.block.movable.BlockEnemy;
-import seia.gra.block.movable.BlockPlayer;
-import seia.gra.block.nonmovable.BlockNextLevel;
 import seia.gra.event.EventCheckCollisionWithEnemy;
 import seia.gra.event.EventCheckForNextLevel;
 import seia.gra.file.FileConfig;
 import seia.gra.utils.Key;
 import seia.gra.world.World;
 import seia.gra.world.renderer.WorldRendererHeart;
-import seia.gra.world.worldelement.WorldElementAvailableHits;
-import seia.gra.world.worldelement.WorldElementLevelValue;
-import seia.gra.world.worldelement.WorldElementNick;
 
 public class MainClass extends JPanel implements ActionListener, KeyListener
 {
