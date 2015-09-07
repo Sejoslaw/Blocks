@@ -8,7 +8,7 @@ public class ItemStack
 	
 	public ItemStack(Item item)
 	{
-		this(item, stackLimit);
+		this(item, 0);
 	}
 	
 	public ItemStack(Item item, int stacksize)
@@ -54,4 +54,29 @@ public class ItemStack
     {
     	return new ItemStack(item, stackSize);
     }
+    
+    public void emptyStack()
+    {
+    	item = null;
+    	stackSize = 0;
+    }
+    
+    public void increaseStackSize()
+    {
+    	if(stackSize < stackLimit)
+    		stackSize++;
+    }
+
+	public void addSingleItem(Item item2) 
+	{
+		if(item == null)
+		{
+			item = item2;
+			increaseStackSize();
+		}
+		else
+		{
+			increaseStackSize();
+		}
+	}
 }

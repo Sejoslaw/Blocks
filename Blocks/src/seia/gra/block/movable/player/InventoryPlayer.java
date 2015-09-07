@@ -52,7 +52,18 @@ public class InventoryPlayer
 			if(st == null)
 			{
 				currentInventory[i] = new ItemStack(item);
+				return;
+			}
+			if(st.item == null)
+			{
+				currentInventory[i].addSingleItem(item);
+				return;
 			}
 		}
+	}
+	
+	public void clearSlot(int slot)
+	{
+		currentInventory[slot].emptyStack();
 	}
 }
