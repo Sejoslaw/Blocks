@@ -1,9 +1,12 @@
 package seia.gra.item;
 
+import java.util.ArrayList;
+
 public class Item 
 {
 	public final int itemID;
 	private Item itemContaining = null;
+	public static ArrayList<Item> itemList = new ArrayList<Item>();
 	
 	public Item(int id)
 	{
@@ -19,5 +22,10 @@ public class Item
 	public Item getContainingItem()
 	{
 		return itemContaining;
+	}
+	
+	static
+	{
+		//TODO: Tu beda dodawane poszczegolne przedmioty
 	}
 }
