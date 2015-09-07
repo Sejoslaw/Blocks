@@ -4,14 +4,15 @@ import java.awt.Color;
 import java.util.Random;
 
 import seia.gra.MainClass;
+import seia.gra.world.World;
 
 public class BlockNextLevel extends BlockNonMovable
 {
 	private static Color color = Color.YELLOW;
 	
-	public BlockNextLevel(int x, int y) 
+	public BlockNextLevel(int x, int y, World world) 
 	{
-		super(color, x, y);
+		super(color, x, y, world);
 	}
 	
 	@Override

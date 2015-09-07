@@ -40,7 +40,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		WYS = wys;
 		this.setHeart = setHeart;
 		FileConfig.checkConfig(this);
-		world = new World(szer, wys, setHeart, nick);
+		world = new World(szer, wys, setHeart, nick, this);
 		
 		this.addKeyListener(this);
 		this.setFocusable(true);

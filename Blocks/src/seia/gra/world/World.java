@@ -8,7 +8,7 @@ import java.util.Random;
 import seia.gra.MainClass;
 import seia.gra.block.Block;
 import seia.gra.block.movable.BlockEnemy;
-import seia.gra.block.movable.BlockPlayer;
+import seia.gra.block.movable.player.BlockPlayer;
 import seia.gra.block.nonmovable.BlockNextLevel;
 import seia.gra.file.FileConfig;
 import seia.gra.world.renderer.WorldRenderer;
@@ -34,14 +34,16 @@ public class World
 	public BlockPlayer player;
 	public List<BlockEnemy> enemy = new ArrayList<BlockEnemy>();
 	public BlockNextLevel nextLevel;
+	public MainClass instance;
 	
-	public World(int szer, int wys, boolean b1, String nick)
+	public World(int szer, int wys, boolean b1, String nick, MainClass main)
 	{
 		SZER = szer;
 		WYS = wys;
 		this.b1 = b1;
-		player = new BlockPlayer(1, 1);
-		nextLevel = new BlockNextLevel(BlockNextLevel.getWidth(), BlockNextLevel.getRandHeight());
+		instance = main;
+		player = new BlockPlayer(1, 1, this);
+		nextLevel = new BlockNextLevel(BlockNextLevel.getWidth(), BlockNextLevel.getRandHeight(), this);
 		if(b1)
 		{
 			losEnemy(0);
@@ -179,7 +181,7 @@ public class World
 				&& (rX != MainClass.getWidthInBlocks() - 1) 
 				&& (rY != MainClass.getHeightInBlocks() - 1))
 		{
-			enemy.add(new BlockEnemy(rX, rY));
+			enemy.add(new BlockEnemy(rX, rY, this));
 			return true;
 		}
 		else
@@ -214,11 +216,11 @@ public class World
 	{
 		try
 		{
-			WorldRendererSquare square = new WorldRendererSquare(SZER, WYS);
+			WorldRendererSquare square = new WorldRendererSquare(SZER, WYS, this);
 			worldRenderer.add(square);
 			if(b1)
 			{
-				WorldRendererHeart wrh = new WorldRendererHeart(SZER, WYS);
+				WorldRendererHeart wrh = new WorldRendererHeart(SZER, WYS, this);
 				worldRenderer.add(wrh);
 			}
 		}
@@ -245,12 +247,10 @@ public class World
 		player.paintComponent(g);
 	}
 	
-	public boolean setCurrentRenderer(WorldRenderer renderer)
+	public World setCurrentRenderer(WorldRenderer renderer)
 	{
 		currentRenderer = renderer;
-		if(currentRenderer.getRendererID() == renderer.getRendererID()) 
-			return true;
-		return false;
+		return this;
 	}
 	
 	public boolean setCurrentRendererRandom()

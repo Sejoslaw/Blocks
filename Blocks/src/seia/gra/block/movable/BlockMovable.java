@@ -8,9 +8,9 @@ import seia.gra.world.World;
 
 public class BlockMovable extends Block
 {
-	public BlockMovable(Color c, int x, int y) 
+	public BlockMovable(Color c, int x, int y, World world) 
 	{
-		super(c, x, y);
+		super(c, x, y, world);
 	}
 	
 	public boolean moveUpPlayer(World world)

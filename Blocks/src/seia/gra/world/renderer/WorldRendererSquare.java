@@ -4,12 +4,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import seia.gra.block.Block;
+import seia.gra.world.World;
 
 public class WorldRendererSquare extends WorldRenderer
 {
-	public WorldRendererSquare(int szer, int wys) 
+	public WorldRendererSquare(int szer, int wys, World world) 
 	{
-		super(szer, wys);
+		super(szer, wys, world);
 	}
 
 	@Override
@@ -27,12 +28,12 @@ public class WorldRendererSquare extends WorldRenderer
 			{
 				if(x == 0 || y == 0 || x == (SZER / 50) - 1 || y == (WYS / 50) - 1)
 				{
-					world[x][y] = new Block(Color.BLACK, x, y);
+					world[x][y] = new Block(Color.BLACK, x, y, worldObj);
 					world[x][y].paintComponent(g);
 				}
 				else
 				{
-					world[x][y] = new Block(Color.BLUE, x, y);
+					world[x][y] = new Block(Color.BLUE, x, y, worldObj);
 					world[x][y].paintComponent(g);
 				}
 			}

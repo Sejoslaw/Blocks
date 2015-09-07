@@ -14,12 +14,14 @@ public class Block
 	
 	public int X, Y;
 	private Color c;
+	public World worldObj;
 	
-	public Block(Color c, int x, int y)
+	public Block(Color c, int x, int y, World world)
 	{
 		this.c = c;
 		this.X = x;
 		this.Y = y;
+		worldObj = world;
 	}
 
 	public void paintComponent(Graphics g)

@@ -2,7 +2,7 @@ package seia.gra.event;
 
 import seia.gra.MainClass;
 import seia.gra.block.movable.BlockEnemy;
-import seia.gra.block.movable.BlockPlayer;
+import seia.gra.block.movable.player.BlockPlayer;
 
 public class EventCheckCollisionWithEnemy extends Event
 {
