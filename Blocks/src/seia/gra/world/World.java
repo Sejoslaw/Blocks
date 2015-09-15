@@ -34,14 +34,14 @@ public class World
 	public BlockPlayer player;
 	public List<BlockEnemy> enemy = new ArrayList<BlockEnemy>();
 	public BlockNextLevel nextLevel;
-	public MainClass instance;
+	public MainClass mcInstance;
 	
 	public World(int szer, int wys, boolean b1, String nick, MainClass main)
 	{
 		SZER = szer;
 		WYS = wys;
 		this.b1 = b1;
-		instance = main;
+		mcInstance = main;
 		player = new BlockPlayer(1, 1, this);
 		nextLevel = new BlockNextLevel(BlockNextLevel.getWidth(), BlockNextLevel.getRandHeight(), this);
 		if(b1)
@@ -52,11 +52,10 @@ public class World
 		{
 			losEnemy(90);//new Random().nextInt(95);
 		}
-		setNick(nick);
-		setAvailableHits();
-		
 		addElements();
 		addRenderers();
+		setNick(nick);
+		setAvailableHits();
 		if(b1)
 			currentRenderer = worldRenderer.get(1);
 		else
@@ -114,12 +113,12 @@ public class World
 			{
 				try
 				{
-					((WorldElementAvailableHits)worldElement.get(i)).availableHits = FileConfig.getBasicAvailableHits();
+					((WorldElementAvailableHits)worldElement.get(i)).availableHits = FileConfig.avaiableHits;
 					return;
 				}
 				catch(Exception e)
 				{
-					((WorldElementAvailableHits)worldElement.get(i)).availableHits = Integer.MAX_VALUE;
+					((WorldElementAvailableHits)worldElement.get(i)).availableHits = 3;
 					return;
 				}
 			}
@@ -261,5 +260,34 @@ public class World
 		if(currentRenderer.getRendererID() == worldRenderer.get(rand).getRendererID()) 
 			return true;
 		return false;
+	}
+	
+	public BlockPlayer getPlayer()
+	{
+		for(int i = 0; i < Block.blocksInGame.size(); i++)
+			if(Block.blocksInGame.get(i) instanceof BlockPlayer)
+				return (BlockPlayer) Block.blocksInGame.get(i);
+		return null;
+	}
+	
+	public BlockNextLevel getNextLevel()
+	{
+		for(int i = 0; i < Block.blocksInGame.size(); i++)
+			if(Block.blocksInGame.get(i) instanceof BlockNextLevel)
+				return (BlockNextLevel) Block.blocksInGame.get(i);
+		return null;
+	}
+
+	public void addAvaiableHits(int hitsToAdd) 
+	{
+		for(int i = 0; i < worldElement.size(); i++)
+		{
+			if(worldElement.get(i).getClass().getName().equals(WorldElementAvailableHits.class.getName()))
+			{
+				WorldElementAvailableHits weah = (WorldElementAvailableHits) worldElement.get(i);
+				weah.availableHits++;
+				return;
+			}
+		}
 	}
 }

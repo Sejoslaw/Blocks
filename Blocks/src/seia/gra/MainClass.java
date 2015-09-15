@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Random;
 
 import javax.swing.AbstractButton;
 import javax.swing.JButton;
@@ -118,9 +119,9 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 			{
 				if(EventCheckCollisionWithEnemy.canPlayerMoveUp(this))
 				{
-					world.player.moveUpPlayer(world);
+					world.player.movePlayerUp();
 					for(int i = 0; i < world.enemy.size(); i++)
-						world.enemy.get(i).moveDownEnemy(world);
+						world.enemy.get(i).moveEnemyDown();
 				}
 			}
 		}
@@ -130,9 +131,9 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 			{
 				if(EventCheckCollisionWithEnemy.canPlayerMoveDown(this))
 				{
-					world.player.moveDownPlayer(world);
+					world.player.movePlayerDown();
 					for(int i = 0; i < world.enemy.size(); i++)
-						world.enemy.get(i).moveUpEnemy(world);
+						world.enemy.get(i).moveEnemyUp();
 				}
 			}
 		}
@@ -142,9 +143,9 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 			{
 				if(EventCheckCollisionWithEnemy.canPlayerMoveLeft(this))
 				{
-					world.player.moveLeftPlayer(world);
+					world.player.movePlayerLeft();
 					for(int i = 0; i < world.enemy.size(); i++)
-						world.enemy.get(i).moveRightEnemy(world);
+						world.enemy.get(i).moveEnemyRight();
 				}
 			}
 		}
@@ -156,9 +157,9 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 				{
 					if(!EventCheckForNextLevel.check(world))
 					{
-						world.player.moveRightPlayer(world);
+						world.player.movePlayerRight();
 						for(int i = 0; i < world.enemy.size(); i++)
-							world.enemy.get(i).moveLeftEnemy(world);
+							world.enemy.get(i).moveEnemyLeft();
 					}
 				}
 			}
@@ -192,10 +193,23 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		int wys = 600;
 		boolean b1 = false;
 		
-		String s1 = JOptionPane.showInputDialog("Podaj nick:");
-		if(s1.toLowerCase().equals(WorldRendererHeart.input.toLowerCase()))
+		String s1;
+		try
 		{
-			b1 = true;
+			s1 = JOptionPane.showInputDialog("Podaj nick:");
+			if(s1.toLowerCase().equals(WorldRendererHeart.input.toLowerCase()))
+			{
+				b1 = true;
+			}
+			if(s1.toLowerCase().equals(""))
+			{
+				s1 = "Tester #" + new Random().nextInt();
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			s1 = "Tester #" + new Random().nextInt();
 		}
 		MainClass mc = new MainClass(szer, wys, b1, s1);
 		JOptionPane.showMessageDialog(mc, "Nie dotykaj czerwonych !!! Zolty -> Next Level.");

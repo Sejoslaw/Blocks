@@ -2,6 +2,8 @@ package seia.gra.block;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.List;
 
 import seia.gra.world.World;
 
@@ -16,12 +18,15 @@ public class Block
 	private Color c;
 	public World worldObj;
 	
+	public static List<Block> blocksInGame = new ArrayList<Block>();
+	
 	public Block(Color c, int x, int y, World world)
 	{
 		this.c = c;
 		this.X = x;
 		this.Y = y;
 		worldObj = world;
+		blocksInGame.add(this);
 	}
 
 	public void paintComponent(Graphics g)
@@ -36,56 +41,56 @@ public class Block
 		}
 	}
 	
-	public boolean isPlayer(World world)
+	public boolean isPlayer()
 	{
-		if((world.player.X == X) && (world.player.Y == Y))
+		if((worldObj.player.X == X) && (worldObj.player.Y == Y))
 			return true;
 		return false;
 	}
 	
-	public boolean isEnemy(World world)
+	public boolean isEnemy()
 	{
-		return world.isEnemyAtCoords(X, Y);
+		return worldObj.isEnemyAtCoords(X, Y);
 	}
 	
-	public Block getBlockOnLeft(World world)
+	public Block getBlockOnLeft()
 	{
-		return world.currentRenderer.world[X - 1][Y];
+		return worldObj.currentRenderer.world[X - 1][Y];
 	}
 	
-	public Block getBlockOnLeft(World world, int ileWLewo)
+	public Block getBlockOnLeft(int ileWLewo)
 	{
-		return world.currentRenderer.world[X - ileWLewo][Y];
+		return worldObj.currentRenderer.world[X - ileWLewo][Y];
 	}
 	
-	public Block getBlockOnRight(World world)
+	public Block getBlockOnRight()
 	{
-		return world.currentRenderer.world[X + 1][Y];
+		return worldObj.currentRenderer.world[X + 1][Y];
 	}
 	
-	public Block getBlockOnRight(World world, int ileWPrawo)
+	public Block getBlockOnRight(int ileWPrawo)
 	{
-		return world.currentRenderer.world[X + ileWPrawo][Y];
+		return worldObj.currentRenderer.world[X + ileWPrawo][Y];
 	}
 	
-	public Block getBlockOnTop(World world)
+	public Block getBlockOnTop()
 	{
-		return world.currentRenderer.world[X][Y - 1];
+		return worldObj.currentRenderer.world[X][Y - 1];
 	}
 	
-	public Block getBlockOnTop(World world, int ileWyzej)
+	public Block getBlockOnTop(int ileWyzej)
 	{
-		return world.currentRenderer.world[X][Y - ileWyzej];
+		return worldObj.currentRenderer.world[X][Y - ileWyzej];
 	}
 	
-	public Block getBlockUnder(World world)
+	public Block getBlockUnder()
 	{
-		return world.currentRenderer.world[X][Y + 1];
+		return worldObj.currentRenderer.world[X][Y + 1];
 	}
 	
-	public Block getBlockUnder(World world, int ileNizej)
+	public Block getBlockUnder(int ileNizej)
 	{
-		return world.currentRenderer.world[X][Y + ileNizej];
+		return worldObj.currentRenderer.world[X][Y + ileNizej];
 	}
 	
 	public Color getColor() 
@@ -100,17 +105,13 @@ public class Block
 		return false;
 	}
 	
-	public boolean setX(int newX)
+	public void setX(int newX)
 	{
 		X = newX;
-		if(X == newX) return true;
-		return false;
 	}
 	
-	public boolean setY(int newY)
+	public void setY(int newY)
 	{
 		Y = newY;
-		if(Y == newY) return true;
-		return false;
 	}
 }

@@ -12,6 +12,8 @@ import seia.gra.block.Block;
 public class FileConfig 
 {
 	public static List<String> configLines = new ArrayList<String>();
+	public static int avaiableHits;
+	private static String[] tab = readConfig();
 
 	/**
 	 * Dodawanie linijek do Blocks.Config
@@ -28,6 +30,7 @@ public class FileConfig
 		if(FilesHandler.CONFIG.exists())
 		{
 			Block.isShowingLines = getShowLines();
+			avaiableHits = getBasicAvailableHits();
 		}
 		else
 		{
@@ -80,13 +83,13 @@ public class FileConfig
 	
 	public static boolean getShowLines()
 	{
-		String[] tab = readConfig();
-		return Boolean.parseBoolean(tab[0].substring(11, tab[0].length()));
+		boolean showLines = Boolean.parseBoolean(tab[0].substring(11, tab[0].length()));
+		return showLines;
 	}
 	
 	public static int getBasicAvailableHits()
 	{
-		String[] tab = readConfig();
-		return Integer.parseInt(tab[1].substring(21, tab[1].length()));
+		int hits = Integer.parseInt(tab[1].substring(21, tab[1].length()));
+		return hits;
 	}
 }
