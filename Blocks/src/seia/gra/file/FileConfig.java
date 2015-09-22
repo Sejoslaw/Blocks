@@ -12,25 +12,24 @@ import seia.gra.block.Block;
 public class FileConfig 
 {
 	public static List<String> configLines = new ArrayList<String>();
-	public static int avaiableHits;
-	private static String[] tab = readConfig();
+	public static int avaiableHits = 10;
 
 	/**
 	 * Dodawanie linijek do Blocks.Config
 	 * Wraz z domyslna wartoscia
 	 */
-	private static void addToList() 
+	private static void addToList()
 	{
-		configLines.add("show_lines=false");
-		configLines.add("basic_available_hits=3");
+		configLines.add("show_lines=" + Block.isShowingLines);
+		configLines.add("basic_available_hits=" + avaiableHits);
 	}
 	
-	public static void checkConfig(MainClass mc) 
+	public static void checkConfig(MainClass mc)
 	{
 		if(FilesHandler.CONFIG.exists())
 		{
-			Block.isShowingLines = getShowLines();
-			avaiableHits = getBasicAvailableHits();
+			Block.isShowingLines = getShowLines(mc);
+			avaiableHits = getBasicAvailableHits(mc);
 		}
 		else
 		{
@@ -48,12 +47,13 @@ public class FileConfig
 			catch (Exception e) 
 			{
 				e.printStackTrace();
+				Block.isShowingLines = true;
+				avaiableHits = 10;
 			}
-			checkConfig(mc);
 		}
 	}
 
-	public static String[] readConfig()
+	public static String[] readConfig(MainClass mc)
 	{
 		List<String> list = new ArrayList<String>();
 		String[] tab = null;
@@ -81,15 +81,33 @@ public class FileConfig
 		return tab;
 	}
 	
-	public static boolean getShowLines()
+	public static boolean getShowLines(MainClass mc)
 	{
-		boolean showLines = Boolean.parseBoolean(tab[0].substring(11, tab[0].length()));
+		String[] tab = readConfig(mc);
+		boolean showLines = Block.isShowingLines;
+		try
+		{
+			showLines = Boolean.parseBoolean(tab[0].substring(11, tab[0].length()));
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		return showLines;
 	}
 	
-	public static int getBasicAvailableHits()
+	public static int getBasicAvailableHits(MainClass mc)
 	{
-		int hits = Integer.parseInt(tab[1].substring(21, tab[1].length()));
+		String[] tab = readConfig(mc);
+		int hits = avaiableHits;
+		try
+		{
+			hits = Integer.parseInt(tab[1].substring(21, tab[1].length()));
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		return hits;
 	}
 }

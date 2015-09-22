@@ -27,7 +27,9 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 {
 	private static final long serialVersionUID = 1L;
 	
-	public Timer tm = new Timer(1, null); //miliseconds
+	public final String VERSION = "v0.0.3";
+	
+	public Timer tm = new Timer(5, null); //miliseconds
 	private static int SZER, WYS;
 	public World world;
 	private boolean setHeart;
@@ -47,7 +49,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		this.setFocusable(true);
 		this.setFocusTraversalKeysEnabled(false);
 		
-		frame = new JFrame("Blocks");
+		frame = new JFrame("Blocks " + VERSION);
 		frame.setSize(szer, wys);
 		addItemsToFrame(); //frame.add(this);
 		frame.setResizable(false);

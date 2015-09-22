@@ -12,7 +12,7 @@ public class Block
 	private static final int SIZE = 50;
 	public static final int BLOCK_SIZE = SIZE;
 	
-	public static boolean isShowingLines = false;
+	public static boolean isShowingLines = true;
 	
 	public int X, Y;
 	private Color c;
