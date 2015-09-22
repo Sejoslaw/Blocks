@@ -43,14 +43,12 @@ public class Block
 	
 	public boolean isPlayer()
 	{
-		if((worldObj.player.X == X) && (worldObj.player.Y == Y))
-			return true;
 		return false;
 	}
 	
 	public boolean isEnemy()
 	{
-		return worldObj.isEnemyAtCoords(X, Y);
+		return false;
 	}
 	
 	public Block getBlockOnLeft()

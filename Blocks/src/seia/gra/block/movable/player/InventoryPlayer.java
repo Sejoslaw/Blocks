@@ -17,8 +17,7 @@ public class InventoryPlayer
 	
 	public void addItemToInventory(int slot, Item item)
 	{
-		if(isItemValidForSlot(slot, item))
-			currentInventory[slot].stackSize++;
+		currentInventory[slot].stackSize++;
 	}
 	
 	public int getFirstEmptySlot()

@@ -21,4 +21,10 @@ public class BlockPlayer extends BlockMovable
 	{
 		return color;
 	}
+	
+	@Override
+	public boolean isPlayer() 
+	{
+		return true;
+	}
 }

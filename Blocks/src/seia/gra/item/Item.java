@@ -11,6 +11,7 @@ public class Item
 	public Item(int id)
 	{
 		itemID = id;
+		itemList.add(this);
 	}
 	
 	public Item setContainingItem(Item item)

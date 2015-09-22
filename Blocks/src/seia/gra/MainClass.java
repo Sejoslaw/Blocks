@@ -91,6 +91,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	public void paintComponent(Graphics g)
 	{
 		world.paintComponent(g);
+		g.dispose();
 		repaint();
 	}
 	

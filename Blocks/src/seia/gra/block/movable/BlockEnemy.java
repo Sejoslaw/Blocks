@@ -18,4 +18,10 @@ public class BlockEnemy extends BlockMovable
 	{
 		return color;
 	}
+	
+	@Override
+	public boolean isPlayer() 
+	{
+		return false;
+	}
 }

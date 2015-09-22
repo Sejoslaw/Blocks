@@ -231,6 +231,19 @@ public class World
 		return true;
 	}
 	
+	public World addWorldRenderer(Class<? extends WorldRenderer> clazz, int szer, int wys, World world)
+	{
+		try 
+		{
+			worldRenderer.add(clazz.newInstance());
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		return this;
+	}
+	
 	public void paintComponent(Graphics g)
 	{
 		for(int i = 0; i < worldRenderer.size(); i++)
