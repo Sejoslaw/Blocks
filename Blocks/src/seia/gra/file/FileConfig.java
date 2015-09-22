@@ -9,10 +9,17 @@ import java.util.List;
 import seia.gra.MainClass;
 import seia.gra.block.Block;
 
-public class FileConfig 
+public class FileConfig extends MyFile
 {
 	public static List<String> configLines = new ArrayList<String>();
 	public static int avaiableHits = 10;
+	
+	private static final long serialVersionUID = 6317863730564877917L;
+
+	public FileConfig(String pathname) 
+	{
+		super(pathname);
+	}
 
 	/**
 	 * Dodawanie linijek do Blocks.Config

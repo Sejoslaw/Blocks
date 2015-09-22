@@ -73,14 +73,6 @@ public class World
 		losEnemy(90); //new Random().nextInt(95);
 	}
 	
-	public boolean isEnemyAtCoords(int x, int y)
-	{
-		for(int i = 0; i < enemy.size(); i++)
-			if((enemy.get(i).X == x) && (enemy.get(i).Y == y))
-				return true;
-		return false;
-	}
-	
 	public void killEnemy(BlockEnemy enemyToKill)
 	{
 		for(int i = 0; i < enemy.size(); i++)
@@ -118,7 +110,7 @@ public class World
 				}
 				catch(Exception e)
 				{
-					((WorldElementAvailableHits)worldElement.get(i)).availableHits = 3;
+					((WorldElementAvailableHits)worldElement.get(i)).availableHits = 10;
 					return;
 				}
 			}
@@ -298,7 +290,7 @@ public class World
 			if(worldElement.get(i).getClass().getName().equals(WorldElementAvailableHits.class.getName()))
 			{
 				WorldElementAvailableHits weah = (WorldElementAvailableHits) worldElement.get(i);
-				weah.availableHits++;
+				weah.availableHits += hitsToAdd;
 				return;
 			}
 		}

@@ -1,6 +1,5 @@
 package seia.gra;
 
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,8 +7,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Random;
 
-import javax.swing.AbstractButton;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -27,14 +24,13 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 {
 	private static final long serialVersionUID = 1L;
 	
-	public final String VERSION = "v0.0.3";
+	public final String VERSION = "v0.0.5";
 	
 	public Timer tm = new Timer(5, null); //miliseconds
 	private static int SZER, WYS;
 	public World world;
 	private boolean setHeart;
 	public JFrame frame;
-	public JButton buttonShowLines;
 
 	public MainClass(int szer, int wys, boolean setHeart, String nick)
 	{
@@ -60,20 +56,6 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	public void addItemsToFrame()
 	{
 		frame.add(this);
-		//addAdditionalItems();
-	}
-	
-	public void addAdditionalItems()
-	{
-		buttonShowLines = new JButton("Lines");
-		buttonShowLines.setVerticalTextPosition(AbstractButton.CENTER);
-		buttonShowLines.setBounds(100, 100, 50, 50);
-		buttonShowLines.setVisible(true);
-		buttonShowLines.addActionListener(this);
-		buttonShowLines.setLayout(new FlowLayout());
-		buttonShowLines.setActionCommand("lines");
-		buttonShowLines.setEnabled(true);
-		frame.add(buttonShowLines);
 	}
 	
 	public void newGame()
@@ -211,7 +193,6 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
 			s1 = "Tester #" + new Random().nextInt();
 		}
 		MainClass mc = new MainClass(szer, wys, b1, s1);

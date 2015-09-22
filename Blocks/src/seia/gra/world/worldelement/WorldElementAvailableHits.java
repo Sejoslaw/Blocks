@@ -6,7 +6,7 @@ import java.awt.Graphics;
 public class WorldElementAvailableHits extends WorldElement
 {
 	private static final Color color = Color.CYAN;
-	public int availableHits = 3;
+	public int availableHits = 10;
 	
 	public WorldElementAvailableHits(int pixelX, int pixelY) 
 	{
