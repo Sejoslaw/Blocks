@@ -15,7 +15,7 @@ import javax.swing.Timer;
 import seia.gra.block.Block;
 import seia.gra.event.EventCheckCollisionWithEnemy;
 import seia.gra.event.EventCheckForNextLevel;
-import seia.gra.file.FileConfig;
+import seia.gra.file.FilesHandler;
 import seia.gra.utils.Key;
 import seia.gra.world.World;
 import seia.gra.world.renderer.WorldRendererHeart;
@@ -27,10 +27,11 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	public final String VERSION = "v0.0.5";
 	
 	public Timer tm = new Timer(5, null); //miliseconds
-	private static int SZER, WYS;
+	public int SZER, WYS;
 	public World world;
-	private boolean setHeart;
+	public boolean setHeart;
 	public JFrame frame;
+	public String nick;
 
 	public MainClass(int szer, int wys, boolean setHeart, String nick)
 	{
@@ -38,8 +39,9 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		SZER = szer;
 		WYS = wys;
 		this.setHeart = setHeart;
-		FileConfig.checkConfig(this);
-		world = new World(szer, wys, setHeart, nick, this);
+		this.nick = nick;
+		FilesHandler.CONFIG.checkConfig(this); //FileConfig.checkConfig(this);
+		world = new World(this);
 		
 		this.addKeyListener(this);
 		this.setFocusable(true);
@@ -61,7 +63,8 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	public void newGame()
 	{
 		JOptionPane.showMessageDialog(this, "Game Over :(");
-		FileConfig.checkConfig(this);
+		FilesHandler.HIGHSCORE.reloadHighscore(this);
+		FilesHandler.CONFIG.checkConfig(this); //FileConfig.checkConfig(this);
 		world.reloadPanel();
 		world.updateLevelValue(1);
 		world.setAvailableHits();
@@ -79,18 +82,12 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		repaint();
 	}
 	
-	public void gameOver()
-	{
-		JOptionPane.showMessageDialog(this, "Game Over :(");
-		System.exit(0);
-	}
-	
-	public static int getWidthInBlocks()
+	public int getWidthInBlocks()
 	{
 		return SZER / Block.BLOCK_SIZE;
 	}
 	
-	public static int getHeightInBlocks()
+	public int getHeightInBlocks()
 	{
 		return WYS / Block.BLOCK_SIZE;
 	}

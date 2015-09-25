@@ -56,7 +56,7 @@ public class BlockMovable extends Block
 	
 	public boolean movePlayerDown()
 	{
-		if(Y + 1 < MainClass.getHeightInBlocks() - 1)
+		if(Y + 1 < worldObj.mcInstance.getHeightInBlocks() - 1)
 		{
 			boolean can = true;
 			if(getBlockUnder().getColor() == Color.BLACK)
@@ -74,7 +74,7 @@ public class BlockMovable extends Block
 	
 	public boolean moveEnemyDown()
 	{
-		if(Y + 1 < MainClass.getHeightInBlocks() - 1)
+		if(Y + 1 < worldObj.mcInstance.getHeightInBlocks() - 1)
 		{
 			boolean can = true;
 			if(getBlockUnder().getColor() == Color.BLACK)
@@ -138,7 +138,7 @@ public class BlockMovable extends Block
 	
 	public boolean movePlayerRight()
 	{
-		if(X + 1 < MainClass.getWidthInBlocks() - 1)
+		if(X + 1 < worldObj.mcInstance.getWidthInBlocks() - 1)
 		{
 			boolean can = true;
 			if(getBlockOnRight().getColor() == Color.BLACK)
@@ -156,7 +156,7 @@ public class BlockMovable extends Block
 	
 	public boolean moveEnemyRight()
 	{
-		if(X + 1 < MainClass.getWidthInBlocks() - 1)
+		if(X + 1 < worldObj.mcInstance.getWidthInBlocks() - 1)
 		{
 			boolean can = true;
 			if(getBlockOnRight().getColor() == Color.BLACK)

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import seia.gra.world.World;
 
@@ -111,5 +112,18 @@ public class Block
 	public void setY(int newY)
 	{
 		Y = newY;
+	}
+	
+	public int getWidth() 
+	{
+		return worldObj.mcInstance.getWidthInBlocks() - 1;
+	}
+
+	public int getRandHeight() 
+	{
+		int x = (3 * worldObj.mcInstance.getHeightInBlocks()) / 4;
+		int rand = new Random().nextInt(x);
+		if(rand <= 0) rand = 1;
+		return rand;
 	}
 }

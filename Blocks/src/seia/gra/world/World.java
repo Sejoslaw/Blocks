@@ -10,7 +10,7 @@ import seia.gra.block.Block;
 import seia.gra.block.movable.BlockEnemy;
 import seia.gra.block.movable.player.BlockPlayer;
 import seia.gra.block.nonmovable.BlockNextLevel;
-import seia.gra.file.FileConfig;
+import seia.gra.file.FilesHandler;
 import seia.gra.world.renderer.WorldRenderer;
 import seia.gra.world.renderer.WorldRendererHeart;
 import seia.gra.world.renderer.WorldRendererSquare;
@@ -29,21 +29,21 @@ public class World
 	public List<WorldElement> worldElement = new ArrayList<WorldElement>();
 	public List<WorldRenderer> worldRenderer = new ArrayList<WorldRenderer>();
 	public WorldRenderer currentRenderer;
-	private static int SZER, WYS;
+	private int SZER, WYS;
 	boolean b1;
 	public BlockPlayer player;
 	public List<BlockEnemy> enemy = new ArrayList<BlockEnemy>();
 	public BlockNextLevel nextLevel;
 	public MainClass mcInstance;
 	
-	public World(int szer, int wys, boolean b1, String nick, MainClass main)
+	public World(MainClass main)
 	{
-		SZER = szer;
-		WYS = wys;
-		this.b1 = b1;
+		SZER = main.SZER;
+		WYS = main.WYS;
+		b1 = main.setHeart;
 		mcInstance = main;
 		player = new BlockPlayer(1, 1, this);
-		nextLevel = new BlockNextLevel(BlockNextLevel.getWidth(), BlockNextLevel.getRandHeight(), this);
+		nextLevel = new BlockNextLevel(player.getWidth(), player.getRandHeight(), this);
 		if(b1)
 		{
 			losEnemy(0);
@@ -54,7 +54,7 @@ public class World
 		}
 		addElements();
 		addRenderers();
-		setNick(nick);
+		setNick(main.nick);
 		setAvailableHits();
 		if(b1)
 			currentRenderer = worldRenderer.get(1);
@@ -66,9 +66,9 @@ public class World
 	{
 		setCurrentRendererRandom();
 		player.X = 1;
-		player.Y = new Random().nextInt(MainClass.getHeightInBlocks() - 2) + 1;
-		nextLevel.X = BlockNextLevel.getWidth();
-		nextLevel.Y = BlockNextLevel.getRandHeight();
+		player.Y = new Random().nextInt(mcInstance.getHeightInBlocks() - 2) + 1;
+		nextLevel.X = nextLevel.getWidth();
+		nextLevel.Y = nextLevel.getRandHeight();
 		enemy.clear();
 		losEnemy(90); //new Random().nextInt(95);
 	}
@@ -105,7 +105,7 @@ public class World
 			{
 				try
 				{
-					((WorldElementAvailableHits)worldElement.get(i)).availableHits = FileConfig.avaiableHits;
+					((WorldElementAvailableHits)worldElement.get(i)).availableHits = FilesHandler.CONFIG.avaiableHits; //FileConfig.avaiableHits;
 					return;
 				}
 				catch(Exception e)
@@ -152,6 +152,14 @@ public class World
 			}
 		}
 	}
+	
+	public int getCurrentLevelValue()
+	{
+		for(int i = 0; i < worldElement.size(); i++)
+			if(worldElement.get(i).getClass().getName().equals(WorldElementLevelValue.class.getName()))
+				return ((WorldElementLevelValue)worldElement.get(i)).level;
+		return -1;
+	}
 
 	public void losEnemy(int ile)
 	{
@@ -169,8 +177,8 @@ public class World
 				&& (rY != 1) 
 				&& (rX != 0) 
 				&& (rY != 0) 
-				&& (rX != MainClass.getWidthInBlocks() - 1) 
-				&& (rY != MainClass.getHeightInBlocks() - 1))
+				&& (rX != mcInstance.getWidthInBlocks() - 1) 
+				&& (rY != mcInstance.getHeightInBlocks() - 1))
 		{
 			enemy.add(new BlockEnemy(rX, rY, this));
 			return true;
@@ -244,9 +252,7 @@ public class World
 		for(int i = 0; i < worldElement.size(); i++)
 			worldElement.get(i).paintComponent(g);
 		for(int  i = 0; i < enemy.size(); i++)
-		{
 			enemy.get(i).paintComponent(g);
-		}
 		nextLevel.paintComponent(g);
 		player.paintComponent(g);
 	}

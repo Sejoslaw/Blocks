@@ -11,8 +11,8 @@ import seia.gra.block.Block;
 
 public class FileConfig extends MyFile
 {
-	public static List<String> configLines = new ArrayList<String>();
-	public static int avaiableHits = 10;
+	public List<String> configLines = new ArrayList<String>();
+	public int avaiableHits = 10;
 	
 	private static final long serialVersionUID = 6317863730564877917L;
 
@@ -25,13 +25,13 @@ public class FileConfig extends MyFile
 	 * Dodawanie linijek do Blocks.Config
 	 * Wraz z domyslna wartoscia
 	 */
-	private static void addToList()
+	private void addToList()
 	{
 		configLines.add("show_lines=" + Block.isShowingLines);
 		configLines.add("basic_available_hits=" + avaiableHits);
 	}
 	
-	public static void checkConfig(MainClass mc)
+	public void checkConfig(MainClass mc)
 	{
 		if(FilesHandler.CONFIG.exists())
 		{
@@ -60,14 +60,13 @@ public class FileConfig extends MyFile
 		}
 	}
 
-	public static String[] readConfig(MainClass mc)
+	public String[] readConfig(MainClass mc)
 	{
 		List<String> list = new ArrayList<String>();
 		String[] tab = null;
 		try
 		{
 			BufferedReader br = new BufferedReader(new FileReader(FilesHandler.CONFIG));
-			StringBuilder sb = new StringBuilder();
 			String line = br.readLine();
 			list.add(line);
 			while(line != null)
@@ -88,7 +87,7 @@ public class FileConfig extends MyFile
 		return tab;
 	}
 	
-	public static boolean getShowLines(MainClass mc)
+	public boolean getShowLines(MainClass mc)
 	{
 		String[] tab = readConfig(mc);
 		boolean showLines = Block.isShowingLines;
@@ -103,7 +102,7 @@ public class FileConfig extends MyFile
 		return showLines;
 	}
 	
-	public static int getBasicAvailableHits(MainClass mc)
+	public int getBasicAvailableHits(MainClass mc)
 	{
 		String[] tab = readConfig(mc);
 		int hits = avaiableHits;
