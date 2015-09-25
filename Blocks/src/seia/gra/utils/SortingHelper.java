@@ -12,13 +12,9 @@ public class SortingHelper
 	 */
 	public static <T> List<T> change(T a, T b)
 	{
-		T tmp;
-		tmp = a;
-		a = b;
-		b = tmp;
 		List<T> l = new ArrayList<T>();
-		l.add(a);
 		l.add(b);
+		l.add(a);
 		return l;
 	}
 	
@@ -58,6 +54,59 @@ public class SortingHelper
 	 */
 	public static <T extends Comparable<T>> T[] insertSort(T[] tab)
 	{
-		
+		T x;
+		int n = tab.length;
+		for(int i = 1; i < n; i++)
+		{
+			x = tab[i];
+			for(int j = 0; j < i; j++)
+			{
+				if(tab[j].compareTo(x) > 0) 
+					break;
+				for(int k = i; k > j; k--)
+					tab[k] = tab[k - 1];
+			}
+		}
+		return tab;
 	}
+	
+	public static <T extends Comparable<T>> T[] selectionSort(T[] tab)
+	{
+		int n = tab.length;
+		int nr;
+		for(int i = 0; i < n - 1; i++)
+		{
+			T min = tab[i];
+			nr = i;
+			for(int j = i + 1; j < n; j++)
+				if(tab[j].compareTo(min) < 0)
+				{
+					min = tab[j];
+					nr = j;
+				}
+			List<T> l = change(tab[i], tab[nr]);
+			tab[i] = l.get(0);
+			tab[nr] = l.get(1);
+		}
+		return tab;
+	}
+	
+	public static <T extends Comparable<T>> T[] reverse(T[] tab)
+	{
+		if(tab == null)
+			return null;
+		int i = 0;
+		int j = tab.length - 1;
+		T tmp;
+		while(j > i)
+		{
+			tmp = tab[j];
+			tab[j] = tab[i];
+			tab[i] = tmp;
+			j--;
+			i++;
+		}
+		return tab;
+	}
+	
 }
