@@ -56,6 +56,17 @@ public class MatrixHelper
 		return arObj;
 	}
 	
+	public static <T> Object[][] toObjectArray(T[][] matrixT)
+	{
+		int sizeY = matrixT.length;
+		int sizeX = matrixT[0].length;
+		Object[][] mat = new Object[sizeX][sizeY];
+		for(int j = 0; j < sizeY; j++)
+			for(int i = 0; i < sizeX; i++)
+				mat[i][j] = (Object) matrixT[i][j];
+		return mat;
+	}
+	
 	public static <T> T[][] reverseShapeVerticallySquareMatrix(T[][] matrixT)
 	{
 		T[][] matrix = matrixT.clone();
@@ -108,6 +119,17 @@ public class MatrixHelper
 			for(int j = 0; j < matrixSize; j++)
 				matrix[i][j] = matrixT[j][i];
 		return matrix;
+	}
+	
+	public static <T> Object[][] transpose(T[][] matrixT)
+	{
+		int sizeY = matrixT.length;
+		int sizeX = matrixT[0].length;
+		Object[][] mat = new Object[sizeX][sizeY];
+		for(int j = 0; j < sizeY; j++)
+			for(int i = 0; i < sizeX; i++)
+				mat[i][j] = (Object) matrixT[j][i];
+		return mat;
 	}
 	
 	public static <T> boolean czyMacierzZwrotna(T[][] matrixT)
