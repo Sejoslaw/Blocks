@@ -168,6 +168,19 @@ public class MatrixHelper
 		return mat;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public static <T> T[][] rebuildMatrixAfterTransposition(T[][] matrix)
+	{
+		Object[][] objAr = transpose(matrix);
+		return (T[][]) objAr;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static <T> T[][] toTArray(Object[][] matrixO)
+	{
+		return (T[][]) matrixO;
+	}
+	
 	/**
 	 * @return - isMatrixReturnable ???
 	 */
@@ -222,12 +235,6 @@ public class MatrixHelper
 				if(tab[i][j] * tab[j][i] == 1)
 					return false;
 		return true;
-	}
-	
-	@SuppressWarnings("unchecked")
-	public static <T> T[][] toTArray(Object[][] matrixO)
-	{
-		return (T[][]) matrixO;
 	}
 	
 }
