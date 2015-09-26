@@ -107,6 +107,17 @@ public class MatrixHelper
 		return matrixT;
 	}
 	
+	public static <T> Object[][] rotateRight(T[][] matrixT)
+	{
+		int sizeY = matrixT.length;
+		int sizeX = matrixT[0].length;
+		Object[][] matrix = new Object[sizeX][sizeY];
+		for(int i = 0; i < sizeY; i++)
+			for(int j = 0; j < sizeX; j++)
+				matrix[i][j] = matrixT[sizeY - j - 1][i];
+		return matrix;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public static <T> T[][] rotateLeftSquareMatrix(T[][] matrixT)
 	{
@@ -119,6 +130,17 @@ public class MatrixHelper
 			for(int j = 0; j < matrixSize; j++)
 				matrixT[i][j] = (T) matrix[i][j];
 		return matrixT;
+	}
+	
+	public static <T> Object[][] rotateLeft(T[][] matrixT)
+	{
+		int sizeY = matrixT.length;
+		int sizeX = matrixT[0].length;
+		Object[][] matrix = new Object[sizeX][sizeY];
+		for(int i = 0; i < sizeY; i++)
+			for(int j = 0; j < sizeX; j++)
+				matrix[i][j] = matrixT[j][sizeY - i - 1];
+		return matrix;
 	}
 	
 	@SuppressWarnings("unchecked")
