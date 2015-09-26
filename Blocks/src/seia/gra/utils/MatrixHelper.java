@@ -50,8 +50,8 @@ public class MatrixHelper
 	{
 		int size = matrixT.length;
 		Object[][] arObj = new Object[size][size];
-		for(int j = 0; j < size; j++)
-			for(int i = 0; i < size; i++)
+		for(int i = 0; i < size; i++)
+			for(int j = 0; j < size; j++)
 				arObj[i][j] = (Object) matrixT[i][j];
 		return arObj;
 	}
@@ -61,8 +61,8 @@ public class MatrixHelper
 		int sizeY = matrixT.length;
 		int sizeX = matrixT[0].length;
 		Object[][] mat = new Object[sizeX][sizeY];
-		for(int j = 0; j < sizeY; j++)
-			for(int i = 0; i < sizeX; i++)
+		for(int i = 0; i < sizeY; i++)
+			for(int j = 0; j < sizeX; j++)
 				mat[i][j] = (Object) matrixT[i][j];
 		return mat;
 	}
@@ -72,8 +72,8 @@ public class MatrixHelper
 		T[][] matrix = matrixT.clone();
 		int matrixSize = matrixT.length;
 		int rowSize = matrix[0].length - 1;
-		for(int j = 0; j < matrixSize; j++)
-			for(int i = 0; i < matrixSize; i++)
+		for(int i = 0; i < matrixSize; i++)
+			for(int j = 0; j < matrixSize; j++)
 				if(i < (rowSize / 2))
 					matrix[i][j] = matrix[rowSize - i][j];
 		return matrix;
@@ -126,8 +126,8 @@ public class MatrixHelper
 		int sizeY = matrixT.length;
 		int sizeX = matrixT[0].length;
 		Object[][] mat = new Object[sizeX][sizeY];
-		for(int j = 0; j < sizeY; j++)
-			for(int i = 0; i < sizeX; i++)
+		for(int i = 0; i < sizeY; i++)
+			for(int j = 0; j < sizeX; j++)
 				mat[i][j] = (Object) matrixT[j][i];
 		return mat;
 	}
