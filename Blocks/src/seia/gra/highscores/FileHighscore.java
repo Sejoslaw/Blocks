@@ -4,11 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import seia.gra.MainClass;
 import seia.gra.file.FilesHandler;
 import seia.gra.file.MyFile;
+import seia.gra.utils.SortingHelper;
 
 public class FileHighscore extends MyFile
 {
@@ -25,27 +25,21 @@ public class FileHighscore extends MyFile
 		super(pathname);
 	}
 
-	public void reloadHighscore(MainClass mc) 
+	public void reloadHighscore(MainClass mc) //TODO
 	{
-		if(FilesHandler.HIGHSCORE.exists())
+		try
 		{
 			readHighscore();
 			addToHighscore(mc);
+			FilesHandler.HIGHSCORE.delete();
+			FilesHandler.HIGHSCORE.createNewFile();
+			reload();
+			save();
 		}
-		else
+		catch(Exception e)
 		{
-			try 
-			{
-				FilesHandler.HIGHSCORE.createNewFile();
-				addToHighscore(mc);
-			} 
-			catch (Exception e) 
-			{
-				e.printStackTrace();
-			}
+			e.printStackTrace();
 		}
-		reload();
-		save();
 	}
 	
 	/**
@@ -84,11 +78,9 @@ public class FileHighscore extends MyFile
 		ObjectHighscoreLine[] cpy = new ObjectHighscoreLine[size];
 		for(int i = 0; i < highscoreLines.size(); i++)
 			cpy[i] = highscoreLines.get(i);
-		Arrays.sort(cpy);
+		cpy = SortingHelper.insertSort(cpy); //TODO
 		for(int i = 1; i < highscoreLines.size() + 1; i++)
-		{
 			highscoreLines.get(i - 1).positionOnList = i;
-		}
 	}
 	
 	/**

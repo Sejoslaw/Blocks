@@ -63,7 +63,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	public void newGame()
 	{
 		JOptionPane.showMessageDialog(this, "Game Over :(");
-		FilesHandler.HIGHSCORE.reloadHighscore(this);
+		//FilesHandler.HIGHSCORE.reloadHighscore(this); //TODO
 		FilesHandler.CONFIG.checkConfig(this); //FileConfig.checkConfig(this);
 		world.reloadPanel();
 		world.updateLevelValue(1);
