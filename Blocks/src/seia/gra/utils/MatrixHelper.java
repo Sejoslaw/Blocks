@@ -2,36 +2,6 @@ package seia.gra.utils;
 
 public class MatrixHelper
 {
-	public abstract class Matrix<T>
-	{
-		public abstract int getSizeX();
-		public abstract int getSizeY();
-		public abstract T[][] buildMatrix();
-	}
-	
-	public abstract class MatrixSquare<T> extends Matrix<T>
-	{
-		public T[][] MATRIX;
-		public int SIZE;
-		
-		public MatrixSquare(int size)
-		{
-			this.SIZE = size;
-		}
-		
-		public int getSizeX()
-		{
-			return SIZE;
-		}
-		
-		public int getSizeY()
-		{
-			return SIZE;
-		}
-		
-		public abstract T[][] buildMatrix();
-	}
-	
 	public static <T> int[][] setZeroOneMatrix(T[][] matrixT)
 	{
 		int[][] tab = new int[matrixT.length][matrixT[0].length];
@@ -67,58 +37,102 @@ public class MatrixHelper
 		return mat;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static <T> T[][] reverseShapeVerticallySquareMatrix(T[][] matrixT)
 	{
-		T[][] matrix = matrixT.clone();
+		Object[][] matrix = new Object[matrixT.length][matrixT.length];
 		int matrixSize = matrixT.length;
 		int rowSize = matrix[0].length - 1;
 		for(int i = 0; i < matrixSize; i++)
 			for(int j = 0; j < matrixSize; j++)
 				if(i < (rowSize / 2))
 					matrix[i][j] = matrix[rowSize - i][j];
-		return matrix;
+		for(int i = 0; i < matrixSize; i++)
+			for(int j = 0; j < matrixSize; j++)
+				matrixT[i][j] = (T) matrix[i][j];
+		return matrixT;
 	}
 	
+	public static <T> Object[][] reverseShapeVertically(T[][] matrixT)
+	{
+		int sizeY = matrixT.length;
+		int sizeX = matrixT[0].length;
+		Object[][] mat = new Object[sizeX][sizeY];
+		for(int i = 0; i < sizeY; i++)
+			for(int j = 0; j < sizeX; j++)
+				if(i < (sizeX / 2))
+					mat[i][j] = (Object) matrixT[sizeX - i][j];
+		return mat;
+	}
+	
+	@SuppressWarnings("unchecked")
 	public static <T> T[][] reverseShapeHorizontallySquareMatrix(T[][] matrixT)
 	{
-		T[][] matrix = matrixT.clone();
+		Object[][] matrix = new Object[matrixT.length][matrixT.length];
 		int matrixSize = matrixT.length;
 		int rowSize = matrix[0].length - 1;
 		for(int i = 0; i < matrixSize; i++)
 			for(int j = 0; j < matrixSize; j++)
 				if(j < (rowSize / 2))
 					matrix[i][j] = matrix[i][rowSize - j];
-		return matrix;
+		for(int i = 0; i < matrixSize; i++)
+			for(int j = 0; j < matrixSize; j++)
+				matrixT[i][j] = (T) matrix[i][j];
+		return matrixT;
 	}
 	
+	public static <T> Object[][] reverseShapeHorizontally(T[][] matrixT)
+	{
+		int sizeY = matrixT.length;
+		int sizeX = matrixT[0].length;
+		Object[][] mat = new Object[sizeX][sizeY];
+		for(int i = 0; i < sizeY; i++)
+			for(int j = 0; j < sizeX; j++)
+				if(i < (sizeY / 2))
+					mat[i][j] = (Object) matrixT[i][sizeY - j];
+		return mat;
+	}
+	
+	@SuppressWarnings("unchecked")
 	public static <T> T[][] rotateRightSquareMatrix(T[][] matrixT)
 	{
-		T[][] matrix = matrixT.clone();
+		Object[][] matrix = new Object[matrixT.length][matrixT.length];
 		int matrixSize = matrixT.length;
 		for(int i = 0; i < matrixSize; i++)
 			for(int j = 0; j < matrixSize; j++)
 				matrix[i][j] = matrixT[matrixSize - j - 1][i];
-		return matrix;
+		for(int i = 0; i < matrixSize; i++)
+			for(int j = 0; j < matrixSize; j++)
+				matrixT[i][j] = (T) matrix[i][j];
+		return matrixT;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static <T> T[][] rotateLeftSquareMatrix(T[][] matrixT)
 	{
-		T[][] matrix = matrixT.clone();
+		Object[][] matrix = new Object[matrixT.length][matrixT.length];
 		int matrixSize = matrixT.length;
 		for(int i = 0; i < matrixSize; i++)
 			for(int j = 0; j < matrixSize; j++)
 				matrix[i][j] = matrixT[j][matrixSize - i - 1];
-		return matrix;
+		for(int i = 0; i < matrixSize; i++)
+			for(int j = 0; j < matrixSize; j++)
+				matrixT[i][j] = (T) matrix[i][j];
+		return matrixT;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static <T> T[][] transposeSquareMatrix(T[][] matrixT)
 	{
-		T[][] matrix = matrixT.clone();
+		Object[][] matrix = new Object[matrixT.length][matrixT.length];
 		int matrixSize = matrixT.length;
 		for(int i = 0; i < matrixSize; i++)
 			for(int j = 0; j < matrixSize; j++)
-				matrix[i][j] = matrixT[j][i];
-		return matrix;
+				matrix[i][j] = (Object) matrixT[j][i];
+		for(int i = 0; i < matrixSize; i++)
+			for(int j = 0; j < matrixSize; j++)
+				matrixT[i][j] = (T) matrix[i][j];
+		return matrixT;
 	}
 	
 	public static <T> Object[][] transpose(T[][] matrixT)
@@ -126,12 +140,15 @@ public class MatrixHelper
 		int sizeY = matrixT.length;
 		int sizeX = matrixT[0].length;
 		Object[][] mat = new Object[sizeX][sizeY];
-		for(int i = 0; i < sizeY; i++)
-			for(int j = 0; j < sizeX; j++)
+		for(int i = 0; i < sizeX; i++)
+			for(int j = 0; j < sizeY; j++)
 				mat[i][j] = (Object) matrixT[j][i];
 		return mat;
 	}
 	
+	/**
+	 * @return - isMatrixReturnable ???
+	 */
 	public static <T> boolean czyMacierzZwrotna(T[][] matrixT)
 	{
 		for(int i = 0; i < matrixT.length; i++)
@@ -183,6 +200,12 @@ public class MatrixHelper
 				if(tab[i][j] * tab[j][i] == 1)
 					return false;
 		return true;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static <T> T[][] toTArray(Object[][] matrixO)
+	{
+		return (T[][]) matrixO;
 	}
 	
 }
