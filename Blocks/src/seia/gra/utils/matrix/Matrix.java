@@ -1,7 +1,5 @@
 package seia.gra.utils.matrix;
 
-import seia.gra.utils.MatrixHelper;
-
 public abstract class Matrix<T> implements IMatrix<T>
 {
 	public T[][] MATRIX;

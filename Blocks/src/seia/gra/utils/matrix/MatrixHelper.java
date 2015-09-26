@@ -1,4 +1,4 @@
-package seia.gra.utils;
+package seia.gra.utils.matrix;
 
 public class MatrixHelper
 {
