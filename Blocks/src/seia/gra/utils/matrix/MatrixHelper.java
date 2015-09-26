@@ -237,4 +237,28 @@ public class MatrixHelper
 		return true;
 	}
 	
+	public static <T extends Comparable<T>> T getMaxFromMatrix(T[][] matrixT)
+	{
+		T max = matrixT[0][0];
+		int sizeY = matrixT.length;
+		int sizeX = matrixT[0].length;
+		for(int i = 0; i < sizeX; i++)
+			for(int j = 0; j < sizeY; j++)
+				if(max.compareTo(matrixT[i][j]) <= 0)
+					max = matrixT[i][j];
+		return max;
+	}
+	
+	public static <T extends Comparable<T>> T getMinFromMatrix(T[][] matrixT)
+	{
+		T min = matrixT[0][0];
+		int sizeY = matrixT.length;
+		int sizeX = matrixT[0].length;
+		for(int i = 0; i < sizeX; i++)
+			for(int j = 0; j < sizeY; j++)
+				if(min.compareTo(matrixT[i][j]) > 0)
+					min = matrixT[i][j];
+		return min;
+	}
+	
 }
