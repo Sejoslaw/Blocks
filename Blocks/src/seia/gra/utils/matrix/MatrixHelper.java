@@ -192,7 +192,7 @@ public class MatrixHelper
 		return true;
 	}
 	
-	public static <T> boolean czyMacierzPrzeiwzwrotna(T[][] matrixT)
+	public static <T> boolean czyMacierzPrzeciwzwrotna(T[][] matrixT)
 	{
 		for(int i = 0; i < matrixT.length; i++)
 			if(matrixT[i][i] != null)
