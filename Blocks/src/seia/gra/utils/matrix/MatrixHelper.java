@@ -1,5 +1,8 @@
 package seia.gra.utils.matrix;
 
+/*
+ * Created by: Seia 2015
+ */
 public class MatrixHelper
 {
 	public static <T> int[][] setZeroOneMatrix(T[][] matrixT)
