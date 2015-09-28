@@ -45,7 +45,7 @@ public class FileHighscore extends MyFile
 	/**
 	 * Zapis listy wynikow do pliku
 	 */
-	public void save()
+	public void save() //TODO
 	{
 		try 
 		{
@@ -72,7 +72,7 @@ public class FileHighscore extends MyFile
 	/**
 	 * Przeladowanie listy wynikow
 	 */
-	public void reload()
+	public void reload() //TODO
 	{
 		int size = highscoreLines.size();
 		ObjectHighscoreLine[] cpy = new ObjectHighscoreLine[size];
@@ -94,7 +94,7 @@ public class FileHighscore extends MyFile
 	/**
 	 * Napelnienie listy wynikow
 	 */
-	public void readHighscore()
+	public void readHighscore() //TODO
 	{
 		ArrayList<String> lines = new ArrayList<String>();
 		try
