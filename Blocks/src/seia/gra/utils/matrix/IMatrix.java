@@ -1,7 +1,7 @@
 package seia.gra.utils.matrix;
 
 /*
- * Created by: Seia 2015
+ * Created by: Krzysztof D. 2015
  */
 public interface IMatrix<T> 
 {
