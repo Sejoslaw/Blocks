@@ -1,7 +1,7 @@
 package seia.gra.utils.matrix;
 
 /*
- * Created by: Krzysztof D. 2015
+ * Created by: Krzysztof Dobrzyński 2015
  */
 public abstract class Matrix<T> implements IMatrix<T>
 {
