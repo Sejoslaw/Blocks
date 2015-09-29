@@ -37,7 +37,7 @@ public abstract class Matrix<T> implements IMatrix<T>
 	}
 	
 	@SuppressWarnings("unchecked")
-	public T[][] rebuildMatrixAfterTransposition()
+	public T[][] transposeMatrix()
 	{
 		Object[][] objAr = MatrixHelper.transpose(MATRIX);
 		return (T[][]) objAr;
@@ -57,6 +57,6 @@ public abstract class Matrix<T> implements IMatrix<T>
 			System.out.println();
 		}
 		
-		MATRIX = rebuildMatrixAfterTransposition();
+		MATRIX = transposeMatrix();
 	}
 }
