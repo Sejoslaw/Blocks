@@ -33,10 +33,4 @@ public class EventCheckForNextLevel extends Event
 			los = points;
 		return los;
 	}
-	
-	private static int getPercentForAddingHit(World world)
-	{
-		int level = world.getCurrentLevelValue();
-		return 100 % level;
-	}
 }
