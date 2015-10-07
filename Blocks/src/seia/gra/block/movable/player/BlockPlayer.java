@@ -5,7 +5,7 @@ import java.awt.Color;
 import seia.gra.block.movable.BlockMovable;
 import seia.gra.world.World;
 
-public class BlockPlayer extends BlockMovable
+public class BlockPlayer extends BlockMovable implements IPlayer
 {
 	private static Color color = Color.GREEN;
 	public InventoryPlayer inventory;

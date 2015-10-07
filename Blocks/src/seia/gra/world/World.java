@@ -7,14 +7,15 @@ import java.util.Random;
 
 import seia.gra.MainClass;
 import seia.gra.block.Block;
+import seia.gra.block.movable.BlockClonePlayer;
 import seia.gra.block.movable.BlockEnemy;
 import seia.gra.block.movable.BlockMovable;
 import seia.gra.block.movable.player.BlockPlayer;
+import seia.gra.block.movable.player.IPlayer;
 import seia.gra.block.nonmovable.BlockNextLevel;
 import seia.gra.file.FilesHandler;
 import seia.gra.world.renderer.WorldRenderer;
 import seia.gra.world.renderer.WorldRendererClonePlayer;
-import seia.gra.world.renderer.WorldRendererHeart;
 import seia.gra.world.renderer.WorldRendererSquareBasic;
 import seia.gra.world.worldelement.WorldElement;
 import seia.gra.world.worldelement.WorldElementAvailableHits;
@@ -82,6 +83,24 @@ public class World
 				}
 			}
 		}
+	}
+	
+	public void killCurrentPlayer()
+	{
+		player = null;
+		findNextPlayerOnMap();
+	}
+	
+	public void findNextPlayerOnMap()
+	{
+		for(int i = 0; i < currentTiles.size(); i++)
+			if(currentTiles.get(i) instanceof BlockClonePlayer)
+			{
+				BlockClonePlayer clone = (BlockClonePlayer) currentTiles.get(i);
+				player = new BlockPlayer(clone.X - 1, clone.Y, this);
+				killEnemy(clone);
+				return;
+			}
 	}
 	
 	public void decreaseAfterHit()
@@ -269,6 +288,27 @@ public class World
 				return (BlockNextLevel) Block.blocksInGame.get(i);
 		return null;
 	}
+	
+	public List<BlockClonePlayer> getPlayerClonesInWorld()
+	{
+		List<BlockClonePlayer> clones = new ArrayList<BlockClonePlayer>();
+		for(int i = 0; i < currentTiles.size(); i++)
+			if(currentTiles.get(i) instanceof BlockClonePlayer)
+				clones.add((BlockClonePlayer) currentTiles.get(i));
+		return clones;
+	}
+	
+	public int countPlayerClones()
+	{
+		return getPlayerClonesInWorld().size();
+	}
+	
+	public boolean arePlayerClonesOnWorld()
+	{
+		if(countPlayerClones() > 0)
+			return true;
+		return false;
+	}
 
 	public void addAvaiableHits(int hitsToAdd) 
 	{
@@ -281,5 +321,13 @@ public class World
 				return;
 			}
 		}
+	}
+	
+	public boolean areAllPlayerGone()
+	{
+		for(int i = 0; i < currentTiles.size(); i++)
+			if(currentTiles.get(i) instanceof IPlayer)
+				return false;
+		return true;
 	}
 }

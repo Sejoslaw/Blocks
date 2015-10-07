@@ -33,7 +33,7 @@ public class InventoryPlayer
 		ItemStack st = currentInventory[slot];
 		if(st != null)
 			if(st.item.itemID == item.itemID)
-				if(st.stackSize < st.stackLimit)
+				if(st.stackSize < ItemStack.stackLimit)
 					return true;
 		return false;
 	}

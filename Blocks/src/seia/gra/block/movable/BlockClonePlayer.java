@@ -4,9 +4,10 @@ import java.awt.Color;
 
 import seia.gra.block.Block;
 import seia.gra.block.movable.player.BlockPlayer;
+import seia.gra.block.movable.player.IPlayer;
 import seia.gra.world.World;
 
-public class BlockClonePlayer extends BlockEnemy
+public class BlockClonePlayer extends BlockEnemy implements IPlayer
 {
 	public BlockClonePlayer(Color c, int x, int y, World world) 
 	{

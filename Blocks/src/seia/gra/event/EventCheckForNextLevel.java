@@ -12,9 +12,16 @@ public class EventCheckForNextLevel extends Event
 		{
 			if(world.player.X + 1 == world.getNextLevel().X)
 			{
-				world.reloadPanel();
-				world.updateLevelValue();
-				world.addAvaiableHits(getHits(1, 0));
+				if(world.areAllPlayerGone()) //jezeli wszyscy graczopochodni weszli na nastepny poziom
+				{
+					world.reloadPanel();
+					world.updateLevelValue();
+					world.addAvaiableHits(getHits(1, 0));
+				}
+				else
+				{
+					world.killCurrentPlayer();
+				}
 			}
 		}
 		return false;
