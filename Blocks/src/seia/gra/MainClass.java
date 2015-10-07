@@ -25,7 +25,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 {
 	private static final long serialVersionUID = 1L;
 	
-	public final String VERSION = "v0.0.5";
+	public final String VERSION = "v0.0.6";
 	
 	public Timer tm = new Timer(5, null); //miliseconds
 	public int SZER, WYS;
