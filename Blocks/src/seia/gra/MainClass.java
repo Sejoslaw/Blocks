@@ -24,10 +24,10 @@ import seia.gra.world.renderer.WorldRendererHeart;
 public class MainClass extends JPanel implements ActionListener, KeyListener
 {
 	/**
-	 * Oba maja przejsc na nastepny poziom (najpierw jeden potem drugi).
-	 * Kiedy przejda oba to a nastepny poziom.
-	 * Sterowanie Clona po przejsciu gracza jest jak gracza przedtem.
-	 * usunac obiekt CLona i podpiac go pod gracza.
+	 * Jest -> Oba maja przejsc na nastepny poziom (najpierw jeden potem drugi).
+	 * Jest -> Kiedy przejda oba to a nastepny poziom.
+	 * Jest -> Sterowanie Clona po przejsciu gracza jest jak gracza przedtem.
+	 * Jest -> usunac obiekt CLona i podpiac go pod gracza.
 	 */
 	private static final long serialVersionUID = 1L;
 	
