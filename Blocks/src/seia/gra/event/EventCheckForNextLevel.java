@@ -14,7 +14,7 @@ public class EventCheckForNextLevel extends Event
 			{
 				world.reloadPanel();
 				world.updateLevelValue();
-				world.addAvaiableHits(getHits(1, 30));
+				world.addAvaiableHits(getHits(1, 0));
 			}
 		}
 		return false;
@@ -25,12 +25,18 @@ public class EventCheckForNextLevel extends Event
 	 * @param percent - szansa z jaka dodane zostana punkty
 	 * @return - ile punktow doda
 	 */
-	public static int getHits(int points, int percent)
+	private static int getHits(int points, int percent)
 	{
 		int los = 0;
 		int rand = new Random().nextInt(100);
 		if(rand > (100 - percent))
 			los = points;
 		return los;
+	}
+	
+	private static int getPercentForAddingHit(World world)
+	{
+		int level = world.getCurrentLevelValue();
+		return 100 % level;
 	}
 }

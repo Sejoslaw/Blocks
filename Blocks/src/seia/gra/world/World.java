@@ -96,6 +96,18 @@ public class World
 		}
 	}
 	
+	public void decreaseAfterHit(int ile)
+	{
+		for(int i = 0; i < worldElement.size(); i++)
+		{
+			if(worldElement.get(i).getClass().getName().equals(WorldElementAvailableHits.class.getName()))
+			{
+				((WorldElementAvailableHits)worldElement.get(i)).availableHits -= ile;
+				return;
+			}
+		}
+	}
+	
 	public void setAvailableHits()
 	{
 		for(int i = 0; i < worldElement.size(); i++)
@@ -265,7 +277,7 @@ public class World
 			if(worldElement.get(i).getClass().getName().equals(WorldElementAvailableHits.class.getName()))
 			{
 				WorldElementAvailableHits weah = (WorldElementAvailableHits) worldElement.get(i);
-				weah.availableHits += hitsToAdd;
+				weah.availableHits += Math.abs(hitsToAdd);
 				return;
 			}
 		}

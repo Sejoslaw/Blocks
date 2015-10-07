@@ -1,6 +1,7 @@
 package seia.gra.event;
 
 import seia.gra.MainClass;
+import seia.gra.block.movable.BlockClonePlayer;
 import seia.gra.block.movable.BlockEnemy;
 import seia.gra.block.movable.player.BlockPlayer;
 
@@ -28,8 +29,16 @@ public class EventCheckCollisionWithEnemy extends Event
 					}
 					else
 					{
-						mc.world.killEnemy(enemy);
-						mc.world.decreaseAfterHit();
+						if(enemy instanceof BlockClonePlayer)
+						{
+							mc.world.killEnemy(enemy);
+							mc.world.decreaseAfterHit(-1);
+						}
+						else
+						{
+							mc.world.killEnemy(enemy);
+							mc.world.decreaseAfterHit();
+						}
 					}
 				}
 				if((player.X == enemy.X) && (player.Y - 2 == enemy.Y))
@@ -41,8 +50,16 @@ public class EventCheckCollisionWithEnemy extends Event
 					}
 					else
 					{
-						mc.world.killEnemy(enemy);
-						mc.world.decreaseAfterHit();
+						if(enemy instanceof BlockClonePlayer)
+						{
+							mc.world.killEnemy(enemy);
+							mc.world.decreaseAfterHit(-1);
+						}
+						else
+						{
+							mc.world.killEnemy(enemy);
+							mc.world.decreaseAfterHit();
+						}
 					}
 				}
 			}
@@ -67,8 +84,16 @@ public class EventCheckCollisionWithEnemy extends Event
 					}
 					else
 					{
-						mc.world.killEnemy(enemy);
-						mc.world.decreaseAfterHit();
+						if(enemy instanceof BlockClonePlayer)
+						{
+							mc.world.killEnemy(enemy);
+							mc.world.decreaseAfterHit(-1);
+						}
+						else
+						{
+							mc.world.killEnemy(enemy);
+							mc.world.decreaseAfterHit();
+						}
 					}
 				}
 				if((player.X == enemy.X) && (player.Y + 2 == enemy.Y))
@@ -80,8 +105,16 @@ public class EventCheckCollisionWithEnemy extends Event
 					}
 					else
 					{
-						mc.world.killEnemy(enemy);
-						mc.world.decreaseAfterHit();
+						if(enemy instanceof BlockClonePlayer)
+						{
+							mc.world.killEnemy(enemy);
+							mc.world.decreaseAfterHit(-1);
+						}
+						else
+						{
+							mc.world.killEnemy(enemy);
+							mc.world.decreaseAfterHit();
+						}
 					}
 				}
 			}
@@ -106,8 +139,16 @@ public class EventCheckCollisionWithEnemy extends Event
 					}
 					else
 					{
-						mc.world.killEnemy(enemy);
-						mc.world.decreaseAfterHit();
+						if(enemy instanceof BlockClonePlayer)
+						{
+							mc.world.killEnemy(enemy);
+							mc.world.decreaseAfterHit(-1);
+						}
+						else
+						{
+							mc.world.killEnemy(enemy);
+							mc.world.decreaseAfterHit();
+						}
 					}
 				}
 				if((player.X - 2 == enemy.X) && (player.Y == enemy.Y))
@@ -119,8 +160,16 @@ public class EventCheckCollisionWithEnemy extends Event
 					}
 					else
 					{
-						mc.world.killEnemy(enemy);
-						mc.world.decreaseAfterHit();
+						if(enemy instanceof BlockClonePlayer)
+						{
+							mc.world.killEnemy(enemy);
+							mc.world.decreaseAfterHit(-1);
+						}
+						else
+						{
+							mc.world.killEnemy(enemy);
+							mc.world.decreaseAfterHit();
+						}
 					}
 				}
 			}
@@ -145,8 +194,16 @@ public class EventCheckCollisionWithEnemy extends Event
 					}
 					else
 					{
-						mc.world.killEnemy(enemy);
-						mc.world.decreaseAfterHit();
+						if(enemy instanceof BlockClonePlayer)
+						{
+							mc.world.killEnemy(enemy);
+							mc.world.decreaseAfterHit(-1);
+						}
+						else
+						{
+							mc.world.killEnemy(enemy);
+							mc.world.decreaseAfterHit();
+						}
 					}
 				}
 				if((player.X + 2 == enemy.X) && (player.Y == enemy.Y))
@@ -158,8 +215,16 @@ public class EventCheckCollisionWithEnemy extends Event
 					}
 					else
 					{
-						mc.world.killEnemy(enemy);
-						mc.world.decreaseAfterHit();
+						if(enemy instanceof BlockClonePlayer)
+						{
+							mc.world.killEnemy(enemy);
+							mc.world.decreaseAfterHit(-1);
+						}
+						else
+						{
+							mc.world.killEnemy(enemy);
+							mc.world.decreaseAfterHit();
+						}
 					}
 				}
 			}
