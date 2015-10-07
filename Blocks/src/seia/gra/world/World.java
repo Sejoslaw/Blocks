@@ -8,12 +8,14 @@ import java.util.Random;
 import seia.gra.MainClass;
 import seia.gra.block.Block;
 import seia.gra.block.movable.BlockEnemy;
+import seia.gra.block.movable.BlockMovable;
 import seia.gra.block.movable.player.BlockPlayer;
 import seia.gra.block.nonmovable.BlockNextLevel;
 import seia.gra.file.FilesHandler;
 import seia.gra.world.renderer.WorldRenderer;
+import seia.gra.world.renderer.WorldRendererClonePlayer;
 import seia.gra.world.renderer.WorldRendererHeart;
-import seia.gra.world.renderer.WorldRendererSquare;
+import seia.gra.world.renderer.WorldRendererSquareBasic;
 import seia.gra.world.worldelement.WorldElement;
 import seia.gra.world.worldelement.WorldElementAvailableHits;
 import seia.gra.world.worldelement.WorldElementLevelValue;
@@ -32,9 +34,9 @@ public class World
 	private int SZER, WYS;
 	boolean b1;
 	public BlockPlayer player;
-	public List<BlockEnemy> enemy = new ArrayList<BlockEnemy>();
 	public BlockNextLevel nextLevel;
 	public MainClass mcInstance;
+	public List<BlockMovable> currentTiles;
 	
 	public World(MainClass main)
 	{
@@ -44,22 +46,15 @@ public class World
 		mcInstance = main;
 		player = new BlockPlayer(1, 1, this);
 		nextLevel = new BlockNextLevel(player.getWidth(), player.getRandHeight(), this);
-		if(b1)
-		{
-			losEnemy(0);
-		}
-		else
-		{
-			losEnemy(90);//new Random().nextInt(95);
-		}
 		addElements();
 		addRenderers();
 		setNick(main.nick);
 		setAvailableHits();
-		if(b1)
-			currentRenderer = worldRenderer.get(1);
-		else
-			currentRenderer = worldRenderer.get(0);
+		{
+			int x = new Random().nextInt(worldRenderer.size() - 1);
+			currentRenderer = worldRenderer.get(x);
+		}
+		currentTiles = currentRenderer.getMovableBlocksOnMap();
 	}
 	
 	public void reloadPanel() 
@@ -69,18 +64,22 @@ public class World
 		player.Y = new Random().nextInt(mcInstance.getHeightInBlocks() - 2) + 1;
 		nextLevel.X = nextLevel.getWidth();
 		nextLevel.Y = nextLevel.getRandHeight();
-		enemy.clear();
-		losEnemy(90); //new Random().nextInt(95);
+		currentTiles.clear();
+		currentTiles = currentRenderer.getMovableBlocksOnMap();
 	}
 	
 	public void killEnemy(BlockEnemy enemyToKill)
 	{
-		for(int i = 0; i < enemy.size(); i++)
+		for(int i = 0; i < currentTiles.size(); i++)
 		{
-			if((enemy.get(i).X == enemyToKill.X) && (enemy.get(i).Y == enemyToKill.Y))
+			if(currentTiles.get(i) instanceof BlockEnemy)
 			{
-				enemy.remove(i);
-				return;
+				BlockEnemy enemy = (BlockEnemy) currentTiles.get(i);
+				if((enemy.X == enemyToKill.X) && (enemy.Y == enemyToKill.Y))
+				{
+					currentTiles.remove(i);
+					return;
+				}
 			}
 		}
 	}
@@ -161,35 +160,6 @@ public class World
 		return -1;
 	}
 
-	public void losEnemy(int ile)
-	{
-		for(int i = 0; i < ile; i++)
-		{
-			addEnemy();
-		}
-	}
-	
-	public boolean addEnemy() 
-	{
-		int rX = new Random().nextInt(SZER / Block.BLOCK_SIZE);
-		int rY = new Random().nextInt(WYS / Block.BLOCK_SIZE);
-		if((rX != 1) 
-				&& (rY != 1) 
-				&& (rX != 0) 
-				&& (rY != 0) 
-				&& (rX != mcInstance.getWidthInBlocks() - 1) 
-				&& (rY != mcInstance.getHeightInBlocks() - 1))
-		{
-			enemy.add(new BlockEnemy(rX, rY, this));
-			return true;
-		}
-		else
-		{
-			addEnemy();
-		}
-		return false;
-	}
-	
 	public boolean addElements()
 	{
 		try 
@@ -215,13 +185,11 @@ public class World
 	{
 		try
 		{
-			WorldRendererSquare square = new WorldRendererSquare(SZER, WYS, this);
+			WorldRendererSquareBasic square = new WorldRendererSquareBasic(SZER, WYS, this);
 			worldRenderer.add(square);
-			if(b1)
-			{
-				WorldRendererHeart wrh = new WorldRendererHeart(SZER, WYS, this);
-				worldRenderer.add(wrh);
-			}
+			
+			WorldRendererClonePlayer clone = new WorldRendererClonePlayer(SZER, WYS, this);
+			worldRenderer.add(clone);
 		}
 		catch(Exception e)
 		{
@@ -251,8 +219,9 @@ public class World
 				worldRenderer.get(i).paintWorld(g);
 		for(int i = 0; i < worldElement.size(); i++)
 			worldElement.get(i).paintComponent(g);
-		for(int  i = 0; i < enemy.size(); i++)
-			enemy.get(i).paintComponent(g);
+		for(int  i = 0; i < currentTiles.size(); i++)
+			if(currentTiles.get(i) != null)
+				currentTiles.get(i).paintComponent(g);
 		nextLevel.paintComponent(g);
 		player.paintComponent(g);
 	}

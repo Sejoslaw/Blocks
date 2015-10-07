@@ -6,11 +6,16 @@ import seia.gra.world.World;
 
 public class BlockEnemy extends BlockMovable
 {
-	private static Color color = Color.RED;
+	protected static final Color color = Color.RED;
 	
 	public BlockEnemy(int x, int y, World world) 
 	{
 		super(color, x, y, world);
+	}
+	
+	public BlockEnemy(Color c, int x, int y, World world) 
+	{
+		super(c, x, y, world);
 	}
 	
 	@Override

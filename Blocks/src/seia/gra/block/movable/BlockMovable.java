@@ -2,7 +2,6 @@ package seia.gra.block.movable;
 
 import java.awt.Color;
 
-import seia.gra.MainClass;
 import seia.gra.block.Block;
 import seia.gra.world.World;
 
@@ -31,6 +30,10 @@ public class BlockMovable extends Block
 		return false;
 	}
 	
+	/**
+	 * Zakladamy, ze wiemy, ze to jest przeciwnik.
+	 * @return
+	 */
 	public boolean moveEnemyUp()
 	{
 		if(Y - 1 > 0)
@@ -40,10 +43,11 @@ public class BlockMovable extends Block
 			{
 				can = false;
 			}
-			for(int i = 0; i < worldObj.enemy.size(); i++)
+			for(int i = 0; i < worldObj.currentTiles.size(); i++)
 			{
-				if((Y - 1 == worldObj.enemy.get(i).Y) && (X == worldObj.enemy.get(i).X))
-					can = false;
+				if(worldObj.currentTiles.get(i) instanceof BlockEnemy)
+					if((Y - 1 == worldObj.currentTiles.get(i).Y) && (X == worldObj.currentTiles.get(i).X))
+						can = false;
 			}
 			if(can)
 			{
@@ -81,10 +85,11 @@ public class BlockMovable extends Block
 			{
 				can = false;
 			}
-			for(int i = 0; i < worldObj.enemy.size(); i++)
+			for(int i = 0; i < worldObj.currentTiles.size(); i++)
 			{
-				if((Y + 1 == worldObj.enemy.get(i).Y) && (X == worldObj.enemy.get(i).X))
-					can = false;
+				if(worldObj.currentTiles.get(i) instanceof BlockEnemy)
+					if((Y + 1 == worldObj.currentTiles.get(i).Y) && (X == worldObj.currentTiles.get(i).X))
+						can = false;
 			}
 			if(can)
 			{
@@ -122,10 +127,11 @@ public class BlockMovable extends Block
 			{
 				can = false;
 			}
-			for(int i = 0; i < worldObj.enemy.size(); i++)
+			for(int i = 0; i < worldObj.currentTiles.size(); i++)
 			{
-				if((Y == worldObj.enemy.get(i).Y) && (X - 1 == worldObj.enemy.get(i).X))
-					can = false;
+				if(worldObj.currentTiles.get(i) instanceof BlockEnemy)
+					if((Y == worldObj.currentTiles.get(i).Y) && (X - 1 == worldObj.currentTiles.get(i).X))
+						can = false;
 			}
 			if(can)
 			{
@@ -163,10 +169,11 @@ public class BlockMovable extends Block
 			{
 				can = false;
 			}
-			for(int i = 0; i < worldObj.enemy.size(); i++)
+			for(int i = 0; i < worldObj.currentTiles.size(); i++)
 			{
-				if((Y == worldObj.enemy.get(i).Y) && (X + 1 == worldObj.enemy.get(i).X))
-					can = false;
+				if(worldObj.currentTiles.get(i) instanceof BlockEnemy)
+					if((Y == worldObj.currentTiles.get(i).Y) && (X + 1 == worldObj.currentTiles.get(i).X))
+						can = false;
 			}
 			if(can)
 			{

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import seia.gra.block.movable.player.BlockPlayer;
 import seia.gra.world.World;
 
 public class Block
@@ -43,6 +44,11 @@ public class Block
 	}
 	
 	public boolean isPlayer()
+	{
+		return false;
+	}
+	
+	public boolean isPlayerClone()
 	{
 		return false;
 	}
@@ -90,6 +96,14 @@ public class Block
 	public Block getBlockUnder(int ileNizej)
 	{
 		return worldObj.currentRenderer.world[X][Y + ileNizej];
+	}
+	
+	public static Color getPlayerColor()
+	{
+		for(int x = 0; x < blocksInGame.size(); x++)
+			if(blocksInGame.get(x) instanceof BlockPlayer)
+				return blocksInGame.get(x).getColor();
+		return null;
 	}
 	
 	public Color getColor() 

@@ -2,8 +2,11 @@ package seia.gra.world.renderer;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.List;
 
 import seia.gra.block.Block;
+import seia.gra.block.movable.BlockMovable;
 import seia.gra.world.World;
 
 public class WorldRendererHeart extends WorldRenderer
@@ -75,5 +78,12 @@ public class WorldRendererHeart extends WorldRenderer
 		world[10][8] = new Block(Color.RED, 10, 8, worldObj);
 		world[10][8].paintComponent(g);
 		return false;
+	}
+
+	@Override
+	public List<BlockMovable> getMovableBlocksOnMap() 
+	{
+		List<BlockMovable> l = new ArrayList<BlockMovable>();
+		return l;
 	}
 }

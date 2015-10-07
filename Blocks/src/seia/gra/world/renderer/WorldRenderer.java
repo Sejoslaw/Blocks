@@ -1,8 +1,10 @@
 package seia.gra.world.renderer;
 
 import java.awt.Graphics;
+import java.util.List;
 
 import seia.gra.block.Block;
+import seia.gra.block.movable.BlockMovable;
 import seia.gra.world.World;
 
 public abstract class WorldRenderer 
@@ -34,7 +36,8 @@ public abstract class WorldRenderer
 			return true;
 		return false;
 	}
-	
+
 	public abstract int getRendererID();
 	public abstract boolean paintWorld(Graphics g);
+	public abstract List<BlockMovable> getMovableBlocksOnMap();
 }

@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import seia.gra.block.Block;
+import seia.gra.block.movable.BlockEnemy;
 import seia.gra.event.EventCheckCollisionWithEnemy;
 import seia.gra.event.EventCheckForNextLevel;
 import seia.gra.file.FilesHandler;
@@ -102,8 +103,9 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 				if(EventCheckCollisionWithEnemy.canPlayerMoveUp(this))
 				{
 					world.player.movePlayerUp();
-					for(int i = 0; i < world.enemy.size(); i++)
-						world.enemy.get(i).moveEnemyDown();
+					for(int i = 0; i < world.currentTiles.size(); i++)
+						if(world.currentTiles.get(i) instanceof BlockEnemy)
+							world.currentTiles.get(i).moveEnemyDown();
 				}
 			}
 		}
@@ -114,8 +116,9 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 				if(EventCheckCollisionWithEnemy.canPlayerMoveDown(this))
 				{
 					world.player.movePlayerDown();
-					for(int i = 0; i < world.enemy.size(); i++)
-						world.enemy.get(i).moveEnemyUp();
+					for(int i = 0; i < world.currentTiles.size(); i++)
+						if(world.currentTiles.get(i) instanceof BlockEnemy)
+							world.currentTiles.get(i).moveEnemyUp();
 				}
 			}
 		}
@@ -126,8 +129,9 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 				if(EventCheckCollisionWithEnemy.canPlayerMoveLeft(this))
 				{
 					world.player.movePlayerLeft();
-					for(int i = 0; i < world.enemy.size(); i++)
-						world.enemy.get(i).moveEnemyRight();
+					for(int i = 0; i < world.currentTiles.size(); i++)
+						if(world.currentTiles.get(i) instanceof BlockEnemy)
+							world.currentTiles.get(i).moveEnemyRight();
 				}
 			}
 		}
@@ -140,8 +144,9 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 					if(!EventCheckForNextLevel.check(world))
 					{
 						world.player.movePlayerRight();
-						for(int i = 0; i < world.enemy.size(); i++)
-							world.enemy.get(i).moveEnemyLeft();
+						for(int i = 0; i < world.currentTiles.size(); i++)
+							if(world.currentTiles.get(i) instanceof BlockEnemy)
+								world.currentTiles.get(i).moveEnemyLeft();
 					}
 				}
 			}

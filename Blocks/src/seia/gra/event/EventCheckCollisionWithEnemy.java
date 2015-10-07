@@ -14,33 +14,36 @@ public class EventCheckCollisionWithEnemy extends Event
 	public static boolean canPlayerMoveUp(MainClass mc)
 	{
 		BlockPlayer player = mc.world.player;
-		for(int i = 0; i < mc.world.enemy.size(); i++)
+		for(int i = 0; i < mc.world.currentTiles.size(); i++)
 		{
-			BlockEnemy enemy = mc.world.enemy.get(i);
-			if((player.X == enemy.X) && (player.Y - 1 == enemy.Y))
+			if(mc.world.currentTiles.get(i) instanceof BlockEnemy)
 			{
-				if(!EventCanHit.checkIfCanHit(mc))
+				BlockEnemy enemy = (BlockEnemy) mc.world.currentTiles.get(i);
+				if((player.X == enemy.X) && (player.Y - 1 == enemy.Y))
 				{
-					action(mc);
-					return false;
+					if(!EventCanHit.checkIfCanHit(mc))
+					{
+						action(mc);
+						return false;
+					}
+					else
+					{
+						mc.world.killEnemy(enemy);
+						mc.world.decreaseAfterHit();
+					}
 				}
-				else
+				if((player.X == enemy.X) && (player.Y - 2 == enemy.Y))
 				{
-					mc.world.killEnemy(enemy);
-					mc.world.decreaseAfterHit();
-				}
-			}
-			if((player.X == enemy.X) && (player.Y - 2 == enemy.Y))
-			{
-				if(!EventCanHit.checkIfCanHit(mc))
-				{
-					action(mc);
-					return false;
-				}
-				else
-				{
-					mc.world.killEnemy(enemy);
-					mc.world.decreaseAfterHit();
+					if(!EventCanHit.checkIfCanHit(mc))
+					{
+						action(mc);
+						return false;
+					}
+					else
+					{
+						mc.world.killEnemy(enemy);
+						mc.world.decreaseAfterHit();
+					}
 				}
 			}
 		}
@@ -50,33 +53,36 @@ public class EventCheckCollisionWithEnemy extends Event
 	public static boolean canPlayerMoveDown(MainClass mc)
 	{
 		BlockPlayer player = mc.world.player;
-		for(int i = 0; i < mc.world.enemy.size(); i++)
+		for(int i = 0; i < mc.world.currentTiles.size(); i++)
 		{
-			BlockEnemy enemy = mc.world.enemy.get(i);
-			if((player.X == enemy.X) && (player.Y + 1 == enemy.Y))
+			if(mc.world.currentTiles.get(i) instanceof BlockEnemy)
 			{
-				if(!EventCanHit.checkIfCanHit(mc))
+				BlockEnemy enemy = (BlockEnemy) mc.world.currentTiles.get(i);
+				if((player.X == enemy.X) && (player.Y + 1 == enemy.Y))
 				{
-					action(mc);
-					return false;
+					if(!EventCanHit.checkIfCanHit(mc))
+					{
+						action(mc);
+						return false;
+					}
+					else
+					{
+						mc.world.killEnemy(enemy);
+						mc.world.decreaseAfterHit();
+					}
 				}
-				else
+				if((player.X == enemy.X) && (player.Y + 2 == enemy.Y))
 				{
-					mc.world.killEnemy(enemy);
-					mc.world.decreaseAfterHit();
-				}
-			}
-			if((player.X == enemy.X) && (player.Y + 2 == enemy.Y))
-			{
-				if(!EventCanHit.checkIfCanHit(mc))
-				{
-					action(mc);
-					return false;
-				}
-				else
-				{
-					mc.world.killEnemy(enemy);
-					mc.world.decreaseAfterHit();
+					if(!EventCanHit.checkIfCanHit(mc))
+					{
+						action(mc);
+						return false;
+					}
+					else
+					{
+						mc.world.killEnemy(enemy);
+						mc.world.decreaseAfterHit();
+					}
 				}
 			}
 		}
@@ -86,33 +92,36 @@ public class EventCheckCollisionWithEnemy extends Event
 	public static boolean canPlayerMoveLeft(MainClass mc)
 	{
 		BlockPlayer player = mc.world.player;
-		for(int i = 0; i < mc.world.enemy.size(); i++)
+		for(int i = 0; i < mc.world.currentTiles.size(); i++)
 		{
-			BlockEnemy enemy = mc.world.enemy.get(i);
-			if((player.X - 1 == enemy.X) && (player.Y == enemy.Y))
+			if(mc.world.currentTiles.get(i) instanceof BlockEnemy)
 			{
-				if(!EventCanHit.checkIfCanHit(mc))
+				BlockEnemy enemy = (BlockEnemy) mc.world.currentTiles.get(i);
+				if((player.X - 1 == enemy.X) && (player.Y == enemy.Y))
 				{
-					action(mc);
-					return false;
+					if(!EventCanHit.checkIfCanHit(mc))
+					{
+						action(mc);
+						return false;
+					}
+					else
+					{
+						mc.world.killEnemy(enemy);
+						mc.world.decreaseAfterHit();
+					}
 				}
-				else
+				if((player.X - 2 == enemy.X) && (player.Y == enemy.Y))
 				{
-					mc.world.killEnemy(enemy);
-					mc.world.decreaseAfterHit();
-				}
-			}
-			if((player.X - 2 == enemy.X) && (player.Y == enemy.Y))
-			{
-				if(!EventCanHit.checkIfCanHit(mc))
-				{
-					action(mc);
-					return false;
-				}
-				else
-				{
-					mc.world.killEnemy(enemy);
-					mc.world.decreaseAfterHit();
+					if(!EventCanHit.checkIfCanHit(mc))
+					{
+						action(mc);
+						return false;
+					}
+					else
+					{
+						mc.world.killEnemy(enemy);
+						mc.world.decreaseAfterHit();
+					}
 				}
 			}
 		}
@@ -122,33 +131,36 @@ public class EventCheckCollisionWithEnemy extends Event
 	public static boolean canPlayerMoveRight(MainClass mc)
 	{
 		BlockPlayer player = mc.world.player;
-		for(int i = 0; i < mc.world.enemy.size(); i++)
+		for(int i = 0; i < mc.world.currentTiles.size(); i++)
 		{
-			BlockEnemy enemy = mc.world.enemy.get(i);
-			if((player.X + 1 == enemy.X) && (player.Y == enemy.Y))
+			if(mc.world.currentTiles.get(i) instanceof BlockEnemy)
 			{
-				if(!EventCanHit.checkIfCanHit(mc))
+				BlockEnemy enemy = (BlockEnemy) mc.world.currentTiles.get(i);
+				if((player.X + 1 == enemy.X) && (player.Y == enemy.Y))
 				{
-					action(mc);
-					return false;
+					if(!EventCanHit.checkIfCanHit(mc))
+					{
+						action(mc);
+						return false;
+					}
+					else
+					{
+						mc.world.killEnemy(enemy);
+						mc.world.decreaseAfterHit();
+					}
 				}
-				else
+				if((player.X + 2 == enemy.X) && (player.Y == enemy.Y))
 				{
-					mc.world.killEnemy(enemy);
-					mc.world.decreaseAfterHit();
-				}
-			}
-			if((player.X + 2 == enemy.X) && (player.Y == enemy.Y))
-			{
-				if(!EventCanHit.checkIfCanHit(mc))
-				{
-					action(mc);
-					return false;
-				}
-				else
-				{
-					mc.world.killEnemy(enemy);
-					mc.world.decreaseAfterHit();
+					if(!EventCanHit.checkIfCanHit(mc))
+					{
+						action(mc);
+						return false;
+					}
+					else
+					{
+						mc.world.killEnemy(enemy);
+						mc.world.decreaseAfterHit();
+					}
 				}
 			}
 		}
