@@ -3,7 +3,6 @@ package seia.gra.block.movable;
 import java.awt.Color;
 
 import seia.gra.block.Block;
-import seia.gra.block.movable.player.BlockPlayer;
 import seia.gra.block.movable.player.IPlayer;
 import seia.gra.world.World;
 
@@ -17,10 +16,7 @@ public class BlockClonePlayer extends BlockEnemy implements IPlayer
 	@Override
 	public Color getColor()
 	{
-		for(int x = 0; x < Block.blocksInGame.size(); x++)
-			if(Block.blocksInGame.get(x) instanceof BlockPlayer)
-				return Block.blocksInGame.get(x).getColor();
-		return null;
+		return Block.getPlayerColor();
 	}
 	
 	@Override

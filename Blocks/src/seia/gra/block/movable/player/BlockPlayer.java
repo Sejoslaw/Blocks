@@ -16,6 +16,12 @@ public class BlockPlayer extends BlockMovable implements IPlayer
 		inventory = new InventoryPlayer(this);
 	}
 	
+	public BlockPlayer(Color c, int x, int y, World world) 
+	{
+		super(c, x, y, world);
+		inventory = new InventoryPlayer(this);
+	}
+	
 	@Override
 	public Color getColor()
 	{

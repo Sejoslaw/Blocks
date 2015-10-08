@@ -106,6 +106,14 @@ public class Block
 		return null;
 	}
 	
+	public boolean hasMovable(int posX, int posY)
+	{
+		for(int i = 0; i < worldObj.currentTiles.size(); i++)
+			if((posY == worldObj.currentTiles.get(i).Y) && (posX == worldObj.currentTiles.get(i).X))
+				return true;
+		return false;
+	}
+	
 	public Color getColor() 
 	{
 		return c;

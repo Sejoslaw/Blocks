@@ -17,10 +17,8 @@ public class BlockMovable extends Block
 		if(Y - 1 > 0)
 		{
 			boolean can = true;
-			if(getBlockOnTop().getColor() == Color.BLACK)
-			{
+			if(getBlockOnTop().getColor() == Color.BLACK) 
 				can = false;
-			}
 			if(can)
 			{
 				Y--;
@@ -39,16 +37,10 @@ public class BlockMovable extends Block
 		if(Y - 1 > 0)
 		{
 			boolean can = true;
-			if(getBlockOnTop().getColor() == Color.BLACK)
-			{
+			if(getBlockOnTop().getColor() == Color.BLACK) 
 				can = false;
-			}
-			for(int i = 0; i < worldObj.currentTiles.size(); i++)
-			{
-				if(worldObj.currentTiles.get(i) instanceof BlockEnemy)
-					if((Y - 1 == worldObj.currentTiles.get(i).Y) && (X == worldObj.currentTiles.get(i).X))
-						can = false;
-			}
+			if(hasMovable(X, Y - 1)) 
+				can = false;
 			if(can)
 			{
 				Y--;
@@ -64,9 +56,7 @@ public class BlockMovable extends Block
 		{
 			boolean can = true;
 			if(getBlockUnder().getColor() == Color.BLACK)
-			{
 				can = false;
-			}
 			if(can)
 			{
 				Y++;
@@ -82,15 +72,9 @@ public class BlockMovable extends Block
 		{
 			boolean can = true;
 			if(getBlockUnder().getColor() == Color.BLACK)
-			{
 				can = false;
-			}
-			for(int i = 0; i < worldObj.currentTiles.size(); i++)
-			{
-				if(worldObj.currentTiles.get(i) instanceof BlockEnemy)
-					if((Y + 1 == worldObj.currentTiles.get(i).Y) && (X == worldObj.currentTiles.get(i).X))
-						can = false;
-			}
+			if(hasMovable(X, Y + 1))
+				can = false;
 			if(can)
 			{
 				Y++;
@@ -106,9 +90,7 @@ public class BlockMovable extends Block
 		{
 			boolean can = true;
 			if(getBlockOnLeft().getColor() == Color.BLACK)
-			{
 				can = false;
-			}
 			if(can)
 			{
 				X--;
@@ -124,15 +106,9 @@ public class BlockMovable extends Block
 		{
 			boolean can = true;
 			if(getBlockOnLeft().getColor() == Color.BLACK)
-			{
 				can = false;
-			}
-			for(int i = 0; i < worldObj.currentTiles.size(); i++)
-			{
-				if(worldObj.currentTiles.get(i) instanceof BlockEnemy)
-					if((Y == worldObj.currentTiles.get(i).Y) && (X - 1 == worldObj.currentTiles.get(i).X))
-						can = false;
-			}
+			if(hasMovable(X - 1, Y))
+				can = false;
 			if(can)
 			{
 				X--;
@@ -148,9 +124,7 @@ public class BlockMovable extends Block
 		{
 			boolean can = true;
 			if(getBlockOnRight().getColor() == Color.BLACK)
-			{
 				can = false;
-			}
 			if(can)
 			{
 				X++;
@@ -166,15 +140,9 @@ public class BlockMovable extends Block
 		{
 			boolean can = true;
 			if(getBlockOnRight().getColor() == Color.BLACK)
-			{
 				can = false;
-			}
-			for(int i = 0; i < worldObj.currentTiles.size(); i++)
-			{
-				if(worldObj.currentTiles.get(i) instanceof BlockEnemy)
-					if((Y == worldObj.currentTiles.get(i).Y) && (X + 1 == worldObj.currentTiles.get(i).X))
-						can = false;
-			}
+			if(hasMovable(X + 1, Y))
+				can = false;
 			if(can)
 			{
 				X++;
