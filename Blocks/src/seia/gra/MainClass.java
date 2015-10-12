@@ -19,13 +19,13 @@ import seia.gra.event.EventCheckForNextLevel;
 import seia.gra.file.FilesHandler;
 import seia.gra.utils.Key;
 import seia.gra.world.World;
-import seia.gra.world.renderer.WorldRendererHeart;
+import seia.gra.world.worldrenderer.WorldRendererHeart;
 
 public class MainClass extends JPanel implements ActionListener, KeyListener
 {
 	private static final long serialVersionUID = 1L;
 	
-	public final String VERSION = "v0.0.8";
+	public final String VERSION = "v0.0.9";
 	
 	public Timer tm = new Timer(5, null); //miliseconds
 	public int SZER, WYS;
@@ -176,7 +176,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	
 	public static void main(String[] args) 
 	{
-		int szer = 1000;
+		int szer = 400;
 		int wys = 600;
 		boolean b1 = false;
 		

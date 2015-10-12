@@ -14,13 +14,13 @@ import seia.gra.block.movable.player.BlockPlayer;
 import seia.gra.block.movable.player.IPlayer;
 import seia.gra.block.nonmovable.BlockNextLevel;
 import seia.gra.file.FilesHandler;
-import seia.gra.world.renderer.WorldRenderer;
-import seia.gra.world.renderer.WorldRendererClonePlayer;
-import seia.gra.world.renderer.WorldRendererSquareBasic;
 import seia.gra.world.worldelement.WorldElement;
 import seia.gra.world.worldelement.WorldElementAvailableHits;
 import seia.gra.world.worldelement.WorldElementLevelValue;
 import seia.gra.world.worldelement.WorldElementNick;
+import seia.gra.world.worldrenderer.WorldRenderer;
+import seia.gra.world.worldrenderer.WorldRendererClonePlayer;
+import seia.gra.world.worldrenderer.WorldRendererSquareBasic;
 
 public class World 
 {
@@ -195,13 +195,13 @@ public class World
 	{
 		try 
 		{
-			WorldElementLevelValue levelValue = new WorldElementLevelValue(13, 25);
+			WorldElementLevelValue levelValue = new WorldElementLevelValue((Block.BLOCK_SIZE / 4), (Block.BLOCK_SIZE / 2));
 			worldElement.add(levelValue);
 			
-			WorldElementNick nick = new WorldElementNick(200, 25);
-			worldElement.add(nick);
+			//WorldElementNick nick = new WorldElementNick((SZER / 4), (Block.BLOCK_SIZE / 2));
+			//worldElement.add(nick);
 			
-			WorldElementAvailableHits hits = new WorldElementAvailableHits(400, 25);
+			WorldElementAvailableHits hits = new WorldElementAvailableHits((SZER / 2), (Block.BLOCK_SIZE / 2));
 			worldElement.add(hits);
 		} 
 		catch (Exception e) 
@@ -317,7 +317,7 @@ public class World
 			if(worldElement.get(i).getClass().getName().equals(WorldElementAvailableHits.class.getName()))
 			{
 				WorldElementAvailableHits weah = (WorldElementAvailableHits) worldElement.get(i);
-				weah.availableHits += Math.abs(hitsToAdd);
+				weah.availableHits += hitsToAdd;
 				return;
 			}
 		}

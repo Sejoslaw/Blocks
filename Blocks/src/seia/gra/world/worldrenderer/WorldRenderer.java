@@ -1,4 +1,4 @@
-package seia.gra.world.renderer;
+package seia.gra.world.worldrenderer;
 
 import java.awt.Graphics;
 import java.util.List;
@@ -35,6 +35,14 @@ public abstract class WorldRenderer
 		if(WYS == newHeight) 
 			return true;
 		return false;
+	}
+	
+	public int getMaxNumberOfEnemies()
+	{
+		int sz = worldObj.mcInstance.getWidthInBlocks() - 2;
+		int w = worldObj.mcInstance.getHeightInBlocks() - 2;
+		int sr = (sz * w);
+		return sr;
 	}
 
 	public abstract int getRendererID();

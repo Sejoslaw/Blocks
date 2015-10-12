@@ -1,4 +1,4 @@
-package seia.gra.world.renderer;
+package seia.gra.world.worldrenderer;
 
 import java.awt.Graphics;
 import java.util.ArrayList;

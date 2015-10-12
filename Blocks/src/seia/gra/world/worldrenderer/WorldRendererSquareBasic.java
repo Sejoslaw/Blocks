@@ -1,4 +1,4 @@
-package seia.gra.world.renderer;
+package seia.gra.world.worldrenderer;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -28,11 +28,11 @@ public class WorldRendererSquareBasic extends WorldRenderer
 	@Override
 	public boolean paintWorld(Graphics g) 
 	{
-		for(int x = 0; x < SZER / 50; x++)
+		for(int x = 0; x < SZER / Block.BLOCK_SIZE; x++)
 		{
-			for(int y = 0; y < WYS / 50; y++)
+			for(int y = 0; y < WYS / Block.BLOCK_SIZE; y++)
 			{
-				if(x == 0 || y == 0 || x == (SZER / 50) - 1 || y == (WYS / 50) - 1)
+				if(x == 0 || y == 0 || x == (SZER / Block.BLOCK_SIZE) - 1 || y == (WYS / Block.BLOCK_SIZE) - 1)
 				{
 					world[x][y] = new Block(Color.BLACK, x, y, worldObj);
 					world[x][y].paintComponent(g);
@@ -51,11 +51,15 @@ public class WorldRendererSquareBasic extends WorldRenderer
 	public List<BlockMovable> getMovableBlocksOnMap() 
 	{
 		List<BlockMovable> l = new ArrayList<BlockMovable>();
-		int ile = 180;
+		int ile = getMaxNumberOfEnemies();
 		for(int i = 0; i < ile; i++) //procentowo, rozne rozmiary planszy (nastepny poziom -> wiecej czerwonych)
 		{
 			int rX = new Random().nextInt(worldObj.mcInstance.SZER / Block.BLOCK_SIZE);
+			if(rX < 1) rX = 1;
+			if(rX > (worldObj.mcInstance.SZER / Block.BLOCK_SIZE) - 1) rX = (worldObj.mcInstance.SZER / Block.BLOCK_SIZE) - 1;
 			int rY = new Random().nextInt(worldObj.mcInstance.WYS / Block.BLOCK_SIZE);
+			if(rY < 1) rY = 1;
+			if(rY > (worldObj.mcInstance.WYS / Block.BLOCK_SIZE) - 1) rY = (worldObj.mcInstance.WYS / Block.BLOCK_SIZE) - 1;
 			if(		   (rX != 1) 
 					&& (rY != 1) 
 					&& (rX != 0) 
