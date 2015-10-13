@@ -3,6 +3,8 @@ package seia.gra.world.worldelement;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import seia.gra.api.world.WorldElement;
+
 public class WorldElementLevelValue extends WorldElement
 {
 	public int level;

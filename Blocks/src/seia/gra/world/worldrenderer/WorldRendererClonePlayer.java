@@ -4,9 +4,10 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
-import seia.gra.block.Block;
+import seia.gra.api.block.Block;
+import seia.gra.api.block.BlockMovable;
+import seia.gra.api.world.WorldRenderer;
 import seia.gra.block.movable.BlockClonePlayer;
-import seia.gra.block.movable.BlockMovable;
 import seia.gra.world.World;
 
 public class WorldRendererClonePlayer extends WorldRenderer

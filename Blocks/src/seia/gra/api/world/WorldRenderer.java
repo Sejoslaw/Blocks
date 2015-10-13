@@ -1,10 +1,10 @@
-package seia.gra.world.worldrenderer;
+package seia.gra.api.world;
 
 import java.awt.Graphics;
 import java.util.List;
 
-import seia.gra.block.Block;
-import seia.gra.block.movable.BlockMovable;
+import seia.gra.api.block.Block;
+import seia.gra.api.block.BlockMovable;
 import seia.gra.world.World;
 
 public abstract class WorldRenderer 

@@ -1,8 +1,7 @@
-package seia.gra.block.movable;
+package seia.gra.api.block;
 
 import java.awt.Color;
 
-import seia.gra.block.Block;
 import seia.gra.world.World;
 
 public class BlockMovable extends Block

@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import seia.gra.block.Block;
+import seia.gra.api.block.Block;
 import seia.gra.block.movable.BlockEnemy;
 import seia.gra.event.EventCheckCollisionWithEnemy;
 import seia.gra.event.EventCheckForNextLevel;

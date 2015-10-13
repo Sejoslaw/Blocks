@@ -2,6 +2,7 @@ package seia.gra.block.movable;
 
 import java.awt.Color;
 
+import seia.gra.api.block.BlockMovable;
 import seia.gra.world.World;
 
 public class BlockEnemy extends BlockMovable

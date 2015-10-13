@@ -1,6 +1,7 @@
 package seia.gra.event;
 
 import seia.gra.MainClass;
+import seia.gra.api.event.Event;
 import seia.gra.block.movable.BlockClonePlayer;
 import seia.gra.block.movable.BlockEnemy;
 import seia.gra.block.movable.player.BlockPlayer;

@@ -1,5 +1,6 @@
 package seia.gra.event;
 
+import seia.gra.api.event.Event;
 import seia.gra.world.World;
 
 public class EventCheckForNextLevel extends Event

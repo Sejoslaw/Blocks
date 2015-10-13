@@ -1,4 +1,4 @@
-package seia.gra.block;
+package seia.gra.api.block;
 
 import java.awt.Color;
 import java.awt.Graphics;

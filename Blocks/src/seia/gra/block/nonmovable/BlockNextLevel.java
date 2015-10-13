@@ -2,6 +2,7 @@ package seia.gra.block.nonmovable;
 
 import java.awt.Color;
 
+import seia.gra.api.block.BlockNonMovable;
 import seia.gra.world.World;
 
 public class BlockNextLevel extends BlockNonMovable

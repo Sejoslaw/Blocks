@@ -6,31 +6,30 @@ import java.util.List;
 import java.util.Random;
 
 import seia.gra.MainClass;
-import seia.gra.block.Block;
+import seia.gra.api.block.Block;
+import seia.gra.api.block.BlockMovable;
+import seia.gra.api.world.WorldRegistry;
+import seia.gra.api.world.WorldRenderer;
 import seia.gra.block.movable.BlockClonePlayer;
 import seia.gra.block.movable.BlockEnemy;
-import seia.gra.block.movable.BlockMovable;
 import seia.gra.block.movable.player.BlockPlayer;
 import seia.gra.block.movable.player.IPlayer;
 import seia.gra.block.nonmovable.BlockNextLevel;
 import seia.gra.file.FilesHandler;
-import seia.gra.world.worldelement.WorldElement;
 import seia.gra.world.worldelement.WorldElementAvailableHits;
 import seia.gra.world.worldelement.WorldElementLevelValue;
 import seia.gra.world.worldelement.WorldElementNick;
-import seia.gra.world.worldrenderer.WorldRenderer;
 import seia.gra.world.worldrenderer.WorldRendererClonePlayer;
 import seia.gra.world.worldrenderer.WorldRendererSquareBasic;
 
-public class World 
+public class World
 {
 	/**
 	 * TODO: Swiat mozna przerobic na liste list -  List<List<Block>>
 	 * Wtedy moglby sie rozszerzac.
 	 * Jednak trzebaby przerobic wymiary swiata oraz przesowanie ekranu za graczem.
 	 */
-	public List<WorldElement> worldElement = new ArrayList<WorldElement>();
-	public List<WorldRenderer> worldRenderer = new ArrayList<WorldRenderer>();
+	
 	public WorldRenderer currentRenderer;
 	private int SZER, WYS;
 	boolean b1;
@@ -38,6 +37,7 @@ public class World
 	public BlockNextLevel nextLevel;
 	public MainClass mcInstance;
 	public List<BlockMovable> currentTiles;
+	public WorldRegistry registry = WorldRegistry.INSTANCE;
 	
 	public World(MainClass main)
 	{
@@ -52,8 +52,8 @@ public class World
 		setNick(main.nick);
 		setAvailableHits();
 		{
-			int x = new Random().nextInt(worldRenderer.size() - 1);
-			currentRenderer = worldRenderer.get(x);
+			int x = new Random().nextInt(registry.getWorldRenderers().size() - 1);
+			currentRenderer = registry.getWorldRenderers().get(x);
 		}
 		currentTiles = currentRenderer.getMovableBlocksOnMap();
 	}
@@ -105,11 +105,11 @@ public class World
 	
 	public void decreaseAfterHit()
 	{
-		for(int i = 0; i < worldElement.size(); i++)
+		for(int i = 0; i < registry.getWorldElements().size(); i++)
 		{
-			if(worldElement.get(i).getClass().getName().equals(WorldElementAvailableHits.class.getName()))
+			if(registry.getWorldElements().get(i).getClass().getName().equals(WorldElementAvailableHits.class.getName()))
 			{
-				((WorldElementAvailableHits)worldElement.get(i)).availableHits--;
+				((WorldElementAvailableHits)registry.getWorldElements().get(i)).availableHits--;
 				return;
 			}
 		}
@@ -117,11 +117,11 @@ public class World
 	
 	public void decreaseAfterHit(int ile)
 	{
-		for(int i = 0; i < worldElement.size(); i++)
+		for(int i = 0; i < registry.getWorldElements().size(); i++)
 		{
-			if(worldElement.get(i).getClass().getName().equals(WorldElementAvailableHits.class.getName()))
+			if(registry.getWorldElements().get(i).getClass().getName().equals(WorldElementAvailableHits.class.getName()))
 			{
-				((WorldElementAvailableHits)worldElement.get(i)).availableHits -= ile;
+				((WorldElementAvailableHits)registry.getWorldElements().get(i)).availableHits -= ile;
 				return;
 			}
 		}
@@ -129,18 +129,18 @@ public class World
 	
 	public void setAvailableHits()
 	{
-		for(int i = 0; i < worldElement.size(); i++)
+		for(int i = 0; i < registry.getWorldElements().size(); i++)
 		{
-			if(worldElement.get(i).getClass().getName().equals(WorldElementAvailableHits.class.getName()))
+			if(registry.getWorldElements().get(i).getClass().getName().equals(WorldElementAvailableHits.class.getName()))
 			{
 				try
 				{
-					((WorldElementAvailableHits)worldElement.get(i)).availableHits = FilesHandler.CONFIG.avaiableHits; //FileConfig.avaiableHits;
+					((WorldElementAvailableHits)registry.getWorldElements().get(i)).availableHits = FilesHandler.CONFIG.avaiableHits; //FileConfig.avaiableHits;
 					return;
 				}
 				catch(Exception e)
 				{
-					((WorldElementAvailableHits)worldElement.get(i)).availableHits = 10;
+					((WorldElementAvailableHits)registry.getWorldElements().get(i)).availableHits = 10;
 					return;
 				}
 			}
@@ -149,11 +149,11 @@ public class World
 	
 	public void setNick(String nick)
 	{
-		for(int i = 0; i < worldElement.size(); i++)
+		for(int i = 0; i < registry.getWorldElements().size(); i++)
 		{
-			if(worldElement.get(i).getClass().getName().equals(WorldElementNick.class.getName()))
+			if(registry.getWorldElements().get(i).getClass().getName().equals(WorldElementNick.class.getName()))
 			{
-				((WorldElementNick)worldElement.get(i)).nick = nick;
+				((WorldElementNick)registry.getWorldElements().get(i)).nick = nick;
 				return;
 			}
 		}
@@ -161,11 +161,11 @@ public class World
 	
 	public void updateLevelValue() 
 	{
-		for(int i = 0; i < worldElement.size(); i++)
+		for(int i = 0; i < registry.getWorldElements().size(); i++)
 		{
-			if(worldElement.get(i).getClass().getName().equals(WorldElementLevelValue.class.getName()))
+			if(registry.getWorldElements().get(i).getClass().getName().equals(WorldElementLevelValue.class.getName()))
 			{
-				((WorldElementLevelValue)worldElement.get(i)).level++;
+				((WorldElementLevelValue)registry.getWorldElements().get(i)).level++;
 				return;
 			}
 		}
@@ -173,11 +173,11 @@ public class World
 	
 	public void updateLevelValue(int level) 
 	{
-		for(int i = 0; i < worldElement.size(); i++)
+		for(int i = 0; i < registry.getWorldElements().size(); i++)
 		{
-			if(worldElement.get(i).getClass().getName().equals(WorldElementLevelValue.class.getName()))
+			if(registry.getWorldElements().get(i).getClass().getName().equals(WorldElementLevelValue.class.getName()))
 			{
-				((WorldElementLevelValue)worldElement.get(i)).level = level;
+				((WorldElementLevelValue)registry.getWorldElements().get(i)).level = level;
 				return;
 			}
 		}
@@ -185,9 +185,9 @@ public class World
 	
 	public int getCurrentLevelValue()
 	{
-		for(int i = 0; i < worldElement.size(); i++)
-			if(worldElement.get(i).getClass().getName().equals(WorldElementLevelValue.class.getName()))
-				return ((WorldElementLevelValue)worldElement.get(i)).level;
+		for(int i = 0; i < registry.getWorldElements().size(); i++)
+			if(registry.getWorldElements().get(i).getClass().getName().equals(WorldElementLevelValue.class.getName()))
+				return ((WorldElementLevelValue)registry.getWorldElements().get(i)).level;
 		return -1;
 	}
 
@@ -196,13 +196,13 @@ public class World
 		try 
 		{
 			WorldElementLevelValue levelValue = new WorldElementLevelValue((Block.BLOCK_SIZE / 4), (Block.BLOCK_SIZE / 2));
-			worldElement.add(levelValue);
+			registry.addWorldElement(levelValue);
 			
 			//WorldElementNick nick = new WorldElementNick((SZER / 4), (Block.BLOCK_SIZE / 2));
 			//worldElement.add(nick);
 			
 			WorldElementAvailableHits hits = new WorldElementAvailableHits((SZER / 2), (Block.BLOCK_SIZE / 2));
-			worldElement.add(hits);
+			registry.addWorldElement(hits);
 		} 
 		catch (Exception e) 
 		{
@@ -217,10 +217,10 @@ public class World
 		try
 		{
 			WorldRendererSquareBasic square = new WorldRendererSquareBasic(SZER, WYS, this);
-			worldRenderer.add(square);
+			registry.addWorldRenderer(square);
 			
 			WorldRendererClonePlayer clone = new WorldRendererClonePlayer(SZER, WYS, this);
-			worldRenderer.add(clone);
+			registry.addWorldRenderer(clone);
 		}
 		catch(Exception e)
 		{
@@ -230,26 +230,13 @@ public class World
 		return true;
 	}
 	
-	public World addWorldRenderer(Class<? extends WorldRenderer> clazz, int szer, int wys, World world)
-	{
-		try 
-		{
-			worldRenderer.add(clazz.newInstance());
-		} 
-		catch (Exception e) 
-		{
-			e.printStackTrace();
-		}
-		return this;
-	}
-	
 	public void paintComponent(Graphics g)
 	{
-		for(int i = 0; i < worldRenderer.size(); i++)
-			if(worldRenderer.get(i).getRendererID() == currentRenderer.getRendererID())
-				worldRenderer.get(i).paintWorld(g);
-		for(int i = 0; i < worldElement.size(); i++)
-			worldElement.get(i).paintComponent(g);
+		for(int i = 0; i < registry.getWorldRenderers().size(); i++)
+			if(registry.getWorldRenderers().get(i).getRendererID() == currentRenderer.getRendererID())
+				registry.getWorldRenderers().get(i).paintWorld(g);
+		for(int i = 0; i < registry.getWorldElements().size(); i++)
+			registry.getWorldElements().get(i).paintComponent(g);
 		for(int  i = 0; i < currentTiles.size(); i++)
 			if(currentTiles.get(i) != null)
 				currentTiles.get(i).paintComponent(g);
@@ -265,10 +252,10 @@ public class World
 	
 	public boolean setCurrentRendererRandom()
 	{
-		int rand = new Random().nextInt(worldRenderer.size()) - 1;
+		int rand = new Random().nextInt(registry.getWorldRenderers().size()) - 1;
 		if(rand < 0) rand = 0;
-		currentRenderer = worldRenderer.get(rand);
-		if(currentRenderer.getRendererID() == worldRenderer.get(rand).getRendererID()) 
+		currentRenderer = registry.getWorldRenderers().get(rand);
+		if(currentRenderer.getRendererID() == registry.getWorldRenderers().get(rand).getRendererID()) 
 			return true;
 		return false;
 	}
@@ -312,11 +299,11 @@ public class World
 
 	public void addAvaiableHits(int hitsToAdd) 
 	{
-		for(int i = 0; i < worldElement.size(); i++)
+		for(int i = 0; i < registry.getWorldElements().size(); i++)
 		{
-			if(worldElement.get(i).getClass().getName().equals(WorldElementAvailableHits.class.getName()))
+			if(registry.getWorldElements().get(i).getClass().getName().equals(WorldElementAvailableHits.class.getName()))
 			{
-				WorldElementAvailableHits weah = (WorldElementAvailableHits) worldElement.get(i);
+				WorldElementAvailableHits weah = (WorldElementAvailableHits) registry.getWorldElements().get(i);
 				weah.availableHits += hitsToAdd;
 				return;
 			}

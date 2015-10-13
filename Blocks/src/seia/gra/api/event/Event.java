@@ -1,9 +1,13 @@
-package seia.gra.event;
+package seia.gra.api.event;
 
 import java.util.Random;
 
+import seia.gra.api.world.WorldRegistry;
+
 public class Event 
 {
+	protected static WorldRegistry registry = WorldRegistry.INSTANCE;
+	
 	/**
 	 * @param points - ile mozna dodac punktow
 	 * @param percent - szansa z jaka dodane zostana punkty
