@@ -35,7 +35,7 @@ public class WorldRendererSquareBasic extends WorldRenderer
 			{
 				if(x == 0 || y == 0 || x == (SZER / Block.BLOCK_SIZE) - 1 || y == (WYS / Block.BLOCK_SIZE) - 1)
 				{
-					world[x][y] = new Block(Color.BLACK, x, y, worldObj);
+					world[x][y] = new Block(Color.BLACK, x, y, worldObj).setCanWalkThrough(false);
 					world[x][y].paintComponent(g);
 				}
 				else

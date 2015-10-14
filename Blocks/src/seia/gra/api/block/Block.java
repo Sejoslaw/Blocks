@@ -19,6 +19,7 @@ public class Block
 	public int X, Y;
 	private Color c;
 	public World worldObj;
+	private boolean walkThrough;
 	
 	public static List<Block> blocksInGame = new ArrayList<Block>();
 	
@@ -28,6 +29,7 @@ public class Block
 		this.X = x;
 		this.Y = y;
 		worldObj = world;
+		walkThrough = true;
 		blocksInGame.add(this);
 	}
 
@@ -58,9 +60,15 @@ public class Block
 		return false;
 	}
 	
-	public boolean canWalkThrought()
+	public boolean canWalkThrough()
 	{
-		return false;
+		return walkThrough;
+	}
+	
+	public Block setCanWalkThrough(boolean b)
+	{
+		walkThrough = b;
+		return this;
 	}
 	
 	public Block getBlockOnLeft()
@@ -108,6 +116,17 @@ public class Block
 		for(int x = 0; x < blocksInGame.size(); x++)
 			if(blocksInGame.get(x) instanceof BlockPlayer)
 				return blocksInGame.get(x).getColor();
+		return null;
+	}
+	
+	public static Block getBlockByCoords(int posX, int posY)
+	{
+		for(int i = 0; i < blocksInGame.size(); i++)
+		{
+			Block b = blocksInGame.get(i);
+			if((posX == b.X) && (posY == b.Y))
+				return b;
+		}
 		return null;
 	}
 	

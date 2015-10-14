@@ -34,7 +34,7 @@ import seia.gra.world.worldrenderer.WorldRendererHeart;
  * -W menu -> Tablica Wynikow
  * 
  * 
- * @author Krzysztof
+ * @author Krzysztof Dobrzyñski
  */
 public class MainClass extends JPanel implements ActionListener, KeyListener
 {
