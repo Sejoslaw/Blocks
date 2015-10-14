@@ -58,6 +58,11 @@ public class Block
 		return false;
 	}
 	
+	public boolean canWalkThrought()
+	{
+		return false;
+	}
+	
 	public Block getBlockOnLeft()
 	{
 		return worldObj.currentRenderer.world[X - 1][Y];

@@ -21,11 +21,26 @@ import seia.gra.utils.Key;
 import seia.gra.world.World;
 import seia.gra.world.worldrenderer.WorldRendererHeart;
 
+/**
+ * Pomysly:
+ * -Trudnosc na roznych levelach
+ * -Kazdy klocek jako oddzielny (sciana, swiat, powietrze, etc.)
+ * -Manu
+ * -W menu dorobic konstruktor poziomow (+ sterowanie)
+ * 		(klikniecie -> Postaw klocek, 
+ * 		 klikniecie -> Ustaw kolor, 
+ * 		 klikniecie -> Zakoncz)
+ * 		 ->>> Eksport stworzonego swiata do pliku
+ * -W menu -> Tablica Wynikow
+ * 
+ * 
+ * @author Krzysztof
+ */
 public class MainClass extends JPanel implements ActionListener, KeyListener
 {
 	private static final long serialVersionUID = 1L;
 	
-	public final String VERSION = "v0.0.9";
+	private static final String VERSION = "v0.0.9";
 	
 	public Timer tm = new Timer(5, null); //miliseconds
 	public int SZER, WYS;
@@ -63,7 +78,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	
 	public void newGame()
 	{
-		JOptionPane.showMessageDialog(this, "Game Over :(");
+		JOptionPane.showMessageDialog(this,"Game Over :(", "gAME oVER", JOptionPane.YES_OPTION);
 		//FilesHandler.HIGHSCORE.reloadHighscore(this); //TODO
 		FilesHandler.CONFIG.checkConfig(this); //FileConfig.checkConfig(this);
 		world.reloadPanel();
@@ -183,7 +198,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		String s1;
 		try
 		{
-			s1 = JOptionPane.showInputDialog("Podaj nick:");
+			s1 = JOptionPane.showInputDialog(null, "Podaj nick:", "GoRight !!! " + VERSION, JOptionPane.YES_OPTION);
 			if(s1.toLowerCase().equals(WorldRendererHeart.input.toLowerCase()))
 			{
 				b1 = true;
@@ -198,6 +213,6 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 			s1 = "Tester #" + new Random().nextInt();
 		}
 		MainClass mc = new MainClass(szer, wys, b1, s1);
-		JOptionPane.showMessageDialog(mc, "Nie dotykaj czerwonych !!! Zolty -> Next Level.");
+		JOptionPane.showMessageDialog(mc, "Nie dotykaj czerwonych !!! Zolty -> Next Level.", "GoRight !!! " + VERSION, JOptionPane.YES_OPTION);
 	}
 }

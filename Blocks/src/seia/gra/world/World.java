@@ -8,6 +8,7 @@ import java.util.Random;
 import seia.gra.MainClass;
 import seia.gra.api.block.Block;
 import seia.gra.api.block.BlockMovable;
+import seia.gra.api.world.IWorld;
 import seia.gra.api.world.WorldRegistry;
 import seia.gra.api.world.WorldRenderer;
 import seia.gra.block.movable.BlockClonePlayer;
@@ -22,14 +23,13 @@ import seia.gra.world.worldelement.WorldElementNick;
 import seia.gra.world.worldrenderer.WorldRendererClonePlayer;
 import seia.gra.world.worldrenderer.WorldRendererSquareBasic;
 
-public class World
+public class World implements IWorld
 {
 	/**
 	 * TODO: Swiat mozna przerobic na liste list -  List<List<Block>>
 	 * Wtedy moglby sie rozszerzac.
 	 * Jednak trzebaby przerobic wymiary swiata oraz przesowanie ekranu za graczem.
 	 */
-	
 	public WorldRenderer currentRenderer;
 	private int SZER, WYS;
 	boolean b1;
@@ -58,7 +58,7 @@ public class World
 		currentTiles = currentRenderer.getMovableBlocksOnMap();
 	}
 	
-	public void reloadPanel() 
+	public void reloadPanel()
 	{
 		setCurrentRendererRandom();
 		player.X = 1;
