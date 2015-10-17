@@ -1,6 +1,5 @@
 package seia.gra.world.worldrenderer;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +8,8 @@ import java.util.Random;
 import seia.gra.api.block.Block;
 import seia.gra.api.block.BlockMovable;
 import seia.gra.api.world.WorldRenderer;
+import seia.gra.block.background.BlockAir;
+import seia.gra.block.background.BlockWall;
 import seia.gra.block.movable.BlockClonePlayer;
 import seia.gra.block.movable.BlockEnemy;
 import seia.gra.world.World;
@@ -35,12 +36,14 @@ public class WorldRendererSquareBasic extends WorldRenderer
 			{
 				if(x == 0 || y == 0 || x == (SZER / Block.BLOCK_SIZE) - 1 || y == (WYS / Block.BLOCK_SIZE) - 1)
 				{
-					world[x][y] = new Block(Color.BLACK, x, y, worldObj).setCanWalkThrough(false);
+					//world[x][y] = new Block(Color.BLACK, x, y, worldObj).setCanWalkThrough(false);
+					world[x][y] = new BlockWall(x, y, worldObj);
 					world[x][y].paintComponent(g);
 				}
 				else
 				{
-					world[x][y] = new Block(Color.BLUE, x, y, worldObj);
+					//world[x][y] = new Block(Color.BLUE, x, y, worldObj);
+					world[x][y] = new BlockAir(x, y, worldObj);
 					world[x][y].paintComponent(g);
 				}
 			}
