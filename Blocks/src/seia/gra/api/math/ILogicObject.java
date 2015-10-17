@@ -1,4 +1,4 @@
-package seia.gra.api.logic;
+package seia.gra.api.math;
 
 public abstract interface ILogicObject 
 {

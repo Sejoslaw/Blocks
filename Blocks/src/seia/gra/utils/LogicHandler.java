@@ -1,6 +1,6 @@
 package seia.gra.utils;
 
-import seia.gra.api.logic.ILogicObject;
+import seia.gra.api.math.ILogicObject;
 
 public class LogicHandler 
 {
