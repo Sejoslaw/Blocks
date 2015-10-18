@@ -1,9 +1,9 @@
 package seia.gra.api.math;
 
-public interface IMathObject 
+public abstract interface IMathObject<T>
 {
-	public Object sum();		// +
-	public Object subtract();	// -
-	public Object multiply();	// *
-	public Object divide();		// /
+	public abstract T sum(T whatToAdd);				// +
+	public abstract T subtract(T whatToSubtract);	// -
+	public abstract T multiply(T multiplyBy);		// *
+	public abstract T divide(T divideBy);			// /
 }
