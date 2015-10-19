@@ -23,6 +23,7 @@ public abstract class Matrix<T> implements IMatrix<T>
 	}
 	
 	public abstract T[][] buildMatrix();
+	public abstract void print();
 	
 	public void printMatrix()
 	{

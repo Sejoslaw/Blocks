@@ -7,7 +7,7 @@ import seia.gra.api.block.Block;
 import seia.gra.api.block.BlockMovable;
 import seia.gra.world.World;
 
-public abstract class WorldRenderer 
+public abstract class WorldRenderer
 {
 	public Block[][] world;
 	public int SZER, WYS;

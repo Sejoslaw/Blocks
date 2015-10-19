@@ -34,13 +34,13 @@ import seia.gra.world.worldrenderer.WorldRendererHeart;
  * -W menu -> Tablica Wynikow
  * 
  * 
- * @author Krzysztof Dobrzyñski
+ * @author Krzysztof Dobrzyï¿½ski
  */
 public class MainClass extends JPanel implements ActionListener, KeyListener
 {
 	private static final long serialVersionUID = 1L;
 	
-	private static final String VERSION = "v0.0.9";
+	private static final String VERSION = "v0.0.11";
 	
 	public Timer tm = new Timer(5, null); //miliseconds
 	public int SZER, WYS;
@@ -63,7 +63,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		this.setFocusable(true);
 		this.setFocusTraversalKeysEnabled(false);
 		
-		frame = new JFrame("Blocks " + VERSION);
+		frame = new JFrame("GoRight !!! " + VERSION);
 		frame.setSize(szer, wys);
 		addItemsToFrame(); //frame.add(this);
 		frame.setResizable(false);
