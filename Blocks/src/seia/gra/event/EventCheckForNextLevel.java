@@ -15,7 +15,7 @@ public class EventCheckForNextLevel extends Event
 				{
 					world.reloadPanel();
 					world.updateLevelValue();
-					world.addAvaiableHits(getPoints(1, 0));
+					world.addAvaiableHits(getPoints(1, 10));
 				}
 				else
 				{

@@ -1,4 +1,4 @@
-package seia.gra.api.block;
+package seia.gra.block;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -6,10 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import seia.gra.api.block.IBlock;
 import seia.gra.block.movable.player.BlockPlayer;
 import seia.gra.world.World;
 
-public class Block
+public class Block implements IBlock
 {
 	private static final int SIZE = 50;
 	public static final int BLOCK_SIZE = SIZE;

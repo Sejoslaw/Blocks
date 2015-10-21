@@ -1,7 +1,8 @@
-package seia.gra.api.block;
+package seia.gra.block.background;
 
 import java.awt.Color;
 
+import seia.gra.block.Block;
 import seia.gra.world.World;
 
 public class BlockBackground extends Block

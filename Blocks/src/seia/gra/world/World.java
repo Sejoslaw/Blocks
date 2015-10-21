@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.Random;
 
 import seia.gra.MainClass;
-import seia.gra.api.block.Block;
-import seia.gra.api.block.BlockMovable;
 import seia.gra.api.world.IWorld;
 import seia.gra.api.world.WorldRegistry;
 import seia.gra.api.world.WorldRenderer;
+import seia.gra.block.Block;
 import seia.gra.block.movable.BlockClonePlayer;
 import seia.gra.block.movable.BlockEnemy;
+import seia.gra.block.movable.BlockMovable;
 import seia.gra.block.movable.player.BlockPlayer;
 import seia.gra.block.movable.player.IPlayer;
 import seia.gra.block.nonmovable.BlockNextLevel;
@@ -316,5 +316,37 @@ public class World implements IWorld
 			if(currentTiles.get(i) instanceof IPlayer)
 				return false;
 		return true;
+	}
+	
+	/**
+	 * Dodawanie randomowego klocka do planszy.
+	 */
+	public void addEnemy()
+	{
+		boolean canAdd = true;
+		int posX, posY;
+		do
+		{
+			posX = new Random().nextInt(mcInstance.getWidthInBlocks() - 1);
+			if(posX == 0) posX = 2;
+			posY = new Random().nextInt(mcInstance.getHeightInBlocks() - 1);
+			if(posY == 0) posY = 2;
+			for(int i = 0; i < currentTiles.size(); i++)
+			{
+				if(currentTiles.get(i) instanceof BlockEnemy)
+				{
+					BlockEnemy enemy = (BlockEnemy)currentTiles.get(i);
+					if((enemy.X == posX) && (enemy.Y == posY))
+					{
+						canAdd = false;
+					}
+				}
+			}
+		}while(!canAdd);
+		if(canAdd)
+		{
+			BlockEnemy newEnemy = new BlockEnemy(posX, posY, this);
+			currentTiles.add(newEnemy);
+		}
 	}
 }

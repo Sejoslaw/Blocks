@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import seia.gra.api.block.Block;
+import seia.gra.block.Block;
 import seia.gra.block.movable.BlockEnemy;
 import seia.gra.event.EventCheckCollisionWithEnemy;
 import seia.gra.event.EventCheckForNextLevel;
@@ -22,6 +22,10 @@ import seia.gra.world.World;
 import seia.gra.world.worldrenderer.WorldRendererHeart;
 
 /**
+ * Do zaimplementowania:
+ *  - Dokoñczyæ dodawanie przeciwnika w wolne miejsce po kazdym wolnym ruchu.
+ * 
+ * 
  * Pomysly:
  * -Trudnosc na roznych levelach
  * -Kazdy klocek jako oddzielny (sciana, swiat, powietrze, etc.)

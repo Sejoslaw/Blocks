@@ -2,7 +2,7 @@ package seia.gra.block.movable.player;
 
 import java.awt.Color;
 
-import seia.gra.api.block.BlockMovable;
+import seia.gra.block.movable.BlockMovable;
 import seia.gra.world.World;
 
 public class BlockPlayer extends BlockMovable implements IPlayer

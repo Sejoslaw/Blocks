@@ -2,7 +2,7 @@ package seia.gra.block.movable;
 
 import java.awt.Color;
 
-import seia.gra.api.block.Block;
+import seia.gra.block.Block;
 import seia.gra.block.movable.player.IPlayer;
 import seia.gra.world.World;
 

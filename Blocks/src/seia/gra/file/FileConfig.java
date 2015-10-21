@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seia.gra.MainClass;
-import seia.gra.api.block.Block;
+import seia.gra.block.Block;
 
 public class FileConfig extends MyFile
 {
