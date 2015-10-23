@@ -1,7 +1,7 @@
 package seia.gra.utils.matrix;
 
 /*
- * Created by: Krzysztof Dobrzyński 2015
+ * Created by: Krzysztof Dobrzynski 2015
  */
 public abstract class Matrix<T> implements IMatrix<T>
 {
@@ -24,6 +24,7 @@ public abstract class Matrix<T> implements IMatrix<T>
 	
 	public abstract T[][] buildMatrix();
 	public abstract void print();
+	public abstract Matrix<T> create(T[][] matrix);
 	
 	public void printMatrix()
 	{

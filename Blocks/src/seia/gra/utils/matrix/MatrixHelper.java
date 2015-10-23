@@ -1,7 +1,7 @@
 package seia.gra.utils.matrix;
 
 /*
- * Created by: Krzysztof Dobrzyński 2015
+ * Created by: Krzysztof Dobrzynski 2015
  */
 public class MatrixHelper
 {
@@ -28,7 +28,7 @@ public class MatrixHelper
 				arObj[i][j] = (Object) matrixT[i][j];
 		return arObj;
 	}
-	
+
 	public static <T> Object[][] toObjectArray(T[][] matrixT)
 	{
 		int sizeY = matrixT.length;
@@ -38,6 +38,11 @@ public class MatrixHelper
 			for(int j = 0; j < sizeX; j++)
 				mat[i][j] = (Object) matrixT[i][j];
 		return mat;
+	}
+	
+	public static <T> T[][] toMatrixArray(Matrix<T> matrixT)
+	{
+		return matrixT.MATRIX;
 	}
 	
 	@SuppressWarnings("unchecked")

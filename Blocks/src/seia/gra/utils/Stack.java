@@ -2,6 +2,8 @@ package seia.gra.utils;
 
 public class Stack 
 {
+	private Stack() {}
+	
 	public class StackElement<T>
 	{
 		public StackElement<T> predecessor; //poprzednik
@@ -24,7 +26,7 @@ public class Stack
 		 * 
 		 * @return - The element that was pushed.
 		 */
-		public abstract <T> T push(T value);
+		public abstract T push(T value);
 		
 		/**
 		 * {
@@ -38,7 +40,7 @@ public class Stack
 		 * 
 		 * @return - The element that was poped.
 		 */
-		public abstract <T> T pop();
+		public abstract T pop();
 	}
 	
 }
