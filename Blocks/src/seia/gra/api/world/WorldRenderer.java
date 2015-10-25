@@ -21,6 +21,16 @@ public abstract class WorldRenderer
 		this.world = new Block[szer / Block.BLOCK_SIZE][wys / Block.BLOCK_SIZE];
 	}
 	
+	public int getSizeXInBlocks()
+	{
+		return SZER / Block.BLOCK_SIZE;
+	}
+	
+	public int getSizeYInBlocks()
+	{
+		return WYS / Block.BLOCK_SIZE;
+	}
+	
 	public boolean setWidth(int newWidth)
 	{
 		SZER = newWidth;

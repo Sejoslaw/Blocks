@@ -88,7 +88,7 @@ public class FileHighscore extends MyFile
 	 */
 	public void addToHighscore(MainClass mc)
 	{
-		ObjectHighscoreLine newLine = new ObjectHighscoreLine(-1, mc.world.getCurrentLevelValue(), mc.nick);
+		ObjectHighscoreLine newLine = new ObjectHighscoreLine(-1, mc.worldObj.getCurrentLevelValue(), mc.nick);
 		highscoreLines.add(newLine);
 	}
 	/**

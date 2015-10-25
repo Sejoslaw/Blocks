@@ -327,6 +327,7 @@ public class World implements IWorld
 		int posX, posY;
 		do
 		{
+			canAdd = true;
 			posX = new Random().nextInt(mcInstance.getWidthInBlocks() - 1);
 			if(posX == 0) posX = 2;
 			posY = new Random().nextInt(mcInstance.getHeightInBlocks() - 1);
@@ -348,5 +349,65 @@ public class World implements IWorld
 			BlockEnemy newEnemy = new BlockEnemy(posX, posY, this);
 			currentTiles.add(newEnemy);
 		}
+	}
+
+	public boolean isPlaceToAddEnemy() 
+	{
+		BlockMovable[][] movTab = getMovableBlocksOnMap();
+		for(int i = 1; i < movTab.length; i++)
+			for(int j = 1; j < movTab.length; j++)
+				if((movTab[i][j] == null) &&
+						(i != 0) &&
+						(j != 0) &&
+						(i != movTab.length - 1) &&
+						(j != movTab.length - 1))
+					return true;
+		return false;
+	}
+	
+	public int[] getFirstPlaceToAddEnemy()
+	{
+		BlockMovable[][] movTab = getMovableBlocksOnMap();
+		for(int i = 1; i < movTab.length; i++)
+			for(int j = 1; j < movTab.length; j++)
+				if((movTab[i][j] == null) &&
+						(i != 0) &&
+						(j != 0) &&
+						(i != movTab.length - 1) &&
+						(j != movTab.length - 1))
+				{
+					int[] coords = new int[2]; //x, y
+					coords[0] = i;
+					coords[1] = j;
+					return coords;
+				}
+		return null;
+	}
+
+	/**
+	 * Glowna metoda do pobierania tablicy ruszajacych sie klockow na mapie.
+	 * @return
+	 */
+	public BlockMovable[][] getMovableBlocksOnMap() 
+	{
+		int sizeX = currentRenderer.getSizeXInBlocks();
+		int sizeY = currentRenderer.getSizeYInBlocks();
+		BlockMovable[][] movTab = new BlockMovable[sizeX][sizeY];
+		for(int i = 0; i < currentTiles.size(); i++)
+		{
+			BlockMovable bm = (BlockMovable) currentTiles.get(i);
+			movTab[bm.X][bm.Y] = bm;
+		}
+		return movTab;
+	}
+	
+	public int getSizeXInBlocks()
+	{
+		return SZER / Block.BLOCK_SIZE;
+	}
+	
+	public int getSizeYInBlocks()
+	{
+		return WYS / Block.BLOCK_SIZE;
 	}
 }

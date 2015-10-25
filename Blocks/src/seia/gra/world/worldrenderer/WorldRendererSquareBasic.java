@@ -36,13 +36,11 @@ public class WorldRendererSquareBasic extends WorldRenderer
 			{
 				if(x == 0 || y == 0 || x == (SZER / Block.BLOCK_SIZE) - 1 || y == (WYS / Block.BLOCK_SIZE) - 1)
 				{
-					//world[x][y] = new Block(Color.BLACK, x, y, worldObj).setCanWalkThrough(false);
 					world[x][y] = new BlockWall(x, y, worldObj);
 					world[x][y].paintComponent(g);
 				}
 				else
 				{
-					//world[x][y] = new Block(Color.BLUE, x, y, worldObj);
 					world[x][y] = new BlockAir(x, y, worldObj);
 					world[x][y].paintComponent(g);
 				}
@@ -71,7 +69,10 @@ public class WorldRendererSquareBasic extends WorldRenderer
 					&& (rX != worldObj.mcInstance.getWidthInBlocks() - 1) 
 					&& (rY != worldObj.mcInstance.getHeightInBlocks() - 1))
 			{
-				l.add(new BlockEnemy(rX, rY, worldObj));
+				if(canAdd(rX, rY, l))
+				{
+					l.add(new BlockEnemy(rX, rY, worldObj));
+				}
 			}
 		}
 		for(int i = 0; i < l.size(); i++)
@@ -91,5 +92,26 @@ public class WorldRendererSquareBasic extends WorldRenderer
 				worldObj.mcInstance.getHeightInBlocks() - 2, 
 				worldObj));
 		return l;
+	}
+	
+	public BlockMovable[][] getMovableBlocksOnMap(List<BlockMovable> l) 
+	{
+		int sizeX = worldObj.getSizeXInBlocks();
+		int sizeY = worldObj.getSizeYInBlocks();
+		BlockMovable[][] movTab = new BlockMovable[sizeX][sizeY];
+		for(int i = 0; i < l.size(); i++)
+		{
+			BlockMovable bm = (BlockMovable) l.get(i);
+			movTab[bm.X][bm.Y] = bm;
+		}
+		return movTab;
+	}
+
+	public boolean canAdd(int x, int y, List<BlockMovable> l)
+	{
+		BlockMovable[][] movTab = getMovableBlocksOnMap(l);
+		if(movTab[x][y] == null)
+			return true;
+		return false;
 	}
 }

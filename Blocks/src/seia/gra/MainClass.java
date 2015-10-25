@@ -38,7 +38,7 @@ import seia.gra.world.worldrenderer.WorldRendererHeart;
  * -W menu -> Tablica Wynikow
  * 
  * 
- * @author Krzysztof Dobrzy�ski
+ * @author Krzysztof Dobrzynski
  */
 public class MainClass extends JPanel implements ActionListener, KeyListener
 {
@@ -48,7 +48,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	
 	public Timer tm = new Timer(5, null); //miliseconds
 	public int SZER, WYS;
-	public World world;
+	public World worldObj;
 	public boolean setHeart;
 	public JFrame frame;
 	public String nick;
@@ -61,7 +61,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		this.setHeart = setHeart;
 		this.nick = nick;
 		FilesHandler.CONFIG.checkConfig(this); //FileConfig.checkConfig(this);
-		world = new World(this);
+		worldObj = new World(this);
 		
 		this.addKeyListener(this);
 		this.setFocusable(true);
@@ -85,9 +85,9 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		JOptionPane.showMessageDialog(this,"Game Over :(", "gAME oVER", JOptionPane.YES_OPTION);
 		//FilesHandler.HIGHSCORE.reloadHighscore(this); //TODO
 		FilesHandler.CONFIG.checkConfig(this); //FileConfig.checkConfig(this);
-		world.reloadPanel();
-		world.updateLevelValue(1);
-		world.setAvailableHits();
+		worldObj.reloadPanel();
+		worldObj.updateLevelValue(1);
+		worldObj.setAvailableHits();
 	}
 	
 	public boolean getSetHeart()
@@ -97,7 +97,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 
 	public void paintComponent(Graphics g)
 	{
-		world.paintComponent(g);
+		worldObj.paintComponent(g);
 		g.dispose();
 		repaint();
 	}
@@ -121,10 +121,10 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 			{
 				if(EventCheckCollisionWithEnemy.canPlayerMoveUp(this))
 				{
-					world.player.movePlayerUp();
-					for(int i = 0; i < world.currentTiles.size(); i++)
-						if(world.currentTiles.get(i) instanceof BlockEnemy)
-							world.currentTiles.get(i).moveEnemyDown();
+					worldObj.player.movePlayerUp();
+					for(int i = 0; i < worldObj.currentTiles.size(); i++)
+						if(worldObj.currentTiles.get(i) instanceof BlockEnemy)
+							worldObj.currentTiles.get(i).moveEnemyDown();
 				}
 			}
 		}
@@ -134,10 +134,10 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 			{
 				if(EventCheckCollisionWithEnemy.canPlayerMoveDown(this))
 				{
-					world.player.movePlayerDown();
-					for(int i = 0; i < world.currentTiles.size(); i++)
-						if(world.currentTiles.get(i) instanceof BlockEnemy)
-							world.currentTiles.get(i).moveEnemyUp();
+					worldObj.player.movePlayerDown();
+					for(int i = 0; i < worldObj.currentTiles.size(); i++)
+						if(worldObj.currentTiles.get(i) instanceof BlockEnemy)
+							worldObj.currentTiles.get(i).moveEnemyUp();
 				}
 			}
 		}
@@ -147,10 +147,10 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 			{
 				if(EventCheckCollisionWithEnemy.canPlayerMoveLeft(this))
 				{
-					world.player.movePlayerLeft();
-					for(int i = 0; i < world.currentTiles.size(); i++)
-						if(world.currentTiles.get(i) instanceof BlockEnemy)
-							world.currentTiles.get(i).moveEnemyRight();
+					worldObj.player.movePlayerLeft();
+					for(int i = 0; i < worldObj.currentTiles.size(); i++)
+						if(worldObj.currentTiles.get(i) instanceof BlockEnemy)
+							worldObj.currentTiles.get(i).moveEnemyRight();
 				}
 			}
 		}
@@ -160,12 +160,12 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 			{
 				if(EventCheckCollisionWithEnemy.canPlayerMoveRight(this))
 				{
-					if(!EventCheckForNextLevel.check(world))
+					if(!EventCheckForNextLevel.check(worldObj))
 					{
-						world.player.movePlayerRight();
-						for(int i = 0; i < world.currentTiles.size(); i++)
-							if(world.currentTiles.get(i) instanceof BlockEnemy)
-								world.currentTiles.get(i).moveEnemyLeft();
+						worldObj.player.movePlayerRight();
+						for(int i = 0; i < worldObj.currentTiles.size(); i++)
+							if(worldObj.currentTiles.get(i) instanceof BlockEnemy)
+								worldObj.currentTiles.get(i).moveEnemyLeft();
 					}
 				}
 			}

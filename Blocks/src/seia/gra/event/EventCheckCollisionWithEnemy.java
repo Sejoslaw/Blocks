@@ -20,12 +20,12 @@ public class EventCheckCollisionWithEnemy extends Event
 	
 	public static boolean canPlayerMoveUp(MainClass mc)
 	{
-		BlockPlayer player = mc.world.player;
-		for(int i = 0; i < mc.world.currentTiles.size(); i++)
+		BlockPlayer player = mc.worldObj.player;
+		for(int i = 0; i < mc.worldObj.currentTiles.size(); i++)
 		{
-			if(mc.world.currentTiles.get(i) instanceof BlockEnemy)
+			if(mc.worldObj.currentTiles.get(i) instanceof BlockEnemy)
 			{
-				BlockEnemy enemy = (BlockEnemy) mc.world.currentTiles.get(i);
+				BlockEnemy enemy = (BlockEnemy) mc.worldObj.currentTiles.get(i);
 				if((player.X == enemy.X) && (player.Y - 1 == enemy.Y))
 				{
 					if(!EventCanHit.checkIfCanHit(mc))
@@ -37,13 +37,13 @@ public class EventCheckCollisionWithEnemy extends Event
 					{
 						if(enemy instanceof BlockClonePlayer)
 						{
-							mc.world.killEnemy(enemy);
-							mc.world.decreaseAfterHit(Event.getPoints(-1, chance));
+							mc.worldObj.killEnemy(enemy);
+							mc.worldObj.decreaseAfterHit(Event.getPoints(-1, chance));
 						}
 						else
 						{
-							mc.world.killEnemy(enemy);
-							mc.world.decreaseAfterHit();
+							mc.worldObj.killEnemy(enemy);
+							mc.worldObj.decreaseAfterHit();
 						}
 					}
 				}
@@ -58,29 +58,33 @@ public class EventCheckCollisionWithEnemy extends Event
 					{
 						if(enemy instanceof BlockClonePlayer)
 						{
-							mc.world.killEnemy(enemy);
-							mc.world.decreaseAfterHit(Event.getPoints(-1, chance));
+							mc.worldObj.killEnemy(enemy);
+							mc.worldObj.decreaseAfterHit(Event.getPoints(-1, chance));
 						}
 						else
 						{
-							mc.world.killEnemy(enemy);
-							mc.world.decreaseAfterHit();
+							mc.worldObj.killEnemy(enemy);
+							mc.worldObj.decreaseAfterHit();
 						}
 					}
 				}
 			}
+		}
+		if(mc.worldObj.isPlaceToAddEnemy())
+		{
+			mc.worldObj.addEnemy();
 		}
 		return true;
 	}
 	
 	public static boolean canPlayerMoveDown(MainClass mc)
 	{
-		BlockPlayer player = mc.world.player;
-		for(int i = 0; i < mc.world.currentTiles.size(); i++)
+		BlockPlayer player = mc.worldObj.player;
+		for(int i = 0; i < mc.worldObj.currentTiles.size(); i++)
 		{
-			if(mc.world.currentTiles.get(i) instanceof BlockEnemy)
+			if(mc.worldObj.currentTiles.get(i) instanceof BlockEnemy)
 			{
-				BlockEnemy enemy = (BlockEnemy) mc.world.currentTiles.get(i);
+				BlockEnemy enemy = (BlockEnemy) mc.worldObj.currentTiles.get(i);
 				if((player.X == enemy.X) && (player.Y + 1 == enemy.Y))
 				{
 					if(!EventCanHit.checkIfCanHit(mc))
@@ -92,13 +96,13 @@ public class EventCheckCollisionWithEnemy extends Event
 					{
 						if(enemy instanceof BlockClonePlayer)
 						{
-							mc.world.killEnemy(enemy);
-							mc.world.decreaseAfterHit(Event.getPoints(-1, chance));
+							mc.worldObj.killEnemy(enemy);
+							mc.worldObj.decreaseAfterHit(Event.getPoints(-1, chance));
 						}
 						else
 						{
-							mc.world.killEnemy(enemy);
-							mc.world.decreaseAfterHit();
+							mc.worldObj.killEnemy(enemy);
+							mc.worldObj.decreaseAfterHit();
 						}
 					}
 				}
@@ -113,29 +117,33 @@ public class EventCheckCollisionWithEnemy extends Event
 					{
 						if(enemy instanceof BlockClonePlayer)
 						{
-							mc.world.killEnemy(enemy);
-							mc.world.decreaseAfterHit(Event.getPoints(-1, chance));
+							mc.worldObj.killEnemy(enemy);
+							mc.worldObj.decreaseAfterHit(Event.getPoints(-1, chance));
 						}
 						else
 						{
-							mc.world.killEnemy(enemy);
-							mc.world.decreaseAfterHit();
+							mc.worldObj.killEnemy(enemy);
+							mc.worldObj.decreaseAfterHit();
 						}
 					}
 				}
 			}
+		}
+		if(mc.worldObj.isPlaceToAddEnemy())
+		{
+			mc.worldObj.addEnemy();
 		}
 		return true;
 	}
 	
 	public static boolean canPlayerMoveLeft(MainClass mc)
 	{
-		BlockPlayer player = mc.world.player;
-		for(int i = 0; i < mc.world.currentTiles.size(); i++)
+		BlockPlayer player = mc.worldObj.player;
+		for(int i = 0; i < mc.worldObj.currentTiles.size(); i++)
 		{
-			if(mc.world.currentTiles.get(i) instanceof BlockEnemy)
+			if(mc.worldObj.currentTiles.get(i) instanceof BlockEnemy)
 			{
-				BlockEnemy enemy = (BlockEnemy) mc.world.currentTiles.get(i);
+				BlockEnemy enemy = (BlockEnemy) mc.worldObj.currentTiles.get(i);
 				if((player.X - 1 == enemy.X) && (player.Y == enemy.Y))
 				{
 					if(!EventCanHit.checkIfCanHit(mc))
@@ -147,13 +155,13 @@ public class EventCheckCollisionWithEnemy extends Event
 					{
 						if(enemy instanceof BlockClonePlayer)
 						{
-							mc.world.killEnemy(enemy);
-							mc.world.decreaseAfterHit(Event.getPoints(-1, chance));
+							mc.worldObj.killEnemy(enemy);
+							mc.worldObj.decreaseAfterHit(Event.getPoints(-1, chance));
 						}
 						else
 						{
-							mc.world.killEnemy(enemy);
-							mc.world.decreaseAfterHit();
+							mc.worldObj.killEnemy(enemy);
+							mc.worldObj.decreaseAfterHit();
 						}
 					}
 				}
@@ -168,29 +176,33 @@ public class EventCheckCollisionWithEnemy extends Event
 					{
 						if(enemy instanceof BlockClonePlayer)
 						{
-							mc.world.killEnemy(enemy);
-							mc.world.decreaseAfterHit(Event.getPoints(-1, chance));
+							mc.worldObj.killEnemy(enemy);
+							mc.worldObj.decreaseAfterHit(Event.getPoints(-1, chance));
 						}
 						else
 						{
-							mc.world.killEnemy(enemy);
-							mc.world.decreaseAfterHit();
+							mc.worldObj.killEnemy(enemy);
+							mc.worldObj.decreaseAfterHit();
 						}
 					}
 				}
 			}
+		}
+		if(mc.worldObj.isPlaceToAddEnemy())
+		{
+			mc.worldObj.addEnemy();
 		}
 		return true;
 	}
 	
 	public static boolean canPlayerMoveRight(MainClass mc)
 	{
-		BlockPlayer player = mc.world.player;
-		for(int i = 0; i < mc.world.currentTiles.size(); i++)
+		BlockPlayer player = mc.worldObj.player;
+		for(int i = 0; i < mc.worldObj.currentTiles.size(); i++)
 		{
-			if(mc.world.currentTiles.get(i) instanceof BlockEnemy)
+			if(mc.worldObj.currentTiles.get(i) instanceof BlockEnemy)
 			{
-				BlockEnemy enemy = (BlockEnemy) mc.world.currentTiles.get(i);
+				BlockEnemy enemy = (BlockEnemy) mc.worldObj.currentTiles.get(i);
 				if((player.X + 1 == enemy.X) && (player.Y == enemy.Y))
 				{
 					if(!EventCanHit.checkIfCanHit(mc))
@@ -202,13 +214,13 @@ public class EventCheckCollisionWithEnemy extends Event
 					{
 						if(enemy instanceof BlockClonePlayer)
 						{
-							mc.world.killEnemy(enemy);
-							mc.world.decreaseAfterHit(Event.getPoints(-1, chance));
+							mc.worldObj.killEnemy(enemy);
+							mc.worldObj.decreaseAfterHit(Event.getPoints(-1, chance));
 						}
 						else
 						{
-							mc.world.killEnemy(enemy);
-							mc.world.decreaseAfterHit();
+							mc.worldObj.killEnemy(enemy);
+							mc.worldObj.decreaseAfterHit();
 						}
 					}
 				}
@@ -223,17 +235,21 @@ public class EventCheckCollisionWithEnemy extends Event
 					{
 						if(enemy instanceof BlockClonePlayer)
 						{
-							mc.world.killEnemy(enemy);
-							mc.world.decreaseAfterHit(Event.getPoints(-1, chance));
+							mc.worldObj.killEnemy(enemy);
+							mc.worldObj.decreaseAfterHit(Event.getPoints(-1, chance));
 						}
 						else
 						{
-							mc.world.killEnemy(enemy);
-							mc.world.decreaseAfterHit();
+							mc.worldObj.killEnemy(enemy);
+							mc.worldObj.decreaseAfterHit();
 						}
 					}
 				}
 			}
+		}
+		if(mc.worldObj.isPlaceToAddEnemy())
+		{
+			mc.worldObj.addEnemy();
 		}
 		return true;
 	}
