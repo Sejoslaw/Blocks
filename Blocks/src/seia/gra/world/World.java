@@ -383,22 +383,10 @@ public class World implements IWorld
 				}
 		return null;
 	}
-
-	/**
-	 * Glowna metoda do pobierania tablicy ruszajacych sie klockow na mapie.
-	 * @return
-	 */
-	public BlockMovable[][] getMovableBlocksOnMap() 
+	
+	public BlockMovable[][] getMovableBlocksOnMap()
 	{
-		int sizeX = currentRenderer.getSizeXInBlocks();
-		int sizeY = currentRenderer.getSizeYInBlocks();
-		BlockMovable[][] movTab = new BlockMovable[sizeX][sizeY];
-		for(int i = 0; i < currentTiles.size(); i++)
-		{
-			BlockMovable bm = (BlockMovable) currentTiles.get(i);
-			movTab[bm.X][bm.Y] = bm;
-		}
-		return movTab;
+		return currentRenderer.getMovableBlocksOnMap(currentTiles);
 	}
 	
 	public int getSizeXInBlocks()
