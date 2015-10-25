@@ -54,6 +54,27 @@ public abstract class WorldRenderer
 		int sr = (sz * w);
 		return sr;
 	}
+	
+	public BlockMovable[][] getMovableBlocksOnMap(List<BlockMovable> l) 
+	{
+		int sizeX = worldObj.getSizeXInBlocks();
+		int sizeY = worldObj.getSizeYInBlocks();
+		BlockMovable[][] movTab = new BlockMovable[sizeX][sizeY];
+		for(int i = 0; i < l.size(); i++)
+		{
+			BlockMovable bm = (BlockMovable) l.get(i);
+			movTab[bm.X][bm.Y] = bm;
+		}
+		return movTab;
+	}
+
+	public boolean canAdd(int x, int y, List<BlockMovable> l)
+	{
+		BlockMovable[][] movTab = getMovableBlocksOnMap(l);
+		if(movTab[x][y] == null)
+			return true;
+		return false;
+	}
 
 	public abstract int getRendererID();
 	public abstract boolean paintWorld(Graphics g);
