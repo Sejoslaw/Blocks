@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 import seia.gra.api.block.IBlock;
+import seia.gra.block.movable.BlockMovable;
 import seia.gra.block.movable.player.BlockPlayer;
 import seia.gra.world.World;
 
@@ -134,8 +135,11 @@ public class Block implements IBlock
 	public boolean hasMovable(int posX, int posY)
 	{
 		for(int i = 0; i < worldObj.currentTiles.size(); i++)
-			if((posY == worldObj.currentTiles.get(i).Y) && (posX == worldObj.currentTiles.get(i).X))
+		{
+			BlockMovable bm = (BlockMovable) worldObj.currentTiles.get(i);
+			if((posY == bm.Y) && (posX == bm.X))
 				return true;
+		}
 		return false;
 	}
 	

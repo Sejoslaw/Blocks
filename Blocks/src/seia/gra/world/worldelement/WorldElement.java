@@ -1,9 +1,11 @@
-package seia.gra.api.world;
+package seia.gra.world.worldelement;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
-public abstract class WorldElement 
+import seia.gra.api.world.IWorldElement;
+
+public abstract class WorldElement implements IWorldElement
 {
 	public Color c;
 	public int pixelX, pixelY;

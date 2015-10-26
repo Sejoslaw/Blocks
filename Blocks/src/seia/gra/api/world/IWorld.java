@@ -10,7 +10,7 @@ public abstract interface IWorld
 	abstract boolean addElements();
 	abstract boolean addRenderers();
 	abstract void paintComponent(Graphics g);
-	abstract IWorld setCurrentRenderer(WorldRenderer renderer);
+	abstract IWorld setCurrentRenderer(IWorldRenderer renderer);
 	abstract int countPlayerClones();
 	abstract boolean arePlayerClonesOnWorld();
 	abstract boolean areAllPlayerGone();

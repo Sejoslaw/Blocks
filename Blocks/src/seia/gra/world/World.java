@@ -6,9 +6,10 @@ import java.util.List;
 import java.util.Random;
 
 import seia.gra.MainClass;
+import seia.gra.api.block.IBlockMovable;
 import seia.gra.api.world.IWorld;
+import seia.gra.api.world.IWorldRenderer;
 import seia.gra.api.world.WorldRegistry;
-import seia.gra.api.world.WorldRenderer;
 import seia.gra.block.Block;
 import seia.gra.block.movable.BlockClonePlayer;
 import seia.gra.block.movable.BlockEnemy;
@@ -20,6 +21,7 @@ import seia.gra.file.FilesHandler;
 import seia.gra.world.worldelement.WorldElementAvailableHits;
 import seia.gra.world.worldelement.WorldElementLevelValue;
 import seia.gra.world.worldelement.WorldElementNick;
+import seia.gra.world.worldrenderer.WorldRenderer;
 import seia.gra.world.worldrenderer.WorldRendererClonePlayer;
 import seia.gra.world.worldrenderer.WorldRendererSquareBasic;
 
@@ -36,7 +38,7 @@ public class World implements IWorld
 	public BlockPlayer player;
 	public BlockNextLevel nextLevel;
 	public MainClass mcInstance;
-	public List<BlockMovable> currentTiles;
+	public List<IBlockMovable> currentTiles;
 	public WorldRegistry registry = WorldRegistry.INSTANCE;
 	
 	public World(MainClass main)
@@ -53,7 +55,7 @@ public class World implements IWorld
 		setAvailableHits();
 		{
 			int x = new Random().nextInt(registry.getWorldRenderers().size() - 1);
-			currentRenderer = registry.getWorldRenderers().get(x);
+			currentRenderer = (WorldRenderer) registry.getWorldRenderers().get(x);
 		}
 		currentTiles = currentRenderer.getMovableBlocksOnMap();
 	}
@@ -244,9 +246,9 @@ public class World implements IWorld
 		player.paintComponent(g);
 	}
 	
-	public World setCurrentRenderer(WorldRenderer renderer)
+	public World setCurrentRenderer(IWorldRenderer renderer)
 	{
-		currentRenderer = renderer;
+		currentRenderer = (WorldRenderer) renderer;
 		return this;
 	}
 	
@@ -254,7 +256,7 @@ public class World implements IWorld
 	{
 		int rand = new Random().nextInt(registry.getWorldRenderers().size()) - 1;
 		if(rand < 0) rand = 0;
-		currentRenderer = registry.getWorldRenderers().get(rand);
+		currentRenderer = (WorldRenderer) registry.getWorldRenderers().get(rand);
 		if(currentRenderer.getRendererID() == registry.getWorldRenderers().get(rand).getRendererID()) 
 			return true;
 		return false;

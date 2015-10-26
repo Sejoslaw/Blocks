@@ -2,10 +2,11 @@ package seia.gra.block.movable;
 
 import java.awt.Color;
 
+import seia.gra.api.block.IBlockMovable;
 import seia.gra.block.Block;
 import seia.gra.world.World;
 
-public class BlockMovable extends Block
+public class BlockMovable extends Block implements IBlockMovable
 {
 	public BlockMovable(Color c, int x, int y, World world) 
 	{

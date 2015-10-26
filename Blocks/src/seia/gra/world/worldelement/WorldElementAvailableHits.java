@@ -3,8 +3,6 @@ package seia.gra.world.worldelement;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import seia.gra.api.world.WorldElement;
-
 public class WorldElementAvailableHits extends WorldElement
 {
 	private static final Color color = Color.CYAN;

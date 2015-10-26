@@ -5,9 +5,8 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
-import seia.gra.api.world.WorldRenderer;
+import seia.gra.api.block.IBlockMovable;
 import seia.gra.block.Block;
-import seia.gra.block.movable.BlockMovable;
 import seia.gra.world.World;
 
 public class WorldRendererHeart extends WorldRenderer
@@ -82,9 +81,9 @@ public class WorldRendererHeart extends WorldRenderer
 	}
 
 	@Override
-	public List<BlockMovable> getMovableBlocksOnMap() 
+	public List<IBlockMovable> getMovableBlocksOnMap() 
 	{
-		List<BlockMovable> l = new ArrayList<BlockMovable>();
+		List<IBlockMovable> l = new ArrayList<IBlockMovable>();
 		return l;
 	}
 }

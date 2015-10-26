@@ -7,29 +7,29 @@ public class WorldRegistry
 {
 	public static final WorldRegistry INSTANCE = new WorldRegistry();
 	
-	private List<WorldElement> worldElement = new ArrayList<WorldElement>();
-	private List<WorldRenderer> worldRenderer = new ArrayList<WorldRenderer>();
+	private List<IWorldElement> worldElement = new ArrayList<IWorldElement>();
+	private List<IWorldRenderer> worldRenderer = new ArrayList<IWorldRenderer>();
 	
 	private WorldRegistry()
 	{
 	}
 	
-	public void addWorldElement(WorldElement element)
+	public void addWorldElement(IWorldElement element)
 	{
 		worldElement.add(element);
 	}
 	
-	public List<WorldElement> getWorldElements()
+	public List<IWorldElement> getWorldElements()
 	{
 		return worldElement;
 	}
 	
-	public void addWorldRenderer(WorldRenderer renderer)
+	public void addWorldRenderer(IWorldRenderer renderer)
 	{
 		worldRenderer.add(renderer);
 	}
 	
-	public List<WorldRenderer> getWorldRenderers()
+	public List<IWorldRenderer> getWorldRenderers()
 	{
 		return worldRenderer;
 	}
