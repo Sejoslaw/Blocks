@@ -2,16 +2,16 @@ package seia.gra.api.world;
 
 import java.awt.Graphics;
 
-public abstract interface IWorld 
+public interface IWorld 
 {
-	abstract void reloadPanel();
-	abstract void killCurrentPlayer();
-	abstract void findNextPlayerOnMap();
-	abstract boolean addElements();
-	abstract boolean addRenderers();
-	abstract void paintComponent(Graphics g);
-	abstract IWorld setCurrentRenderer(IWorldRenderer renderer);
-	abstract int countPlayerClones();
-	abstract boolean arePlayerClonesOnWorld();
-	abstract boolean areAllPlayerGone();
+	public void reloadPanel();
+	public void killCurrentPlayer();
+	public void findNextPlayerOnMap();
+	public boolean addElements();
+	public boolean addRenderers();
+	public void paintComponent(Graphics g);
+	public IWorld setCurrentRenderer(IWorldRenderer renderer);
+	public int countPlayerClones();
+	public boolean arePlayerClonesOnWorld();
+	public boolean areAllPlayerGone();
 }

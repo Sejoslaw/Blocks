@@ -10,9 +10,7 @@ public class WorldRegistry
 	private List<IWorldElement> worldElement = new ArrayList<IWorldElement>();
 	private List<IWorldRenderer> worldRenderer = new ArrayList<IWorldRenderer>();
 	
-	private WorldRegistry()
-	{
-	}
+	private WorldRegistry(){}
 	
 	public void addWorldElement(IWorldElement element)
 	{

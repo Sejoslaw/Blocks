@@ -1,9 +1,14 @@
 package seia.gra.api.math;
 
-public abstract interface IMathObject<T>
-{
-	public abstract T sum(T whatToAdd);				// +
-	public abstract T subtract(T whatToSubtract);	// -
-	public abstract T multiply(T multiplyBy);		// *
-	public abstract T divide(T divideBy);			// /
+/**
+ * Try to use something like "return this;" in each method.
+ * @author Krzysztof Dobrzynski
+ * @param <T>
+ */
+public interface IMathObject<T>
+{	
+	public IMathObject<T> sum(T whatToAdd);				// +
+	public IMathObject<T> subtract(T whatToSubtract);	// -
+	public IMathObject<T> multiply(T multiplyBy);		// *
+	public IMathObject<T> divide(T divideBy);			// /
 }
