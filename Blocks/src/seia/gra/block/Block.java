@@ -19,7 +19,7 @@ public class Block implements IBlock
 	public static boolean isShowingLines = true;
 	
 	public int X, Y;
-	private Color c;
+	private Color color;
 	public World worldObj;
 	private boolean walkThrough;
 	
@@ -27,7 +27,7 @@ public class Block implements IBlock
 	
 	public Block(Color c, int x, int y, World world)
 	{
-		this.c = c;
+		this.color = c;
 		this.X = x;
 		this.Y = y;
 		worldObj = world;
@@ -37,7 +37,7 @@ public class Block implements IBlock
 
 	public void paintComponent(Graphics g)
 	{
-		g.setColor(c);
+		g.setColor(color);
 		g.fillRect(SIZE * X,SIZE * Y, SIZE, SIZE);
 		
 		if(isShowingLines)
@@ -45,6 +45,26 @@ public class Block implements IBlock
 			g.setColor(Color.RED);
 			g.drawRect(SIZE * X, SIZE * Y, SIZE, SIZE);
 		}
+	}
+	
+	public int getPosX()
+	{
+		return X;
+	}
+	
+	public int getPosY()
+	{
+		return Y;
+	}
+	
+	public Color getColor() 
+	{
+		return color;
+	}
+	
+	public World getWorld()
+	{
+		return worldObj;
 	}
 	
 	public boolean isPlayer()
@@ -143,15 +163,10 @@ public class Block implements IBlock
 		return false;
 	}
 	
-	public Color getColor() 
-	{
-		return c;
-	}
-	
 	public boolean setColor(Color newColor)
 	{
-		c = newColor;
-		if((c.getRGB() == newColor.getRGB())) return true;
+		color = newColor;
+		if((color.getRGB() == newColor.getRGB())) return true;
 		return false;
 	}
 	
