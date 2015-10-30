@@ -4,14 +4,14 @@ import java.awt.Graphics;
 
 public interface IWorld 
 {
-	public void reloadPanel();
-	public void killCurrentPlayer();
-	public void findNextPlayerOnMap();
-	public boolean addElements();
-	public boolean addRenderers();
-	public void paintComponent(Graphics g);
-	public IWorld setCurrentRenderer(IWorldRenderer renderer);
-	public int countPlayerClones();
-	public boolean arePlayerClonesOnWorld();
-	public boolean areAllPlayerGone();
+	void reloadPanel();
+	void killCurrentPlayer();
+	void findNextPlayerOnMap();
+	boolean addElements();
+	boolean addRenderers();
+	void paintComponent(Graphics g);
+	IWorld setCurrentRenderer(IWorldRenderer renderer);
+	int countPlayerClones();
+	boolean arePlayerClonesOnWorld();
+	boolean areAllPlayerGone();
 }
