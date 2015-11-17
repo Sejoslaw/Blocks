@@ -24,6 +24,10 @@ public abstract class Matrix<T> implements IMatrix<T>
 	
 	public abstract T[][] buildMatrix();
 	public abstract void print();
+	/**
+	 * @param matrix
+	 * @return this, should be fine.
+	 */
 	public abstract Matrix<T> create(T[][] matrix);
 	
 	public void printMatrix()

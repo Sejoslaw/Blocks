@@ -1,5 +1,7 @@
 package seia.gra.utils.matrix;
 
+import seia.gra.api.math.IMathObject;
+
 /*
  * Created by: Krzysztof Dobrzynski 2015
  */
@@ -16,6 +18,16 @@ public class MatrixHelper
 				else
 					tab[i][j] = 1;
 			}
+		return tab;
+	}
+	
+	public static int[][] setZeroOneMatrix(int[][] matrixT)
+	{
+		int[][] tab = new int[matrixT.length][matrixT[0].length];
+		for(int i = 0; i < tab.length; i++)
+			for(int j = 0; j < tab[0].length; j++)
+				if(matrixT[i][j] != 0)
+					tab[i][j] = 1;
 		return tab;
 	}
 	
@@ -53,8 +65,7 @@ public class MatrixHelper
 		int rowSize = matrix[0].length - 1;
 		for(int i = 0; i < matrixSize; i++)
 			for(int j = 0; j < matrixSize; j++)
-				if(i < (rowSize / 2))
-					matrix[i][j] = matrix[rowSize - i][j];
+				matrix[i][j] = matrix[rowSize - 1 - i][j];
 		for(int i = 0; i < matrixSize; i++)
 			for(int j = 0; j < matrixSize; j++)
 				matrixT[i][j] = (T) matrix[i][j];
@@ -68,8 +79,18 @@ public class MatrixHelper
 		Object[][] mat = new Object[sizeX][sizeY];
 		for(int i = 0; i < sizeY; i++)
 			for(int j = 0; j < sizeX; j++)
-				if(i < (sizeX / 2))
-					mat[i][j] = (Object) matrixT[sizeX - i][j];
+				mat[i][j] = (Object) matrixT[sizeX - 1 - i][j];
+		return mat;
+	}
+	
+	public static int[][] reverseShapeVertically(int[][] matrixT)
+	{
+		int sizeY = matrixT.length;
+		int sizeX = matrixT[0].length;
+		int[][] mat = new int[sizeX][sizeY];
+		for(int i = 0; i < sizeY; i++)
+			for(int j = 0; j < sizeX; j++)
+				mat[i][j] = matrixT[sizeX - 1 - i][j];
 		return mat;
 	}
 	
@@ -81,8 +102,7 @@ public class MatrixHelper
 		int rowSize = matrix[0].length - 1;
 		for(int i = 0; i < matrixSize; i++)
 			for(int j = 0; j < matrixSize; j++)
-				if(j < (rowSize / 2))
-					matrix[i][j] = matrix[i][rowSize - j];
+				matrix[i][j] = matrix[i][rowSize - 1 - j];
 		for(int i = 0; i < matrixSize; i++)
 			for(int j = 0; j < matrixSize; j++)
 				matrixT[i][j] = (T) matrix[i][j];
@@ -96,8 +116,18 @@ public class MatrixHelper
 		Object[][] mat = new Object[sizeX][sizeY];
 		for(int i = 0; i < sizeY; i++)
 			for(int j = 0; j < sizeX; j++)
-				if(i < (sizeY / 2))
-					mat[i][j] = (Object) matrixT[i][sizeY - j];
+				mat[i][j] = (Object) matrixT[i][sizeY - 1 - j];
+		return mat;
+	}
+	
+	public static int[][] reverseShapeHorizontally(int[][] matrixT)
+	{
+		int sizeY = matrixT.length;
+		int sizeX = matrixT[0].length;
+		int[][] mat = new int[sizeX][sizeY];
+		for(int i = 0; i < sizeY; i++)
+			for(int j = 0; j < sizeX; j++)
+				mat[i][j] = matrixT[i][sizeY - 1 - j];
 		return mat;
 	}
 	
@@ -112,6 +142,19 @@ public class MatrixHelper
 		for(int i = 0; i < matrixSize; i++)
 			for(int j = 0; j < matrixSize; j++)
 				matrixT[i][j] = (T) matrix[i][j];
+		return matrixT;
+	}
+	
+	public static int[][] rotateRightSquareMatrix(int[][] matrixT)
+	{
+		int[][] matrix = new int[matrixT.length][matrixT.length];
+		int matrixSize = matrixT.length;
+		for(int i = 0; i < matrixSize; i++)
+			for(int j = 0; j < matrixSize; j++)
+				matrix[i][j] = matrixT[matrixSize - j - 1][i];
+		for(int i = 0; i < matrixSize; i++)
+			for(int j = 0; j < matrixSize; j++)
+				matrixT[i][j] = matrix[i][j];
 		return matrixT;
 	}
 	
@@ -140,6 +183,19 @@ public class MatrixHelper
 		return matrixT;
 	}
 	
+	public static int[][] rotateLeftSquareMatrix(int[][] matrixT)
+	{
+		int[][] matrix = new int[matrixT.length][matrixT.length];
+		int matrixSize = matrixT.length;
+		for(int i = 0; i < matrixSize; i++)
+			for(int j = 0; j < matrixSize; j++)
+				matrix[i][j] = matrixT[j][matrixSize - i - 1];
+		for(int i = 0; i < matrixSize; i++)
+			for(int j = 0; j < matrixSize; j++)
+				matrixT[i][j] = matrix[i][j];
+		return matrixT;
+	}
+	
 	public static <T> Object[][] rotateLeft(T[][] matrixT)
 	{
 		int sizeY = matrixT.length;
@@ -159,10 +215,17 @@ public class MatrixHelper
 		for(int i = 0; i < matrixSize; i++)
 			for(int j = 0; j < matrixSize; j++)
 				matrix[i][j] = (Object) matrixT[j][i];
+		return (T[][]) matrix;
+	}
+	
+	public static int[][] transposeSquareMatrix(int[][] matrixT)
+	{
+		int[][] matrix = new int[matrixT.length][matrixT.length];
+		int matrixSize = matrixT.length;
 		for(int i = 0; i < matrixSize; i++)
 			for(int j = 0; j < matrixSize; j++)
-				matrixT[i][j] = (T) matrix[i][j];
-		return matrixT;
+				matrix[i][j] = matrixT[j][i];
+		return matrix;
 	}
 	
 	public static <T> Object[][] transpose(T[][] matrixT)
@@ -269,4 +332,58 @@ public class MatrixHelper
 		return min;
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked", "null" })
+	public static <T extends IMathObject> Object[][] multiply(T[][] mat1, T[][] mat2)
+	{
+		int sizeY = mat1.length;
+		int sizeX = mat1[0].length;
+		IMathObject tmp = mat1[0][0];
+		Object[][] result = new Object[sizeX + 1][sizeY + 1];
+		for(int i = 0; i < sizeX + 1; i++)
+			for(int j = 0; j < sizeX + 1; j++)
+			{
+				tmp = null;
+				for(int k = 0; k < sizeY + 1; k++)
+				{
+					tmp.add(mat1[k][j].multiply(mat2[i][k]));
+				}
+				result[i][j] = tmp;
+			}
+		return result;
+	}
+	
+	public static int[][] multiply(int[][] mat1, int[][] mat2)
+	{
+		int sizeY = mat1.length;
+		int sizeX = mat1[0].length;
+		int tmp = 0;
+		int[][] result = new int[sizeX][sizeY];
+		for(int i = 0; i < sizeX; i++)
+			for(int j = 0; j < sizeX; j++)
+			{
+				tmp = 0;
+				for(int k = 0; k < sizeY; k++)
+				{
+					tmp += mat1[k][j] * mat2[i][k];
+				}
+				result[i][j] = tmp;
+			}
+		return result;
+	}
+	
+	public static int[][] toThePowerOf(int[][] matrixT, int power)
+	{
+		int sizeY = matrixT.length;
+		int sizeX = matrixT[0].length;
+		int[][] result = new int[sizeX][sizeY];
+		if(power == 1) return matrixT;
+		if(power == 0) return result;
+		if(power > 1)
+		{
+			result = multiply(matrixT, matrixT);
+			for(int i = 0; i < power - 2; i++)
+				result = multiply(result, matrixT);
+		}
+		return result;
+	}
 }
