@@ -73,5 +73,4 @@ public class LogicHandler
 	{
 		return !XOR(o1, o2);
 	}
-	
 }
