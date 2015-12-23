@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import seia.gra.MainClass;
+import seia.gra.api.IMainClass;
 import seia.gra.api.block.IBlockMovable;
+import seia.gra.api.block.IBlockPlayer;
 import seia.gra.api.world.IWorld;
 import seia.gra.api.world.IWorldRenderer;
 import seia.gra.api.world.WorldRegistry;
@@ -37,27 +38,32 @@ public class World implements IWorld
 	boolean b1;
 	public BlockPlayer player;
 	public BlockNextLevel nextLevel;
-	public MainClass mcInstance;
+	public IMainClass mcInstance;
 	public List<IBlockMovable> currentTiles;
 	public WorldRegistry registry = WorldRegistry.INSTANCE;
 	
-	public World(MainClass main)
+	public World(IMainClass main)
 	{
-		SZER = main.SZER;
-		WYS = main.WYS;
-		b1 = main.setHeart;
+		SZER = main.getSZER();
+		WYS = main.getWYS();
+		b1 = main.getSetHeart();
 		mcInstance = main;
 		player = new BlockPlayer(1, 1, this);
 		nextLevel = new BlockNextLevel(player.getWidth(), player.getRandHeight(), this);
 		addElements();
 		addRenderers();
-		setNick(main.nick);
+		setNick(main.getNick());
 		setAvailableHits();
 		{
 			int x = new Random().nextInt(registry.getWorldRenderers().size() - 1);
 			currentRenderer = (WorldRenderer) registry.getWorldRenderers().get(x);
 		}
 		currentTiles = currentRenderer.getMovableBlocksOnMap();
+	}
+	
+	public IBlockPlayer getBlockPlayer()
+	{
+		return player;
 	}
 	
 	public void reloadPanel()

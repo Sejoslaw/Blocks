@@ -1,17 +1,20 @@
 package seia.gra;
 
+import java.awt.Canvas;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferStrategy;
 import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.Timer;
 
+import seia.gra.api.IMainClass;
+import seia.gra.api.world.IWorld;
 import seia.gra.block.Block;
 import seia.gra.block.movable.BlockEnemy;
 import seia.gra.event.EventCheckCollisionWithEnemy;
@@ -22,13 +25,7 @@ import seia.gra.world.World;
 import seia.gra.world.worldrenderer.WorldRendererHeart;
 
 /**
- * Do zaimplementowania:
- *  - Dokoñczyæ dodawanie przeciwnika w wolne miejsce po kazdym wolnym ruchu.
- * 
- * 
  * Pomysly:
- * -Trudnosc na roznych levelach
- * -Kazdy klocek jako oddzielny (sciana, swiat, powietrze, etc.)
  * -Manu
  * -W menu dorobic konstruktor poziomow (+ sterowanie)
  * 		(klikniecie -> Postaw klocek, 
@@ -40,24 +37,23 @@ import seia.gra.world.worldrenderer.WorldRendererHeart;
  * 
  * @author Krzysztof Dobrzynski
  */
-public class MainClass extends JPanel implements ActionListener, KeyListener
+public class MainClass extends Canvas implements Runnable, ActionListener, KeyListener, IMainClass
 {
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = -3273319500205136710L;
+	public static final int SZER = 800;
+	public static final int WYS = 600;
+	public static final int TICKS_PER_SECOND = 60;
 	private static final String VERSION = "v0.0.11";
 	
-	public Timer tm = new Timer(5, null); //miliseconds
-	public int SZER, WYS;
+	private boolean running = false;
+	public JFrame frame;
+	public Thread mainThread;
 	public World worldObj;
 	public boolean setHeart;
-	public JFrame frame;
 	public String nick;
-
-	public MainClass(int szer, int wys, boolean setHeart, String nick)
+	
+	public MainClass(boolean setHeart, String nick)
 	{
-		tm.start();
-		SZER = szer;
-		WYS = wys;
 		this.setHeart = setHeart;
 		this.nick = nick;
 		FilesHandler.CONFIG.checkConfig(this); //FileConfig.checkConfig(this);
@@ -66,25 +62,110 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 		this.addKeyListener(this);
 		this.setFocusable(true);
 		this.setFocusTraversalKeysEnabled(false);
-		
-		frame = new JFrame("GoRight !!! " + VERSION);
-		frame.setSize(szer, wys);
-		addItemsToFrame(); //frame.add(this);
+		setPreferredSize(new Dimension(SZER, WYS));
+	}
+	
+	public void start()
+	{
+		running = true;
+		mainThread = new Thread(this);
+		mainThread.start();
+	}
+	
+	private void init()
+	{
+		frame = new JFrame("GoRight !!!");
+		frame.setSize(SZER, WYS);
 		frame.setResizable(false);
+		frame.add(this);
+		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
-
-	public void addItemsToFrame()
+	
+	public void run()
 	{
-		frame.add(this);
+		init();
+		
+		long lastTime = System.nanoTime();
+		double delta = 0.0;
+		double ns = 1000000000.0 / TICKS_PER_SECOND;
+		long timer = System.currentTimeMillis();
+		int ticks = 0;
+		int frames = 0;
+		while (running) 
+		{
+			long now = System.nanoTime();
+			delta += (now - lastTime) / ns;
+			lastTime = now;
+			if (delta >= 1) 
+			{
+				tick();
+				ticks++;
+				delta--;
+			}
+			render();
+			frames++;
+			if (System.currentTimeMillis() - timer > 1000) 
+			{
+				timer += 1000;
+				System.out.println(ticks + " ticks, " + frames + " fps");
+				frames = 0;
+				ticks = 0;
+			}
+		}
+	}
+	
+	private void tick()
+	{
+	}
+	
+	private void render()
+	{
+		BufferStrategy bs = getBufferStrategy();
+		if (bs == null) 
+		{
+			createBufferStrategy(3);
+			return;
+		}
+		Graphics g = bs.getDrawGraphics();
+		
+		worldObj.paintComponent(g);
+		g.dispose();
+		bs.show();
+	}
+	
+	public static void main(String[] args) 
+	{
+		boolean b1 = false;
+		String s1;
+		try
+		{
+			s1 = JOptionPane.showInputDialog(null, "Podaj nick:", "GoRight !!! " + VERSION, JOptionPane.YES_OPTION);
+			if(s1.toLowerCase().equals(WorldRendererHeart.input.toLowerCase()))
+			{
+				b1 = true;
+			}
+			if(s1.toLowerCase().equals(""))
+			{
+				s1 = "Tester #" + new Random().nextInt();
+			}
+		}
+		catch(Exception e)
+		{
+			s1 = "Tester #" + new Random().nextInt();
+		}
+		
+		MainClass mc = new MainClass(b1, s1);
+		mc.start();
 	}
 	
 	public void newGame()
 	{
 		JOptionPane.showMessageDialog(this,"Game Over :(", "gAME oVER", JOptionPane.YES_OPTION);
 		//FilesHandler.HIGHSCORE.reloadHighscore(this); //TODO
-		FilesHandler.CONFIG.checkConfig(this); //FileConfig.checkConfig(this);
+		FilesHandler.CONFIG.checkConfig(this);
 		worldObj.reloadPanel();
 		worldObj.updateLevelValue(1);
 		worldObj.setAvailableHits();
@@ -94,12 +175,25 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	{
 		return setHeart;
 	}
-
-	public void paintComponent(Graphics g)
+	
+	public int getSZER()
 	{
-		worldObj.paintComponent(g);
-		g.dispose();
-		repaint();
+		return SZER;
+	}
+	
+	public int getWYS()
+	{
+		return WYS;
+	}
+	
+	public String getNick()
+	{
+		return nick;
+	}
+	
+	public IWorld getWorldObj()
+	{
+		return worldObj;
 	}
 	
 	public int getWidthInBlocks()
@@ -111,7 +205,7 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 	{
 		return WYS / Block.BLOCK_SIZE;
 	}
-
+	
 	@Override
 	public void keyPressed(KeyEvent e) 
 	{
@@ -191,32 +285,5 @@ public class MainClass extends JPanel implements ActionListener, KeyListener
 			else
 				Block.isShowingLines = true;
 		}
-	}
-	
-	public static void main(String[] args) 
-	{
-		int szer = 400;
-		int wys = 600;
-		boolean b1 = false;
-		
-		String s1;
-		try
-		{
-			s1 = JOptionPane.showInputDialog(null, "Podaj nick:", "GoRight !!! " + VERSION, JOptionPane.YES_OPTION);
-			if(s1.toLowerCase().equals(WorldRendererHeart.input.toLowerCase()))
-			{
-				b1 = true;
-			}
-			if(s1.toLowerCase().equals(""))
-			{
-				s1 = "Tester #" + new Random().nextInt();
-			}
-		}
-		catch(Exception e)
-		{
-			s1 = "Tester #" + new Random().nextInt();
-		}
-		MainClass mc = new MainClass(szer, wys, b1, s1);
-		JOptionPane.showMessageDialog(mc, "Nie dotykaj czerwonych !!! Zolty -> Next Level.", "GoRight !!! " + VERSION, JOptionPane.YES_OPTION);
 	}
 }

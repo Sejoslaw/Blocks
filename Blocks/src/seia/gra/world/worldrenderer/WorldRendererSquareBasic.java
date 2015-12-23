@@ -56,12 +56,12 @@ public class WorldRendererSquareBasic extends WorldRenderer
 		int ile = getMaxNumberOfEnemies();
 		for(int i = 0; i < ile; i++) //procentowo, rozne rozmiary planszy (nastepny poziom -> wiecej czerwonych)
 		{
-			int rX = new Random().nextInt(worldObj.mcInstance.SZER / Block.BLOCK_SIZE);
+			int rX = new Random().nextInt(worldObj.mcInstance.getSZER() / Block.BLOCK_SIZE);
 			if(rX < 1) rX = 1;
-			if(rX > (worldObj.mcInstance.SZER / Block.BLOCK_SIZE) - 1) rX = (worldObj.mcInstance.SZER / Block.BLOCK_SIZE) - 1;
-			int rY = new Random().nextInt(worldObj.mcInstance.WYS / Block.BLOCK_SIZE);
+			if(rX > (worldObj.mcInstance.getSZER() / Block.BLOCK_SIZE) - 1) rX = (worldObj.mcInstance.getSZER() / Block.BLOCK_SIZE) - 1;
+			int rY = new Random().nextInt(worldObj.mcInstance.getWYS() / Block.BLOCK_SIZE);
 			if(rY < 1) rY = 1;
-			if(rY > (worldObj.mcInstance.WYS / Block.BLOCK_SIZE) - 1) rY = (worldObj.mcInstance.WYS / Block.BLOCK_SIZE) - 1;
+			if(rY > (worldObj.mcInstance.getWYS() / Block.BLOCK_SIZE) - 1) rY = (worldObj.mcInstance.getWYS() / Block.BLOCK_SIZE) - 1;
 			if(		   (rX != 1) 
 					&& (rY != 1) 
 					&& (rX != 0) 
