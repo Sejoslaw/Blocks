@@ -130,7 +130,10 @@ public class MainClass extends Canvas implements Runnable, ActionListener, KeyLi
 			return;
 		}
 		Graphics g = bs.getDrawGraphics();
-		worldObj.paintComponent(g);
+		{
+			//Render stuff
+			worldObj.paintComponent(g);
+		}
 		g.dispose();
 		bs.show();
 	}
