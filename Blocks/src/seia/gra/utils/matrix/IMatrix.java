@@ -6,7 +6,10 @@ package seia.gra.utils.matrix;
 public interface IMatrix<T> 
 {
 	public int getSizeX();
+	
 	public int getSizeY();
+	
 	public T[][] buildMatrix();
+	
 	public void print();
 }

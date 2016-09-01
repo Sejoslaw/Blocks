@@ -6,17 +6,14 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import seia.gra.MainClass;
+import seia.gra.file.BFile;
 import seia.gra.file.FilesHandler;
-import seia.gra.file.MyFile;
 import seia.gra.utils.SortingHelper;
 
-public class FileHighscore extends MyFile
+public class FileHighscore extends BFile
 {
 	private static final long serialVersionUID = 3571658019737408039L;
 	private ArrayList<ObjectHighscoreLine> highscoreLines = new ArrayList<ObjectHighscoreLine>();
-	/**
-	 * Zawsze bedzie ostatnia pozycja nazwy gracza
-	 */
 	private final int nickPosition = 3;
 	private final int arguments = 3;
 
@@ -42,9 +39,6 @@ public class FileHighscore extends MyFile
 		}
 	}
 	
-	/**
-	 * Zapis listy wynikow do pliku
-	 */
 	public void save() //TODO
 	{
 		try 
@@ -69,9 +63,6 @@ public class FileHighscore extends MyFile
 		}
 	}
 	
-	/**
-	 * Przeladowanie listy wynikow
-	 */
 	public void reload() //TODO
 	{
 		int size = highscoreLines.size();
@@ -83,17 +74,13 @@ public class FileHighscore extends MyFile
 			highscoreLines.get(i - 1).positionOnList = i;
 	}
 	
-	/**
-	 * Dodanie do listy wynikow
-	 */
 	public void addToHighscore(MainClass mc)
 	{
 		ObjectHighscoreLine newLine = new ObjectHighscoreLine(-1, mc.worldObj.getCurrentLevelValue(), mc.nick);
 		highscoreLines.add(newLine);
 	}
-	/**
-	 * Napelnienie listy wynikow
-	 */
+	
+	@SuppressWarnings("resource")
 	public void readHighscore() //TODO
 	{
 		ArrayList<String> lines = new ArrayList<String>();

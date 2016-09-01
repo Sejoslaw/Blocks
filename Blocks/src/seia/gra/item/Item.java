@@ -6,12 +6,12 @@ public class Item
 {
 	public final int itemID;
 	private Item itemContaining = null;
-	public static ArrayList<Item> itemList = new ArrayList<Item>();
+	public static ArrayList<Item> ITEMS = new ArrayList<Item>();
 	
 	public Item(int id)
 	{
 		itemID = id;
-		itemList.add(this);
+		ITEMS.add(this);
 	}
 	
 	public Item setContainingItem(Item item)
@@ -27,6 +27,6 @@ public class Item
 	
 	static
 	{
-		//TODO: Tu beda dodawane poszczegolne przedmioty
+		//TODO: Items will be added here
 	}
 }

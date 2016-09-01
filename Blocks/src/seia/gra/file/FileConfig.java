@@ -6,10 +6,10 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import seia.gra.api.IMainClass;
+import seia.gra.MainClass;
 import seia.gra.block.Block;
 
-public class FileConfig extends MyFile
+public class FileConfig extends BFile
 {
 	public List<String> configLines = new ArrayList<String>();
 	public int avaiableHits = 10;
@@ -31,7 +31,7 @@ public class FileConfig extends MyFile
 		configLines.add("basic_available_hits=" + avaiableHits);
 	}
 	
-	public void checkConfig(IMainClass mc)
+	public void checkConfig(MainClass mc)
 	{
 		if(FilesHandler.CONFIG.exists())
 		{
@@ -60,7 +60,8 @@ public class FileConfig extends MyFile
 		}
 	}
 
-	public String[] readConfig(IMainClass mc)
+	@SuppressWarnings("resource")
+	public String[] readConfig(MainClass mc)
 	{
 		List<String> list = new ArrayList<String>();
 		String[] tab = null;
@@ -87,7 +88,7 @@ public class FileConfig extends MyFile
 		return tab;
 	}
 	
-	public boolean getShowLines(IMainClass mc)
+	public boolean getShowLines(MainClass mc)
 	{
 		String[] tab = readConfig(mc);
 		boolean showLines = Block.isShowingLines;
@@ -102,7 +103,7 @@ public class FileConfig extends MyFile
 		return showLines;
 	}
 	
-	public int getBasicAvailableHits(IMainClass mc)
+	public int getBasicAvailableHits(MainClass mc)
 	{
 		String[] tab = readConfig(mc);
 		int hits = avaiableHits;

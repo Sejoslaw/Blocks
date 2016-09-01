@@ -13,7 +13,6 @@ public class BlockNextLevel extends BlockNonMovable
 		super(color, x, y, world);
 	}
 	
-	@Override
 	public Color getColor()
 	{
 		return color;

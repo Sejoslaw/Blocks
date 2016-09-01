@@ -6,12 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import seia.gra.api.block.IBlock;
 import seia.gra.block.movable.BlockMovable;
 import seia.gra.block.movable.player.BlockPlayer;
 import seia.gra.world.World;
 
-public class Block implements IBlock
+public class Block
 {
 	private static final int SIZE = 50;
 	public static final int BLOCK_SIZE = SIZE;
@@ -23,7 +22,7 @@ public class Block implements IBlock
 	public World worldObj;
 	private boolean walkThrough;
 	
-	public static List<Block> blocksInGame = new ArrayList<Block>();
+	public static List<Block> BLOCKS = new ArrayList<Block>();
 	
 	public Block(Color c, int x, int y, World world)
 	{
@@ -32,14 +31,13 @@ public class Block implements IBlock
 		this.Y = y;
 		worldObj = world;
 		walkThrough = true;
-		blocksInGame.add(this);
+		BLOCKS.add(this);
 	}
 
 	public void paintComponent(Graphics g)
 	{
 		g.setColor(color);
 		g.fillRect(SIZE * X,SIZE * Y, SIZE, SIZE);
-		
 		if(isShowingLines)
 		{
 			g.setColor(Color.RED);
@@ -135,19 +133,25 @@ public class Block implements IBlock
 	
 	public static Color getPlayerColor()
 	{
-		for(int x = 0; x < blocksInGame.size(); x++)
-			if(blocksInGame.get(x) instanceof BlockPlayer)
-				return blocksInGame.get(x).getColor();
+		for(int x = 0; x < BLOCKS.size(); x++)
+		{
+			if(BLOCKS.get(x) instanceof BlockPlayer)
+			{
+				return BLOCKS.get(x).getColor();
+			}
+		}
 		return null;
 	}
 	
 	public static Block getBlockByCoords(int posX, int posY)
 	{
-		for(int i = 0; i < blocksInGame.size(); i++)
+		for(int i = 0; i < BLOCKS.size(); i++)
 		{
-			Block b = blocksInGame.get(i);
+			Block b = BLOCKS.get(i);
 			if((posX == b.X) && (posY == b.Y))
+			{
 				return b;
+			}
 		}
 		return null;
 	}
@@ -158,7 +162,9 @@ public class Block implements IBlock
 		{
 			BlockMovable bm = (BlockMovable) worldObj.currentTiles.get(i);
 			if((posY == bm.Y) && (posX == bm.X))
+			{
 				return true;
+			}
 		}
 		return false;
 	}
@@ -166,7 +172,10 @@ public class Block implements IBlock
 	public boolean setColor(Color newColor)
 	{
 		color = newColor;
-		if((color.getRGB() == newColor.getRGB())) return true;
+		if((color.getRGB() == newColor.getRGB()))
+		{
+			return true;
+		}
 		return false;
 	}
 	
@@ -189,7 +198,10 @@ public class Block implements IBlock
 	{
 		int x = (3 * worldObj.mcInstance.getHeightInBlocks()) / 4;
 		int rand = new Random().nextInt(x);
-		if(rand <= 0) rand = 1;
+		if(rand <= 0)
+		{
+			rand = 1;
+		}
 		return rand;
 	}
 }

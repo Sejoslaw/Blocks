@@ -2,11 +2,10 @@ package seia.gra.block.movable;
 
 import java.awt.Color;
 
-import seia.gra.api.block.IBlockMovable;
 import seia.gra.block.Block;
 import seia.gra.world.World;
 
-public class BlockMovable extends Block implements IBlockMovable
+public class BlockMovable extends Block
 {
 	public BlockMovable(Color c, int x, int y, World world) 
 	{
@@ -19,7 +18,9 @@ public class BlockMovable extends Block implements IBlockMovable
 		{
 			boolean can = true;
 			if(getBlockOnTop().getColor() == Color.BLACK) 
+			{
 				can = false;
+			}
 			if(can)
 			{
 				Y--;
@@ -29,19 +30,19 @@ public class BlockMovable extends Block implements IBlockMovable
 		return false;
 	}
 	
-	/**
-	 * Zakladamy, ze wiemy, ze to jest przeciwnik.
-	 * @return
-	 */
 	public boolean moveEnemyUp()
 	{
 		if(Y - 1 > 0)
 		{
 			boolean can = true;
 			if(getBlockOnTop().getColor() == Color.BLACK) 
+			{
 				can = false;
+			}
 			if(hasMovable(X, Y - 1)) 
+			{
 				can = false;
+			}
 			if(can)
 			{
 				Y--;
@@ -57,7 +58,9 @@ public class BlockMovable extends Block implements IBlockMovable
 		{
 			boolean can = true;
 			if(getBlockUnder().getColor() == Color.BLACK)
+			{
 				can = false;
+			}
 			if(can)
 			{
 				Y++;
@@ -73,9 +76,13 @@ public class BlockMovable extends Block implements IBlockMovable
 		{
 			boolean can = true;
 			if(getBlockUnder().getColor() == Color.BLACK)
+			{
 				can = false;
+			}
 			if(hasMovable(X, Y + 1))
+			{
 				can = false;
+			}
 			if(can)
 			{
 				Y++;
@@ -91,7 +98,9 @@ public class BlockMovable extends Block implements IBlockMovable
 		{
 			boolean can = true;
 			if(getBlockOnLeft().getColor() == Color.BLACK)
+			{
 				can = false;
+			}
 			if(can)
 			{
 				X--;
@@ -107,9 +116,13 @@ public class BlockMovable extends Block implements IBlockMovable
 		{
 			boolean can = true;
 			if(getBlockOnLeft().getColor() == Color.BLACK)
+			{
 				can = false;
+			}
 			if(hasMovable(X - 1, Y))
+			{
 				can = false;
+			}
 			if(can)
 			{
 				X--;
@@ -125,7 +138,9 @@ public class BlockMovable extends Block implements IBlockMovable
 		{
 			boolean can = true;
 			if(getBlockOnRight().getColor() == Color.BLACK)
+			{
 				can = false;
+			}
 			if(can)
 			{
 				X++;
@@ -141,9 +156,13 @@ public class BlockMovable extends Block implements IBlockMovable
 		{
 			boolean can = true;
 			if(getBlockOnRight().getColor() == Color.BLACK)
+			{
 				can = false;
+			}
 			if(hasMovable(X + 1, Y))
+			{
 				can = false;
+			}
 			if(can)
 			{
 				X++;

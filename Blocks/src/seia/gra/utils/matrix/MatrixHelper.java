@@ -1,6 +1,6 @@
 package seia.gra.utils.matrix;
 
-import seia.gra.api.math.IMathObject;
+import seia.gra.utils.IMathObject;
 
 /*
  * Created by: Krzysztof Dobrzynski 2015

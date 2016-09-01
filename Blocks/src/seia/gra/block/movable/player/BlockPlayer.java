@@ -2,18 +2,18 @@ package seia.gra.block.movable.player;
 
 import java.awt.Color;
 
-import seia.gra.api.block.IBlockPlayer;
 import seia.gra.block.movable.BlockMovable;
 import seia.gra.world.World;
 
-public class BlockPlayer extends BlockMovable implements IPlayer, IBlockPlayer
+public class BlockPlayer extends BlockMovable
 {
-	private static Color color = Color.GREEN;
+	private static Color COLOR = Color.GREEN;
+	
 	public InventoryPlayer inventory;
 	
 	public BlockPlayer(int x, int y, World world) 
 	{
-		super(color, x, y, world);
+		super(COLOR, x, y, world);
 		inventory = new InventoryPlayer(this);
 	}
 	
@@ -23,13 +23,11 @@ public class BlockPlayer extends BlockMovable implements IPlayer, IBlockPlayer
 		inventory = new InventoryPlayer(this);
 	}
 	
-	@Override
 	public Color getColor()
 	{
-		return color;
+		return COLOR;
 	}
 	
-	@Override
 	public boolean isPlayer() 
 	{
 		return true;

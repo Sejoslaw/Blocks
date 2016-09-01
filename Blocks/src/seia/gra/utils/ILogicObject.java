@@ -1,4 +1,4 @@
-package seia.gra.api.math;
+package seia.gra.utils;
 
 public interface ILogicObject 
 {

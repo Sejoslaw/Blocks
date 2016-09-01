@@ -32,8 +32,12 @@ public class ItemStack
 	public boolean equals(ItemStack stack)
 	{
 		if(item.itemID == stack.item.itemID)
+		{
 			if(stackSize == stack.stackSize)
+			{
 				return true;
+			}
+		}
 		return false;
 	}
 	
@@ -64,7 +68,9 @@ public class ItemStack
     public void increaseStackSize()
     {
     	if(stackSize < stackLimit)
+    	{
     		stackSize++;
+    	}
     }
 
 	public void addSingleItem(Item item2) 

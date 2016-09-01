@@ -23,8 +23,12 @@ public class InventoryPlayer
 	public int getFirstEmptySlot()
 	{
 		for(int i = 0; i < inventorySize; i++)
+		{
 			if(currentInventory[i] == null)
+			{
 				return i;
+			}
+		}
 		return 0;
 	}
 	
@@ -32,9 +36,15 @@ public class InventoryPlayer
 	{
 		ItemStack st = currentInventory[slot];
 		if(st != null)
+		{
 			if(st.item.itemID == item.itemID)
+			{
 				if(st.stackSize < ItemStack.stackLimit)
+				{
 					return true;
+				}
+			}
+		}
 		return false;
 	}
 	

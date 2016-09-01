@@ -1,17 +1,13 @@
 package seia.gra.event;
 
 import seia.gra.MainClass;
-import seia.gra.api.event.Event;
 import seia.gra.block.movable.BlockClonePlayer;
 import seia.gra.block.movable.BlockEnemy;
 import seia.gra.block.movable.player.BlockPlayer;
 
 public class EventCheckCollisionWithEnemy extends Event
 {
-	/**
-	 * Szansa w procentach z jaka zostana dodane punkty po zjedzeniu klona.
-	 */
-	public static final int chance = 40;
+	public static final int CHANCE = 40;
 	
 	private static void action(MainClass mc)
 	{
@@ -38,7 +34,7 @@ public class EventCheckCollisionWithEnemy extends Event
 						if(enemy instanceof BlockClonePlayer)
 						{
 							mc.worldObj.killEnemy(enemy);
-							mc.worldObj.decreaseAfterHit(Event.getPoints(-1, chance));
+							mc.worldObj.decreaseAfterHit(Event.getPoints(-1, CHANCE));
 						}
 						else
 						{
@@ -59,7 +55,7 @@ public class EventCheckCollisionWithEnemy extends Event
 						if(enemy instanceof BlockClonePlayer)
 						{
 							mc.worldObj.killEnemy(enemy);
-							mc.worldObj.decreaseAfterHit(Event.getPoints(-1, chance));
+							mc.worldObj.decreaseAfterHit(Event.getPoints(-1, CHANCE));
 						}
 						else
 						{
@@ -97,7 +93,7 @@ public class EventCheckCollisionWithEnemy extends Event
 						if(enemy instanceof BlockClonePlayer)
 						{
 							mc.worldObj.killEnemy(enemy);
-							mc.worldObj.decreaseAfterHit(Event.getPoints(-1, chance));
+							mc.worldObj.decreaseAfterHit(Event.getPoints(-1, CHANCE));
 						}
 						else
 						{
@@ -118,7 +114,7 @@ public class EventCheckCollisionWithEnemy extends Event
 						if(enemy instanceof BlockClonePlayer)
 						{
 							mc.worldObj.killEnemy(enemy);
-							mc.worldObj.decreaseAfterHit(Event.getPoints(-1, chance));
+							mc.worldObj.decreaseAfterHit(Event.getPoints(-1, CHANCE));
 						}
 						else
 						{
@@ -156,7 +152,7 @@ public class EventCheckCollisionWithEnemy extends Event
 						if(enemy instanceof BlockClonePlayer)
 						{
 							mc.worldObj.killEnemy(enemy);
-							mc.worldObj.decreaseAfterHit(Event.getPoints(-1, chance));
+							mc.worldObj.decreaseAfterHit(Event.getPoints(-1, CHANCE));
 						}
 						else
 						{
@@ -177,7 +173,7 @@ public class EventCheckCollisionWithEnemy extends Event
 						if(enemy instanceof BlockClonePlayer)
 						{
 							mc.worldObj.killEnemy(enemy);
-							mc.worldObj.decreaseAfterHit(Event.getPoints(-1, chance));
+							mc.worldObj.decreaseAfterHit(Event.getPoints(-1, CHANCE));
 						}
 						else
 						{
@@ -215,7 +211,7 @@ public class EventCheckCollisionWithEnemy extends Event
 						if(enemy instanceof BlockClonePlayer)
 						{
 							mc.worldObj.killEnemy(enemy);
-							mc.worldObj.decreaseAfterHit(Event.getPoints(-1, chance));
+							mc.worldObj.decreaseAfterHit(Event.getPoints(-1, CHANCE));
 						}
 						else
 						{
@@ -236,7 +232,7 @@ public class EventCheckCollisionWithEnemy extends Event
 						if(enemy instanceof BlockClonePlayer)
 						{
 							mc.worldObj.killEnemy(enemy);
-							mc.worldObj.decreaseAfterHit(Event.getPoints(-1, chance));
+							mc.worldObj.decreaseAfterHit(Event.getPoints(-1, CHANCE));
 						}
 						else
 						{

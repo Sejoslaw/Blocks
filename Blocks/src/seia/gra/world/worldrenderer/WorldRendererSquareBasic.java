@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import seia.gra.api.block.IBlockMovable;
 import seia.gra.block.Block;
 import seia.gra.block.background.BlockAir;
 import seia.gra.block.background.BlockWall;
@@ -20,14 +19,12 @@ public class WorldRendererSquareBasic extends WorldRenderer
 	{
 		super(szer, wys, world);
 	}
-
-	@Override
+	
 	public int getRendererID() 
 	{
 		return 0;
 	}
-
-	@Override
+	
 	public boolean paintWorld(Graphics g) 
 	{
 		for(int x = 0; x < SZER / Block.BLOCK_SIZE; x++)
@@ -48,11 +45,10 @@ public class WorldRendererSquareBasic extends WorldRenderer
 		}
 		return false;
 	}
-
-	@Override
-	public List<IBlockMovable> getMovableBlocksOnMap() 
+	
+	public List<BlockMovable> getMovableBlocksOnMap() 
 	{
-		List<IBlockMovable> l = new ArrayList<IBlockMovable>();
+		List<BlockMovable> l = new ArrayList<BlockMovable>();
 		int ile = getMaxNumberOfEnemies();
 		for(int i = 0; i < ile; i++) //procentowo, rozne rozmiary planszy (nastepny poziom -> wiecej czerwonych)
 		{

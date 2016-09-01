@@ -14,7 +14,9 @@ public class FilesHandler
 	public static void addFile(File file)
 	{
 		if(FILES == null)
+		{
 			FILES = new ArrayList<File>();
+		}
 		FILES.add(file);
 	}
 	

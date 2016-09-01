@@ -18,13 +18,11 @@ public class BlockEnemy extends BlockMovable
 		super(c, x, y, world);
 	}
 	
-	@Override
 	public Color getColor()
 	{
 		return color;
 	}
 	
-	@Override
 	public boolean isPlayer() 
 	{
 		return false;

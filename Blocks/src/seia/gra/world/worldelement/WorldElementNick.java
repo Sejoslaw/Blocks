@@ -5,25 +5,23 @@ import java.awt.Graphics;
 
 public class WorldElementNick extends WorldElement
 {
-	private static final Color color = Color.ORANGE;
+	private static final Color COLOR = Color.ORANGE;
 	public String nick;
 	
 	public WorldElementNick(int pixelX, int pixelY) 
 	{
-		super(color, pixelX, pixelY);
+		super(COLOR, pixelX, pixelY);
 	}
-
-	@Override
+	
 	public String getElementName() 
 	{
 		return "nick";
 	}
-
-	@Override
+	
 	public void paintComponent(Graphics g) 
 	{
 		Color tmp = g.getColor();
-		g.setColor(color);
+		g.setColor(COLOR);
 		g.drawString("Nick: " + nick, pixelX, pixelY);
 		g.setColor(tmp);
 	}

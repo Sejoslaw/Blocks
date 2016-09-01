@@ -6,31 +6,28 @@ import java.awt.Graphics;
 public class WorldElementLevelValue extends WorldElement
 {
 	public int level;
-	private static Color color = Color.YELLOW;
+	private static Color COLOR = Color.YELLOW;
 	
 	public WorldElementLevelValue(int pixelX, int pixelY) 
 	{
-		super(color, pixelX, pixelY);
+		super(COLOR, pixelX, pixelY);
 		level = 1;
 	}
 	
-	@Override
 	public Color getColor()
 	{
-		return color;
+		return COLOR;
 	}
 	
-	@Override
 	public String getElementName() 
 	{
 		return "levelValue";
 	}
-
-	@Override
+	
 	public void paintComponent(Graphics g) 
 	{
 		Color tmp = g.getColor();
-		g.setColor(color);
+		g.setColor(COLOR);
 		g.drawString("Level: " + level, pixelX, pixelY);
 		g.setColor(tmp);
 	}

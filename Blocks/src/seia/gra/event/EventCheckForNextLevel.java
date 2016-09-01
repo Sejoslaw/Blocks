@@ -1,6 +1,5 @@
 package seia.gra.event;
 
-import seia.gra.api.event.Event;
 import seia.gra.world.World;
 
 public class EventCheckForNextLevel extends Event
@@ -11,7 +10,7 @@ public class EventCheckForNextLevel extends Event
 		{
 			if(world.player.X + 1 == world.getNextLevel().X)
 			{
-				if(world.areAllPlayerGone()) //jezeli wszyscy graczopochodni weszli na nastepny poziom
+				if(world.areAllPlayerGone()) // all players are gone
 				{
 					world.reloadPanel();
 					world.updateLevelValue();

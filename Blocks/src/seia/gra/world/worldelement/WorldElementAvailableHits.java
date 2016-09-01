@@ -5,31 +5,28 @@ import java.awt.Graphics;
 
 public class WorldElementAvailableHits extends WorldElement
 {
-	private static final Color color = Color.CYAN;
+	private static final Color COLOR = Color.CYAN;
 	public int availableHits = 10;
 	
 	public WorldElementAvailableHits(int pixelX, int pixelY) 
 	{
-		super(color, pixelX, pixelY);
+		super(COLOR, pixelX, pixelY);
 	}
 	
-	@Override
 	public Color getColor()
 	{
-		return color;
+		return COLOR;
 	}
-
-	@Override
+	
 	public String getElementName() 
 	{
 		return "availableHits";
 	}
-
-	@Override
+	
 	public void paintComponent(Graphics g) 
 	{
 		Color tmp = g.getColor();
-		g.setColor(color);
+		g.setColor(COLOR);
 		g.drawString("Available hits: " + availableHits, pixelX, pixelY);
 		g.setColor(tmp);
 	}

@@ -3,13 +3,11 @@ package seia.gra.world.worldrenderer;
 import java.awt.Graphics;
 import java.util.List;
 
-import seia.gra.api.block.IBlockMovable;
-import seia.gra.api.world.IWorldRenderer;
 import seia.gra.block.Block;
 import seia.gra.block.movable.BlockMovable;
 import seia.gra.world.World;
 
-public abstract class WorldRenderer implements IWorldRenderer
+public abstract class WorldRenderer
 {
 	public Block[][] world;
 	public int SZER, WYS;
@@ -37,7 +35,9 @@ public abstract class WorldRenderer implements IWorldRenderer
 	{
 		SZER = newWidth;
 		if(SZER == newWidth) 
+		{
 			return true;
+		}
 		return false;
 	}
 	
@@ -45,7 +45,9 @@ public abstract class WorldRenderer implements IWorldRenderer
 	{
 		WYS = newHeight;
 		if(WYS == newHeight) 
+		{
 			return true;
+		}
 		return false;
 	}
 	
@@ -57,7 +59,7 @@ public abstract class WorldRenderer implements IWorldRenderer
 		return sr;
 	}
 	
-	public BlockMovable[][] getMovableBlocksOnMap(List<IBlockMovable> l)
+	public BlockMovable[][] getMovableBlocksOnMap(List<BlockMovable> l)
 	{
 		int sizeX = worldObj.getSizeXInBlocks();
 		int sizeY = worldObj.getSizeYInBlocks();
@@ -70,15 +72,19 @@ public abstract class WorldRenderer implements IWorldRenderer
 		return movTab;
 	}
 
-	public boolean canAdd(int x, int y, List<IBlockMovable> l)
+	public boolean canAdd(int x, int y, List<BlockMovable> l)
 	{
 		BlockMovable[][] movTab = getMovableBlocksOnMap(l);
 		if(movTab[x][y] == null)
+		{
 			return true;
+		}
 		return false;
 	}
 
 	public abstract int getRendererID();
+	
 	public abstract boolean paintWorld(Graphics g);
-	public abstract List<IBlockMovable> getMovableBlocksOnMap();
+	
+	public abstract List<BlockMovable> getMovableBlocksOnMap();
 }

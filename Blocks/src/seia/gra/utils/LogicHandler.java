@@ -1,7 +1,5 @@
 package seia.gra.utils;
 
-import seia.gra.api.math.ILogicObject;
-
 public class LogicHandler 
 {
 	public static boolean AND(ILogicObject o1, ILogicObject o2)

@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
-import seia.gra.api.block.IBlockMovable;
 import seia.gra.block.Block;
 import seia.gra.block.movable.BlockClonePlayer;
 import seia.gra.block.movable.BlockMovable;
@@ -16,23 +15,20 @@ public class WorldRendererClonePlayer extends WorldRenderer
 	{
 		super(szer, wys, world);
 	}
-
-	@Override
+	
 	public int getRendererID() 
 	{
 		return 2;
 	}
-
-	@Override
+	
 	public boolean paintWorld(Graphics g) 
 	{
 		return false;
 	}
-
-	@Override
-	public List<IBlockMovable> getMovableBlocksOnMap() 
+	
+	public List<BlockMovable> getMovableBlocksOnMap() 
 	{
-		List<IBlockMovable> l = new ArrayList<IBlockMovable>();
+		List<BlockMovable> l = new ArrayList<BlockMovable>();
 		l.add(new BlockClonePlayer(Block.getPlayerColor(), SZER - 1, WYS - 1, worldObj));
 		return l;
 	}

@@ -6,7 +6,7 @@ import seia.gra.world.World;
 
 public class BlockWall extends BlockBackground
 {
-	protected static final Color color = Color.BLACK;
+	protected static final Color COLOR = Color.BLACK;
 	
 	public BlockWall(Color c, int x, int y, World world) 
 	{
@@ -15,12 +15,11 @@ public class BlockWall extends BlockBackground
 	
 	public BlockWall(int x, int y, World world) 
 	{
-		super(color, x, y, world);
+		super(COLOR, x, y, world);
 	}
 	
 	public boolean canWalkThrough()
 	{
 		return false;
 	}
-	
 }

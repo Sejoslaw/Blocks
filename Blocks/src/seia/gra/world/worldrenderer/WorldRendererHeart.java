@@ -5,8 +5,8 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
-import seia.gra.api.block.IBlockMovable;
 import seia.gra.block.Block;
+import seia.gra.block.movable.BlockMovable;
 import seia.gra.world.World;
 
 public class WorldRendererHeart extends WorldRenderer
@@ -17,14 +17,12 @@ public class WorldRendererHeart extends WorldRenderer
 	{
 		super(szer, wys, world);
 	}
-
-	@Override
+	
 	public int getRendererID() 
 	{
 		return 1;
 	}
-
-	@Override
+	
 	public boolean paintWorld(Graphics g) 
 	{
 		for(int x = 0; x < SZER / Block.BLOCK_SIZE; x++)
@@ -77,13 +75,13 @@ public class WorldRendererHeart extends WorldRenderer
 		world[9][8].paintComponent(g);
 		world[10][8] = new Block(Color.RED, 10, 8, worldObj);
 		world[10][8].paintComponent(g);
+		
 		return false;
 	}
-
-	@Override
-	public List<IBlockMovable> getMovableBlocksOnMap() 
+	
+	public List<BlockMovable> getMovableBlocksOnMap() 
 	{
-		List<IBlockMovable> l = new ArrayList<IBlockMovable>();
+		List<BlockMovable> l = new ArrayList<BlockMovable>();
 		return l;
 	}
 }

@@ -13,8 +13,6 @@ import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import seia.gra.api.IMainClass;
-import seia.gra.api.world.IWorld;
 import seia.gra.block.Block;
 import seia.gra.block.movable.BlockEnemy;
 import seia.gra.event.EventCheckCollisionWithEnemy;
@@ -25,25 +23,25 @@ import seia.gra.world.World;
 import seia.gra.world.worldrenderer.WorldRendererHeart;
 
 /**
- * Pomysly:
- * -Manu
- * -W menu dorobic konstruktor poziomow (+ sterowanie)
- * 		(klikniecie -> Postaw klocek, 
- * 		 klikniecie -> Ustaw kolor, 
- * 		 klikniecie -> Zakoncz)
- * 		 ->>> Eksport stworzonego swiata do pliku
- * -W menu -> Tablica Wynikow
+ * Ideas:
+ * - Manu
+ * - Level Creator (+ movement)
+ * 		(click -> Place block, 
+ * 		 click -> Set color, 
+ * 		 click -> Exit)
+ * 		 ->>> Export level to file
+ * - In menu -> Highscore Table
  * 
  * 
  * @author Krzysztof Dobrzynski
  */
-public class MainClass extends Canvas implements Runnable, ActionListener, KeyListener, IMainClass
+public class MainClass extends Canvas implements Runnable, ActionListener, KeyListener
 {
 	private static final long serialVersionUID = -3273319500205136710L;
 	public static final int SZER = 800;
 	public static final int WYS = 600;
 	public static final int TICKS_PER_SECOND = 60;
-	private static final String VERSION = "v0.0.11";
+	private static final String VERSION = "v0.1.0.0";
 	
 	private boolean running = false;
 	public JFrame frame;
@@ -131,7 +129,7 @@ public class MainClass extends Canvas implements Runnable, ActionListener, KeyLi
 		}
 		Graphics g = bs.getDrawGraphics();
 		{
-			//Render stuff
+			// Render stuff
 			worldObj.paintComponent(g);
 		}
 		g.dispose();
@@ -145,6 +143,10 @@ public class MainClass extends Canvas implements Runnable, ActionListener, KeyLi
 		try
 		{
 			s1 = JOptionPane.showInputDialog(null, "Podaj nick:", "GoRight !!! " + VERSION, JOptionPane.YES_OPTION);
+			if(s1.equals(""))
+			{
+				return;
+			}
 			if(s1.toLowerCase().equals(WorldRendererHeart.input.toLowerCase()))
 			{
 				b1 = true;
@@ -193,7 +195,7 @@ public class MainClass extends Canvas implements Runnable, ActionListener, KeyLi
 		return nick;
 	}
 	
-	public IWorld getWorldObj()
+	public World getWorldObj()
 	{
 		return worldObj;
 	}
@@ -208,7 +210,6 @@ public class MainClass extends Canvas implements Runnable, ActionListener, KeyLi
 		return WYS / Block.BLOCK_SIZE;
 	}
 	
-	@Override
 	public void keyPressed(KeyEvent e) 
 	{
 		for(int k = 0; k < Key.UP.length; k++)
@@ -219,8 +220,12 @@ public class MainClass extends Canvas implements Runnable, ActionListener, KeyLi
 				{
 					worldObj.player.movePlayerUp();
 					for(int i = 0; i < worldObj.currentTiles.size(); i++)
+					{
 						if(worldObj.currentTiles.get(i) instanceof BlockEnemy)
+						{
 							worldObj.currentTiles.get(i).moveEnemyDown();
+						}
+					}
 				}
 			}
 		}
@@ -232,8 +237,12 @@ public class MainClass extends Canvas implements Runnable, ActionListener, KeyLi
 				{
 					worldObj.player.movePlayerDown();
 					for(int i = 0; i < worldObj.currentTiles.size(); i++)
+					{
 						if(worldObj.currentTiles.get(i) instanceof BlockEnemy)
+						{
 							worldObj.currentTiles.get(i).moveEnemyUp();
+						}
+					}
 				}
 			}
 		}
@@ -245,8 +254,12 @@ public class MainClass extends Canvas implements Runnable, ActionListener, KeyLi
 				{
 					worldObj.player.movePlayerLeft();
 					for(int i = 0; i < worldObj.currentTiles.size(); i++)
+					{
 						if(worldObj.currentTiles.get(i) instanceof BlockEnemy)
+						{
 							worldObj.currentTiles.get(i).moveEnemyRight();
+						}
+					}
 				}
 			}
 		}
@@ -260,32 +273,38 @@ public class MainClass extends Canvas implements Runnable, ActionListener, KeyLi
 					{
 						worldObj.player.movePlayerRight();
 						for(int i = 0; i < worldObj.currentTiles.size(); i++)
+						{
 							if(worldObj.currentTiles.get(i) instanceof BlockEnemy)
+							{
 								worldObj.currentTiles.get(i).moveEnemyLeft();
+							}
+						}
 					}
 				}
 			}
 		}
 	}
-
-	@Override
+	
 	public void keyTyped(KeyEvent e) 
 	{
 	}
-	@Override
+	
 	public void keyReleased(KeyEvent e) 
 	{
 	}
-
-	@Override
+	
 	public void actionPerformed(ActionEvent e) 
 	{
 		if("lines".equals(e.getActionCommand()))
 		{
 			if(Block.isShowingLines)
+			{
 				Block.isShowingLines = false;
+			}
 			else
+			{
 				Block.isShowingLines = true;
+			}
 		}
 	}
 }
