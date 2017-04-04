@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.util.HashSet;
 import java.util.Set;
 
-import main.java.kd.jkdl.graphics.JKDLColor;
-
 /**
  * Class which contains all data about all types of blocks.
  * 
@@ -20,6 +18,6 @@ public abstract class Blocks
 	
 	public static final Block VOID = new Block(-2, Color.BLACK);
 	public static final Block AIR = new Block(-1, Color.WHITE);
-	public static final Block DIRT = new Block(0, JKDLColor.BLANCHEDALMOND);
-	public static final Block SAND = new Block(1, JKDLColor.GOLDENROD);
+	public static final Block DIRT = new Block(0, new Color(255,235,205));
+	public static final Block SAND = new Block(1, new Color(218,165,32));
 }
