@@ -14,7 +14,7 @@ apply plugin: 'idea'
 
 group 'kd.movingblocks'
 archivesBaseName = "MovingBlocks"
-version = getVersionFromJava(file("src/main/java/kd/movingBlocks/core/MovingBlocks.java"))
+version = getVersionFromJava(file("src/main/java/kd/movingBlocks/Data.java"))
 
 String getVersionFromJava(File file) {
 
