@@ -193,25 +193,29 @@ public class MovingBlocks
 			return;
 		}
 		Graphics g = bs.getDrawGraphics();
-		
-		// Redner stuff here
-		{
-			// Render Player
-			if(this._world.getDimensionId() == this._player.getWorld().getDimensionId())
-			{
-				_world.render(g);
-				MovingBlocks.INSTANCE.getPlayer().renderEntity(g);
-			}
-			else
-			{
-				this._world = this._player.getWorld();
-				_world.render(g);
-				MovingBlocks.INSTANCE.getPlayer().renderEntity(g);
-			}
-		}
+		renderStuff(g);
 		
 		// Free resource after rendering
 		g.dispose();
 		bs.show();
+	}
+	
+	// Redner stuff here
+	private void renderStuff(Graphics g)
+	{
+		// Render Player
+		if(this._world.getDimensionId() == this._player.getWorld().getDimensionId())
+		{
+			_world.render(g);
+			MovingBlocks.INSTANCE.getPlayer().renderEntity(g);
+		}
+		else
+		{
+			this._world = this._player.getWorld();
+			_world.render(g);
+			MovingBlocks.INSTANCE.getPlayer().renderEntity(g);
+		}
+		// Rendering 2D screen elements for Player.
+		Camera.INSTANCE.renderScreen(g);
 	}
 }
