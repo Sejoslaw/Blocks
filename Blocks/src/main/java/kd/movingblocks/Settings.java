@@ -15,7 +15,7 @@ public class Settings
 	
 	public static final Dimension CANVAS_DIM = new Dimension(FRAME_WIDTH, FRAME_HEIGHT);
 	
-	public static final int BLOCKS_IN_ROW = 10; // Row or Column
+	public static final int BLOCKS_IN_ROW = 15; // Row or Column
 	public static final int BLOCK_WIDTH = FRAME_WIDTH / BLOCKS_IN_ROW;
 	public static final int BLOCK_HEIGHT = FRAME_HEIGHT / BLOCKS_IN_ROW;
 }
