@@ -1,7 +1,0 @@
--Xdoclint:none '-quiet'
--classpath 'C:\\Users\\Krzysztof\\git\\RuszajaceKwadraciki\\Blocks\\build\\classes\\main;C:\\Users\\Krzysztof\\git\\RuszajaceKwadraciki\\Blocks\\build\\resources\\main'
--d 'C:\\Users\\Krzysztof\\git\\RuszajaceKwadraciki\\Blocks\\build\\docs\\javadoc'
--doctitle 'Blocks 2017.04.04-05.43.53 API'
--quiet 
--windowtitle 'Blocks 2017.04.04-05.43.53 API'
-'C:\\Users\\Krzysztof\\git\\RuszajaceKwadraciki\\Blocks\\src\\main\\java\\kd\\movingblocks\\core\\MovingBlocks.java'
