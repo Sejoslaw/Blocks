@@ -131,6 +131,14 @@ public class MovingBlocks
 	}
 	
 	/**
+	 * @return Returns TRUE if MovingBlocks is running, otherwise FALSE.
+	 */
+	public boolean isRunning()
+	{
+		return this._running;
+	}
+	
+	/**
 	 * Indicates what should happen when MovingBlocks starts for the first time.
 	 */
 	public void start()

@@ -24,6 +24,9 @@ public class World
 	 * Renderer of the current World.
 	 */
 	private final WorldRenderer _renderer;
+	/**
+	 * Contains data about all blocks in this World.
+	 */
 	private final BlockData[] _blockData;
 	
 	public World(int dimId, WorldRenderer renderer)
