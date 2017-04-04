@@ -18,6 +18,6 @@ public abstract class Blocks
 	
 	public static final Block VOID = new Block(-2, Color.BLACK);
 	public static final Block AIR = new Block(-1, Color.WHITE);
-	public static final Block DIRT = new Block(0, new Color(255,235,205));
-	public static final Block SAND = new Block(1, new Color(218,165,32));
+	public static final Block DIRT = new Block(0, new Color(0xBC8B36));
+	public static final Block SAND = new Block(1, new Color(0xECCD69));
 }

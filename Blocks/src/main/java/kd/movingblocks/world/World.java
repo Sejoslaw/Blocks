@@ -34,7 +34,7 @@ public class World
 		
 		for(int x = 0; x < Settings.BLOCKS_IN_ROW; ++x)
 			for(int y = 0; y < Settings.BLOCKS_IN_ROW; ++y)
-				this._blockData[y * Settings.BLOCKS_IN_ROW + x] = new BlockData(new BlockPos(x, y), Blocks.VOID);
+				this._blockData[y * Settings.BLOCKS_IN_ROW + x] = new BlockData(new BlockPos(x, y), Blocks.DIRT);
 	}
 	
 	/**

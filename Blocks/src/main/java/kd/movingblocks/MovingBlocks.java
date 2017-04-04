@@ -7,6 +7,9 @@ import java.awt.image.BufferStrategy;
 import java.util.logging.Level;
 
 import main.java.kd.movingblocks.entity.player.EntityPlayer;
+import main.java.kd.movingblocks.listener.IMouseListener;
+import main.java.kd.movingblocks.listener.MovingBlocksKeyListener;
+import main.java.kd.movingblocks.listener.MovingBlocksMouseListener;
 import main.java.kd.movingblocks.world.DimensionManager;
 import main.java.kd.movingblocks.world.World;
 import main.java.kd.movingblocks.world.renderer.WorldRendererOverworld;
@@ -36,6 +39,10 @@ public class MovingBlocks
 	 */
 	private KeyListener _keyListener;
 	/**
+	 * Moving Blocks mouse listener;
+	 */
+	private IMouseListener _mouseListener;
+	/**
 	 * Nick of the Player who is currently playing.
 	 */
 	private String _nick;
@@ -53,6 +60,7 @@ public class MovingBlocks
 		try
 		{
 			this._world = DimensionManager.createNewWorld(0, WorldRendererOverworld.class);
+			
 			this._player = new EntityPlayer();
 			this._player.setPosition(1, 1);
 			this._player.setWorld(this._world);
@@ -96,11 +104,14 @@ public class MovingBlocks
 	 */
 	public KeyListener getKeyListener()
 	{
-		if(this._keyListener == null)
-		{
-			this._keyListener = new MovingBlocksKeyListener();
-		}
+		if(this._keyListener == null) this._keyListener = new MovingBlocksKeyListener();
 		return this._keyListener;
+	}
+	
+	public IMouseListener getMouseListener()
+	{
+		if(this._mouseListener == null) this._mouseListener = new MovingBlocksMouseListener();
+		return this._mouseListener;
 	}
 	
 	/**

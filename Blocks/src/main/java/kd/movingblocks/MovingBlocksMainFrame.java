@@ -27,6 +27,9 @@ public class MovingBlocksMainFrame extends Canvas implements Runnable
 	public MovingBlocksMainFrame()
 	{
 		this.addKeyListener(MovingBlocks.INSTANCE.getKeyListener());
+		this.addMouseListener(MovingBlocks.INSTANCE.getMouseListener());
+		this.addMouseMotionListener(MovingBlocks.INSTANCE.getMouseListener());
+		this.addMouseWheelListener(MovingBlocks.INSTANCE.getMouseListener());
 		this.setFocusable(true);
 		this.setFocusTraversalKeysEnabled(false);
 	}

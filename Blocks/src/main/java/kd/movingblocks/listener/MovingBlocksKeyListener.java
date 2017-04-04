@@ -1,4 +1,4 @@
-package main.java.kd.movingblocks;
+package main.java.kd.movingblocks.listener;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
