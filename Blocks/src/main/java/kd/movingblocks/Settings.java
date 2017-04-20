@@ -21,6 +21,11 @@ public class Settings
 	public static final int BLOCK_WIDTH = FRAME_WIDTH / BLOCKS_IN_ROW;
 	public static final int BLOCK_HEIGHT = FRAME_HEIGHT / BLOCKS_IN_ROW;
 	
+	/**
+	 * Debug-related settings.
+	 * 
+	 * @author <a href="mailto:k.dobrzynski94@gmail.com">Krzysztof Dobrzyñski</a> -> https://github.com/Sejoslaw
+	 */
 	public static class Debug
 	{
 		/**
