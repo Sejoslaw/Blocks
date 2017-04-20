@@ -40,7 +40,7 @@ public class MovingBlocksMainFrame extends Canvas implements Runnable
 		try
 		{
 			nick = JOptionPane.showInputDialog(null, "Podaj nick:", "Moving Blocks !!! " + Data.VERSION, JOptionPane.YES_OPTION);
-			if(nick.equals(""))
+			if (nick.equals(""))
 			{
 				nick = "Tester #" + new Random().nextInt();
 			}
@@ -83,7 +83,7 @@ public class MovingBlocksMainFrame extends Canvas implements Runnable
 	private void start()
 	{
 		MovingBlocks.INSTANCE.start();
-		_gameThread = new Thread(this);
+		_gameThread = new Thread(this, "MovingBlocks Canvas Thread");
 		_gameThread.start();
 		this.setPreferredSize(Settings.CANVAS_DIM);
 	}

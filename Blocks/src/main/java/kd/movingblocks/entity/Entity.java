@@ -72,6 +72,75 @@ public abstract class Entity
 	}
 	
 	/**
+	 * Moves this Entity Up.
+	 */
+	public void moveUp()
+	{
+		this._posY--;
+	}
+	
+	/**
+	 * Moves this Entity Up moves times.
+	 */
+	public void moveUp(int moves)
+	{
+		this._posY = this._posY - moves;
+	}
+	
+	/**
+	 * Moves this Entity Down.
+	 */
+	public void moveDown()
+	{
+		this._posY++;
+	}
+	
+	/**
+	 * Moves this Entity Down moves times.
+	 */
+	public void moveDown(int moves)
+	{
+		this._posY = this._posY + moves;
+	}
+	
+	/**
+	 * Moves this Entity Left.
+	 */
+	public void moveLeft()
+	{
+		this._posX--;
+	}
+	
+	/**
+	 * Moves this Entity Left moves times.
+	 */
+	public void moveLeft(int moves)
+	{
+		this._posX = this._posX - moves;
+	}
+	
+	/**
+	 * Moves this Entity Right.
+	 */
+	public void moveRight()
+	{
+		this._posX++;
+	}
+	
+	/**
+	 * Moves this Entity Right moves times.
+	 */
+	public void moveRight(int moves)
+	{
+		this._posX = this._posX + moves;
+	}
+	
+	public String toString()
+	{
+		return "Entity[X=" + getX() + ", Y=" + getY() + ", " + getWorld().toString() + "]";
+	}
+	
+	/**
 	 * Renders this Entity.
 	 */
 	public abstract void renderEntity(Graphics g);

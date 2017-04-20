@@ -41,9 +41,14 @@ public class BlockPos
 	 */
 	public boolean equals(BlockPos pos)
 	{
-		if(this._posX == pos._posX)
-			if(this._posY == pos._posY)
+		if (this._posX == pos._posX)
+			if (this._posY == pos._posY)
 				return true;
 		return false;
+	}
+	
+	public String toString()
+	{
+		return "BlockPos" + getX() + ", Y=" + getY() + "]";
 	}
 }

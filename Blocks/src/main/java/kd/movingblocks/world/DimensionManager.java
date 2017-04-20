@@ -20,23 +20,19 @@ public class DimensionManager
 	private static Map<Integer, World> _WORLDS = new HashMap<>();
 	
 	/**
-	 * Create and add new World.
+	 * Create and add new World. 
+	 * If World with the specified dimId already exists returns this World instead.
 	 * 
 	 * @param dimId Id of the new World.
 	 * @param rendererClass Class of the renderer for new World.
-	 * 
-	 * @return Returns newly created World.
-	 * @throws SecurityException 
-	 * @throws NoSuchMethodException 
-	 * @throws InvocationTargetException 
-	 * @throws IllegalArgumentException 
-	 * @throws IllegalAccessException 
-	 * @throws InstantiationException 
 	 */
 	public static World createNewWorld(int dimId, Class<? extends WorldRenderer> rendererClass) 
 			throws InstantiationException, IllegalAccessException, IllegalArgumentException, 
 			InvocationTargetException, NoSuchMethodException, SecurityException
 	{
+		if (_WORLDS.containsKey(dimId)) 
+			return _WORLDS.get(dimId);
+		
 		WorldRenderer renderer = rendererClass.getConstructor(int.class).newInstance(dimId);
 		World world = new World(dimId, renderer);
 		_WORLDS.put(dimId, world);
@@ -50,10 +46,10 @@ public class DimensionManager
 	 */
 	public static World getWorldByDimId(int dimId)
 	{
-		for(Entry<Integer, World> entry : _WORLDS.entrySet())
+		for (Entry<Integer, World> entry : _WORLDS.entrySet())
 		{
 			World world = entry.getValue();
-			if(world.getDimensionId() == dimId)
+			if (world.getDimensionId() == dimId)
 				return world;
 		}
 		return getWorldByDimId(0);

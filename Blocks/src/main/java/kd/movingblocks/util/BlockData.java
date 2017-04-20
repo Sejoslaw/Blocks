@@ -3,7 +3,7 @@ package main.java.kd.movingblocks.util;
 import main.java.kd.movingblocks.block.Block;
 
 /**
- * Hold data about single block on World.
+ * Hold data about single Block on World on single position.
  * 
  * @author <a href="mailto:k.dobrzynski94@gmail.com">Krzysztof Dobrzyñski</a> -> https://github.com/Sejoslaw
  */

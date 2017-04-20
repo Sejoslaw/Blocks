@@ -13,7 +13,8 @@ public class Data
 	/**
 	 * Current version of Moving Blocks - Last build time.
 	 */
-	public static final String VERSION = "2017.04.04-10.34.40";	/**
+	public static final String VERSION = "2017.04.04-10.34.40";	
+	/**
 	 * Moving Blocks internal logger.
 	 */
 	public static final Logger LOGGER = Logger.getLogger("MovingBlocks");

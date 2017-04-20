@@ -3,8 +3,14 @@ package main.java.kd.movingblocks.listener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import main.java.kd.movingblocks.MovingBlocks;
+import main.java.kd.movingblocks.Settings;
 import main.java.kd.movingblocks.event.EventFactory;
-import main.java.kd.movingblocks.event.EventKeyPressed;
+import main.java.kd.movingblocks.event.EventSwitchDebug;
+import main.java.kd.movingblocks.event.move.EventMoveEntityDOWN;
+import main.java.kd.movingblocks.event.move.EventMoveEntityLEFT;
+import main.java.kd.movingblocks.event.move.EventMoveEntityRIGHT;
+import main.java.kd.movingblocks.event.move.EventMoveEntityUP;
 
 /**
  * KeyListener for MovingBlocks.
@@ -17,10 +23,29 @@ public class MovingBlocksKeyListener implements KeyListener
 	{
 	}
 	
-	public void keyPressed(KeyEvent e) 
+	public void keyPressed(KeyEvent e)
 	{
 		int keyCode = e.getKeyCode();
-		EventFactory.INSTANCE.postEvent(new EventKeyPressed(keyCode));
+		if (keyCode == Settings.Key.Movement.KEY_UP)
+		{
+			EventFactory.INSTANCE.postEvent(new EventMoveEntityUP(keyCode, MovingBlocks.INSTANCE.getPlayer()));
+		}
+		else if (keyCode == Settings.Key.Movement.KEY_DOWN)
+		{
+			EventFactory.INSTANCE.postEvent(new EventMoveEntityDOWN(keyCode, MovingBlocks.INSTANCE.getPlayer()));
+		}
+		else if (keyCode == Settings.Key.Movement.KEY_LEFT)
+		{
+			EventFactory.INSTANCE.postEvent(new EventMoveEntityLEFT(keyCode, MovingBlocks.INSTANCE.getPlayer()));
+		}
+		else if (keyCode == Settings.Key.Movement.KEY_RIGHT)
+		{
+			EventFactory.INSTANCE.postEvent(new EventMoveEntityRIGHT(keyCode, MovingBlocks.INSTANCE.getPlayer()));
+		}
+		else if (keyCode == Settings.Debug.KEY_DEBUG)
+		{
+			EventFactory.INSTANCE.postEvent(new EventSwitchDebug());
+		}
 	}
 	
 	public void keyReleased(KeyEvent e) 

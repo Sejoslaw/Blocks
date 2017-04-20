@@ -35,9 +35,28 @@ public class World
 		this._renderer = renderer;
 		this._blockData = new BlockData[Settings.BLOCKS_IN_ROW * Settings.BLOCKS_IN_ROW];
 		
-		for(int x = 0; x < Settings.BLOCKS_IN_ROW; ++x)
-			for(int y = 0; y < Settings.BLOCKS_IN_ROW; ++y)
-				this._blockData[y * Settings.BLOCKS_IN_ROW + x] = new BlockData(new BlockPos(x, y), Blocks.DIRT);
+		setWorldBlocks();
+	}
+	
+	/**
+	 * Sets the Blocks on World.
+	 * ( Maybe used to reset World ??? )
+	 */
+	private void setWorldBlocks()
+	{
+		for (int x = 0; x < Settings.BLOCKS_IN_ROW; ++x) 
+		{
+			for (int y = 0; y < Settings.BLOCKS_IN_ROW; ++y) 
+			{
+				if (x == 0 || // Left
+						y == 0 || // Top
+						x == Settings.BLOCKS_IN_ROW - 1 || // Right
+						y == Settings.BLOCKS_IN_ROW - 1) // Bottom
+					this._blockData[y * Settings.BLOCKS_IN_ROW + x] = new BlockData(new BlockPos(x, y), Blocks.VOID); // Border of the World
+				else
+					this._blockData[y * Settings.BLOCKS_IN_ROW + x] = new BlockData(new BlockPos(x, y), Blocks.DIRT); // Other Blocks
+			}
+		}
 	}
 	
 	/**
@@ -97,5 +116,10 @@ public class World
 	public void setBlock(BlockPos pos, Block block)
 	{
 		this._blockData[countPos(pos)].setBlock(block);
+	}
+	
+	public String toString()
+	{
+		return "World[dimId=" + this._dimId + "]";
 	}
 }

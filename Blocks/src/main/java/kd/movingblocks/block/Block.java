@@ -68,4 +68,9 @@ public class Block
 				Settings.BLOCK_WIDTH, 
 				Settings.BLOCK_HEIGHT);
 	}
+	
+	public String toString()
+	{
+		return "Block[Id=" + getBlockId() + ", Color=" + this._color.toString() + "]";
+	}
 }

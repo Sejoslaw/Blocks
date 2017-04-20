@@ -20,4 +20,9 @@ public class EntityPlayer extends Entity
 		g.setColor(Color.YELLOW);
 		g.fillRect(startPos.x, startPos.y, Settings.BLOCK_WIDTH, Settings.BLOCK_HEIGHT);
 	}
+	
+	public String toString()
+	{
+		return "EntityPlayer[X=" + getX() + ", Y=" + getY() + "]";
+	}
 }

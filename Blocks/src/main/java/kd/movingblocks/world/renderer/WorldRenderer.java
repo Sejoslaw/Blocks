@@ -42,7 +42,7 @@ public abstract class WorldRenderer
 	 */
 	public World getWorld()
 	{
-		if(this._world == null)
+		if (this._world == null)
 		{
 			this._world = DimensionManager.getWorldByDimId(_dimId);
 		}

@@ -5,7 +5,7 @@ package main.java.kd.movingblocks.event;
  * 
  * @author <a href="mailto:k.dobrzynski94@gmail.com">Krzysztof Dobrzyñski</a> -> https://github.com/Sejoslaw
  */
-public abstract class Event 
+public abstract class Event
 {
 	/**
 	 * This is fired when Event should be handle by {@link EventFactory}.
