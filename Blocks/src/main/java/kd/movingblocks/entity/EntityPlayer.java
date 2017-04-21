@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
+import main.java.kd.movingblocks.MovingBlocks;
 import main.java.kd.movingblocks.Settings;
 
 /**
@@ -27,6 +28,16 @@ public class EntityPlayer extends Entity
 	}
 	
 	/**
+	 * Add hits for Player.
+	 * 
+	 * @param toAdd
+	 */
+	public void addHits(int toAdd)
+	{
+		this._hitsLeft += toAdd;
+	}
+	
+	/**
 	 * Method which is used when Player hits specified Enemy.
 	 * 
 	 * @param enemy Enemy which was hit by this Player.
@@ -35,6 +46,8 @@ public class EntityPlayer extends Entity
 	{
 		if (this._hitsLeft > 0) 
 			this._hitsLeft--;
+		else if (this._hitsLeft == 0)
+			MovingBlocks.INSTANCE.restartGame();
 	}
 	
 	public void renderEntity(Graphics g)

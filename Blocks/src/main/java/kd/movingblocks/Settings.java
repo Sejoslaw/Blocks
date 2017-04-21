@@ -63,4 +63,30 @@ public class Settings
 			public static int KEY_RIGHT = KeyEvent.VK_RIGHT;
 		}
 	}
+	
+	/**
+	 * Settings connected with Enemies
+	 * 
+	 * @author <a href="mailto:k.dobrzynski94@gmail.com">Krzysztof Dobrzyñski</a> -> https://github.com/Sejoslaw
+	 */
+	public static class Enemy
+	{
+		/**
+		 * Number of the Enemies on the World when the game starts.
+		 */
+		public static int BASE_NUMBER_ON_WORLD = 10;
+	}
+	
+	/**
+	 * Settings connected with Player
+	 * 
+	 * @author <a href="mailto:k.dobrzynski94@gmail.com">Krzysztof Dobrzyñski</a> -> https://github.com/Sejoslaw
+	 */
+	public static class Player
+	{
+		/**
+		 * Basic number of hits for each new Player.
+		 */
+		public static int BASE_HITS = 10;
+	}
 }

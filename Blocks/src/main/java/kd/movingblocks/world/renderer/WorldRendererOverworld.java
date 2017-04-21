@@ -30,5 +30,8 @@ public class WorldRendererOverworld extends WorldRenderer
 		// Render Enemies
 		for (int i = 0; i < getWorld().getEnemies().size(); ++i)
 			getWorld().getEnemies().get(i).renderEntity(g);
+		
+		// Render teleporter
+		getWorld().getTeleport().renderEntity(g);
 	}
 }

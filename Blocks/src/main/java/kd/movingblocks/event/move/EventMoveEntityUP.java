@@ -18,5 +18,7 @@ public class EventMoveEntityUP extends EventMoveEntity
 	{
 		if (getEntity().getY() > 1)
 			getEntity().moveUp();
+		// Check collision
+		super.doAction();
 	}
 }

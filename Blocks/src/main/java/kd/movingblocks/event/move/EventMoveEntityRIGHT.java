@@ -19,5 +19,7 @@ public class EventMoveEntityRIGHT extends EventMoveEntity
 	{
 		if (getEntity().getX() < Settings.BLOCKS_IN_ROW - 2)
 			getEntity().moveRight();
+		// Check collision
+		super.doAction();
 	}
 }

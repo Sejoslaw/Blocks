@@ -147,6 +147,19 @@ public abstract class Entity
 	}
 	
 	/**
+	 * @param entity
+	 * 
+	 * @return Returns TRUE if the given Entity is on the same position on which this Entity is.
+	 */
+	public boolean isOnTheSamePosition(Entity entity)
+	{
+		if (this.getX() == entity.getX())
+			if (this.getY() == entity.getY())
+				return true;
+		return false;
+	}
+	
+	/**
 	 * Renders this Entity.
 	 */
 	public abstract void renderEntity(Graphics g);

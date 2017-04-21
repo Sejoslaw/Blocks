@@ -9,6 +9,7 @@ import main.java.kd.movingblocks.Settings;
 import main.java.kd.movingblocks.block.Block;
 import main.java.kd.movingblocks.block.Blocks;
 import main.java.kd.movingblocks.entity.EntityEnemy;
+import main.java.kd.movingblocks.entity.EntityNextLevelTeleport;
 import main.java.kd.movingblocks.util.BlockData;
 import main.java.kd.movingblocks.util.BlockPos;
 import main.java.kd.movingblocks.world.renderer.WorldRenderer;
@@ -21,27 +22,33 @@ import main.java.kd.movingblocks.world.renderer.WorldRenderer;
 public class World 
 {
 	/**
-	 * Dimension id of this World.
+	 * Dimension id of this World
 	 */
 	private final int _dimId;
 	/**
-	 * Renderer of the current World.
+	 * Renderer of the current World
 	 */
 	private final WorldRenderer _renderer;
 	/**
-	 * Contains data about all blocks in this World.
+	 * Contains data about all blocks in this World
 	 */
 	private final BlockData[] _blockData;
 	/**
-	 * List containing information about all enemies on this World.
+	 * List containing information about all enemies on this World
 	 */
 	private final List<EntityEnemy> _enemies = new ArrayList<>();
+	/**
+	 * Teleporter used for teleporting Player to next level
+	 */
+	private final EntityNextLevelTeleport _entityTeleport = new EntityNextLevelTeleport();
 	
 	public World(int dimId, WorldRenderer renderer)
 	{
 		this._dimId = dimId;
 		this._renderer = renderer;
 		this._blockData = new BlockData[Settings.BLOCKS_IN_ROW * Settings.BLOCKS_IN_ROW];
+		// Set random teleporter position
+		this._entityTeleport.reloadPosition();
 		
 		setWorldBlocks();
 	}
@@ -66,18 +73,26 @@ public class World
 			}
 		
 		// Spawn Enemies
-		for (int i = 0; i < 20; ++i)
+		for (int i = 0; i < Settings.Enemy.BASE_NUMBER_ON_WORLD; ++i)
 		{
-			// Randomize Enemy position
-			Random rand = new Random();
-			int randX = rand.nextInt(Settings.BLOCKS_IN_ROW - 2) + 1;
-			int randY = rand.nextInt(Settings.BLOCKS_IN_ROW - 2) + 1;
-			
-			// Add Entity
-			EntityEnemy ee = new EntityEnemy();
-			ee.setPosition(randX, randY);
-			this._enemies.add(ee);
+			addNewEnemy();
 		}
+	}
+	
+	/**
+	 * Add new Enemy to this World.
+	 */
+	public void addNewEnemy()
+	{
+		// Randomize Enemy position
+		Random rand = new Random();
+		int randX = rand.nextInt(Settings.BLOCKS_IN_ROW - 2) + 1;
+		int randY = rand.nextInt(Settings.BLOCKS_IN_ROW - 2) + 1;
+		
+		// Add Entity
+		EntityEnemy ee = new EntityEnemy();
+		ee.setPosition(randX, randY);
+		this._enemies.add(ee);	
 	}
 	
 	/**
@@ -145,6 +160,14 @@ public class World
 	public List<EntityEnemy> getEnemies()
 	{
 		return this._enemies;
+	}
+	
+	/**
+	 * @return Returns the ENtity connected with teleporting Player to next level.
+	 */
+	public EntityNextLevelTeleport getTeleport()
+	{
+		return this._entityTeleport;
 	}
 	
 	public String toString()

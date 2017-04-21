@@ -1,6 +1,8 @@
 package main.java.kd.movingblocks.event.move;
 
+import main.java.kd.movingblocks.MovingBlocks;
 import main.java.kd.movingblocks.entity.Entity;
+import main.java.kd.movingblocks.entity.EntityPlayer;
 import main.java.kd.movingblocks.event.Event;
 
 /**
@@ -38,5 +40,13 @@ public abstract class EventMoveEntity extends Event
 		return this._entity;
 	}
 	
-	public abstract void doAction();
+	public void doAction()
+	{
+		// We only check on Enemy move
+		if(getEntity() instanceof EntityPlayer) return;
+		
+		// Check collision
+		if (MovingBlocks.INSTANCE.getPlayer().isOnTheSamePosition(getEntity()))
+			MovingBlocks.INSTANCE.getPlayer().hitEnemy(getEntity());
+	}
 }

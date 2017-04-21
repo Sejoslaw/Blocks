@@ -19,5 +19,7 @@ public class EventMoveEntityDOWN extends EventMoveEntity
 	{
 		if (getEntity().getY() < Settings.BLOCKS_IN_ROW - 2)
 			getEntity().moveDown();
+		// Check collision
+		super.doAction();
 	}
 }

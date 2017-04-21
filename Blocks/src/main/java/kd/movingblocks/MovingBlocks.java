@@ -8,12 +8,15 @@ import java.awt.image.BufferStrategy;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.JOptionPane;
+
 import main.java.kd.movingblocks.camera.Camera;
 import main.java.kd.movingblocks.entity.EntityPlayer;
 import main.java.kd.movingblocks.event.EventFactory;
 import main.java.kd.movingblocks.listener.IMouseListener;
 import main.java.kd.movingblocks.listener.MovingBlocksKeyListener;
 import main.java.kd.movingblocks.listener.MovingBlocksMouseListener;
+import main.java.kd.movingblocks.util.BlockPos;
 import main.java.kd.movingblocks.world.DimensionManager;
 import main.java.kd.movingblocks.world.World;
 import main.java.kd.movingblocks.world.renderer.WorldRendererOverworld;
@@ -96,7 +99,7 @@ public class MovingBlocks
 			this._world = DimensionManager.createNewWorld(0, WorldRendererOverworld.class);
 			
 			this._player = new EntityPlayer();
-			this._player.setPosition(1, 1);
+			this._player.setPosition(1, BlockPos.getRandomCoord());
 			this._player.setWorld(this._world);
 		}
 		catch(Exception e)
@@ -246,7 +249,6 @@ public class MovingBlocks
 			if (System.currentTimeMillis() - timer > 1000) 
 			{
 				timer += 1000;
-//				log(Level.INFO, this._ticks + " ticks, " + this._frames + " fps");
 				this._fps = this._framesInternal;
 				this._ticks = this._ticksInternal;
 				this._framesInternal = 0;
@@ -312,5 +314,30 @@ public class MovingBlocks
 	{
 		if (this._window != null) 
 			this._window.dispose();
+	}
+	
+	/**
+	 * Restarts the Game.
+	 */
+	public void restartGame()
+	{
+		// Show nice window if possible
+		if (this._canvas != null) 
+			JOptionPane.showMessageDialog(this._canvas,"Game Over :(", "gAME oVER", JOptionPane.YES_OPTION);
+		
+		// Reset Enemies (Clear + load new Enemies)
+		MovingBlocks.INSTANCE.getWorld().getEnemies().clear(); // Clear Enemies
+		for (int i = 0; i < Settings.Enemy.BASE_NUMBER_ON_WORLD; ++i) // Reload new Enemies
+			MovingBlocks.INSTANCE.getWorld().addNewEnemy();
+		
+		// Reset Teleporter position
+		MovingBlocks.INSTANCE.getWorld().getTeleport().reloadPosition();
+		
+		// Set Player's new position
+		MovingBlocks.INSTANCE.getPlayer().setPosition(1, BlockPos.getRandomCoord());
+		MovingBlocks.INSTANCE.getPlayer().addHits(Settings.Player.BASE_HITS);
+		
+		// Restart level value
+		Camera.INSTANCE.restartGame();
 	}
 }

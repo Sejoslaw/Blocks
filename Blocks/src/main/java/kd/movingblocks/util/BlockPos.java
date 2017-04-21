@@ -1,5 +1,9 @@
 package main.java.kd.movingblocks.util;
 
+import java.util.Random;
+
+import main.java.kd.movingblocks.Settings;
+
 /**
  * Represents a single position in World.
  * 
@@ -50,5 +54,15 @@ public class BlockPos
 	public String toString()
 	{
 		return "BlockPos" + getX() + ", Y=" + getY() + "]";
+	}
+	
+	//============================ ..:: Static ::.. ============================
+	
+	/**
+	 * @return Returns random X or Y coordinate inside World.
+	 */
+	public static int getRandomCoord()
+	{
+		return new Random().nextInt(Settings.BLOCKS_IN_ROW - 2) + 1;
 	}
 }

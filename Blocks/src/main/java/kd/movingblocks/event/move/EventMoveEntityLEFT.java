@@ -18,5 +18,7 @@ public class EventMoveEntityLEFT extends EventMoveEntity
 	{
 		if (getEntity().getX() > 1)
 			getEntity().moveLeft();
+		// Check collision
+		super.doAction();
 	}
 }
