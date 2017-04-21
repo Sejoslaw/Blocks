@@ -26,5 +26,9 @@ public class WorldRendererOverworld extends WorldRenderer
 				BlockPos pos = new BlockPos(x, y);
 				getWorld().getBlock(pos).renderBlock(g, countStartRenderPos(pos));
 			}
+		
+		// Render Enemies
+		for (int i = 0; i < getWorld().getEnemies().size(); ++i)
+			getWorld().getEnemies().get(i).renderEntity(g);
 	}
 }

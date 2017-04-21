@@ -2,13 +2,14 @@ package main.java.kd.movingblocks;
 
 import java.awt.Canvas;
 import java.awt.Graphics;
+import java.awt.Window;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import main.java.kd.movingblocks.camera.Camera;
-import main.java.kd.movingblocks.entity.player.EntityPlayer;
+import main.java.kd.movingblocks.entity.EntityPlayer;
 import main.java.kd.movingblocks.event.EventFactory;
 import main.java.kd.movingblocks.listener.IMouseListener;
 import main.java.kd.movingblocks.listener.MovingBlocksKeyListener;
@@ -33,6 +34,11 @@ public class MovingBlocks
 	 * Indicates if game is running
 	 */
 	private boolean _running = false;
+	/**
+	 * Main game window.
+	 * May be NULL !!!!!
+	 */
+	private Window _window;
 	/**
 	 * Canvas into which everything should be drawn. (mainly for taking graphics object)
 	 */
@@ -97,6 +103,16 @@ public class MovingBlocks
 		{
 			Data.log(Level.WARNING, "Critical error while creating Overworld !!!");
 		}
+	}
+	
+	/**
+	 * Sets the game Window. May be NULL !!!!
+	 * 
+	 * @param window
+	 */
+	public void setGameWindow(Window window)
+	{
+		this._window = window;
 	}
 	
 	/**
@@ -287,5 +303,14 @@ public class MovingBlocks
 		}
 		// Rendering 2D screen elements for Player.
 		Camera.INSTANCE.renderScreen(this._graphics);
+	}
+	
+	/**
+	 * Method used for closing the game.
+	 */
+	public void close()
+	{
+		if (this._window != null) 
+			this._window.dispose();
 	}
 }

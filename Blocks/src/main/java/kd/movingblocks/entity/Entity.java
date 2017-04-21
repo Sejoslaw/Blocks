@@ -22,6 +22,12 @@ public abstract class Entity
 	 */
 	private World _world;
 	
+	/**
+	 * Sets the position of this Entity.
+	 * 
+	 * @param posX
+	 * @param posY
+	 */
 	public void setPosition(int posX, int posY)
 	{
 		this._posX = posX;

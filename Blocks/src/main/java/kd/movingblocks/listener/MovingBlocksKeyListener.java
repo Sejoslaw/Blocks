@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 
 import main.java.kd.movingblocks.MovingBlocks;
 import main.java.kd.movingblocks.Settings;
+import main.java.kd.movingblocks.event.EventCloseGame;
 import main.java.kd.movingblocks.event.EventFactory;
 import main.java.kd.movingblocks.event.EventSwitchDebug;
 import main.java.kd.movingblocks.event.move.EventMoveEntityDOWN;
@@ -45,6 +46,10 @@ public class MovingBlocksKeyListener implements KeyListener
 		else if (keyCode == Settings.Debug.KEY_DEBUG)
 		{
 			EventFactory.INSTANCE.postEvent(new EventSwitchDebug());
+		}
+		else if (keyCode == Settings.Key.KEY_QUIT)
+		{
+			EventFactory.INSTANCE.postEvent(new EventCloseGame());
 		}
 	}
 	

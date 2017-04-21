@@ -1,11 +1,10 @@
-package main.java.kd.movingblocks.entity.player;
+package main.java.kd.movingblocks.entity;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
 import main.java.kd.movingblocks.Settings;
-import main.java.kd.movingblocks.entity.Entity;
 
 /**
  * Main Player class.
@@ -14,6 +13,30 @@ import main.java.kd.movingblocks.entity.Entity;
  */
 public class EntityPlayer extends Entity
 {
+	/**
+	 * Number of left hits which Player can do to Enemies.
+	 */
+	private int _hitsLeft = 10;
+	
+	/**
+	 * @return Returns the number of hits which Player can use.
+	 */
+	public int getHits()
+	{
+		return this._hitsLeft;
+	}
+	
+	/**
+	 * Method which is used when Player hits specified Enemy.
+	 * 
+	 * @param enemy Enemy which was hit by this Player.
+	 */
+	public void hitEnemy(Entity enemy)
+	{
+		if (this._hitsLeft > 0) 
+			this._hitsLeft--;
+	}
+	
 	public void renderEntity(Graphics g)
 	{
 		Point startPos = getTopLeftPointToRender();

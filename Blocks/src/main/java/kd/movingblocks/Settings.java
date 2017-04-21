@@ -31,7 +31,7 @@ public class Settings
 		/**
 		 * Indicates if the Debug info should be shown.
 		 */
-		public static boolean SHOW_DEBUG = false;
+		public static boolean SHOW_DEBUG = true;
 		/**
 		 * Debug Key
 		 */
@@ -45,6 +45,11 @@ public class Settings
 	 */
 	public static class Key
 	{
+		/**
+		 * Key used for quitting the game.
+		 */
+		public static int KEY_QUIT = KeyEvent.VK_ESCAPE;
+		
 		/**
 		 * Settings connected with Movement.
 		 * 

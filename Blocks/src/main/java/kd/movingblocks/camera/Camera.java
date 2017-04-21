@@ -20,7 +20,12 @@ public class Camera
 	/**
 	 * Line to the left
 	 */
-	private int xLine = 3;
+	private int _xLine = 3;
+	/**
+	 * This is the level of the World on which Player currently is.
+	 * This is NOT the World id or any other value related with World itself.
+	 */
+	public int _level = 1;
 	
 	private Camera()
 	{
@@ -43,10 +48,34 @@ public class Camera
 	 */
 	private void showDebugInfo(Graphics g)
 	{
-		if(Settings.Debug.SHOW_DEBUG == false) return;
+		// Debug
+		if(Settings.Debug.SHOW_DEBUG != false)
+		{
+			g.setColor(Color.YELLOW);
+			g.drawString("Ticks: " + MovingBlocks.INSTANCE.getTicks(), _xLine, 15);
+			g.drawString("FPS: " + MovingBlocks.INSTANCE.getFPS(), _xLine, 30);
+		}
 		
-		g.setColor(Color.YELLOW);
-		g.drawString("Ticks: " + MovingBlocks.INSTANCE.getTicks(), xLine, 15);
-		g.drawString("FPS: " + MovingBlocks.INSTANCE.getFPS(), xLine, 30);
+		g.setColor(Color.CYAN);
+		g.drawString("Hits left: " + MovingBlocks.INSTANCE.getPlayer().getHits(), 2 * Settings.BLOCK_WIDTH + _xLine, 15);
+		
+		g.setColor(Color.GREEN);
+		g.drawString("Level: " + this._level, 4 * Settings.BLOCK_WIDTH + _xLine, 15);
+	}
+	
+	/**
+	 * Indicate when to increase the current level.
+	 */
+	public void goToNextLevel()
+	{
+		this._level++;
+	}
+	
+	/**
+	 * This method should be fired when Player restarts game.
+	 */
+	public void restartGame()
+	{
+		this._level = 1;
 	}
 }

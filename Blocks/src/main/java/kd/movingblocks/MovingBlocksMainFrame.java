@@ -59,6 +59,7 @@ public class MovingBlocksMainFrame extends Canvas implements Runnable
 	{
 		init();
 		MovingBlocks.INSTANCE.setGameCanvas(this);
+		MovingBlocks.INSTANCE.setGameWindow(this._frame);
 		MovingBlocks.INSTANCE.run();
 	}
 	

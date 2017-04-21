@@ -61,12 +61,15 @@ public class Block
 				Settings.BLOCK_HEIGHT);
 		
 		// Debug
-		g.setColor(Color.RED);
-		g.drawRect(
-				startPos.x,
-				startPos.y,
-				Settings.BLOCK_WIDTH, 
-				Settings.BLOCK_HEIGHT);
+		if (Settings.Debug.SHOW_DEBUG != false)
+		{
+			g.setColor(Color.RED);
+			g.drawRect(
+					startPos.x,
+					startPos.y,
+					Settings.BLOCK_WIDTH, 
+					Settings.BLOCK_HEIGHT);
+		}
 	}
 	
 	public String toString()

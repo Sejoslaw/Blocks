@@ -1,10 +1,14 @@
 package main.java.kd.movingblocks.world;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import main.java.kd.movingblocks.Settings;
 import main.java.kd.movingblocks.block.Block;
 import main.java.kd.movingblocks.block.Blocks;
+import main.java.kd.movingblocks.entity.EntityEnemy;
 import main.java.kd.movingblocks.util.BlockData;
 import main.java.kd.movingblocks.util.BlockPos;
 import main.java.kd.movingblocks.world.renderer.WorldRenderer;
@@ -28,6 +32,10 @@ public class World
 	 * Contains data about all blocks in this World.
 	 */
 	private final BlockData[] _blockData;
+	/**
+	 * List containing information about all enemies on this World.
+	 */
+	private final List<EntityEnemy> _enemies = new ArrayList<>();
 	
 	public World(int dimId, WorldRenderer renderer)
 	{
@@ -44,8 +52,8 @@ public class World
 	 */
 	private void setWorldBlocks()
 	{
+		// Create World
 		for (int x = 0; x < Settings.BLOCKS_IN_ROW; ++x) 
-		{
 			for (int y = 0; y < Settings.BLOCKS_IN_ROW; ++y) 
 			{
 				if (x == 0 || // Left
@@ -56,6 +64,19 @@ public class World
 				else
 					this._blockData[y * Settings.BLOCKS_IN_ROW + x] = new BlockData(new BlockPos(x, y), Blocks.DIRT); // Other Blocks
 			}
+		
+		// Spawn Enemies
+		for (int i = 0; i < 20; ++i)
+		{
+			// Randomize Enemy position
+			Random rand = new Random();
+			int randX = rand.nextInt(Settings.BLOCKS_IN_ROW - 2) + 1;
+			int randY = rand.nextInt(Settings.BLOCKS_IN_ROW - 2) + 1;
+			
+			// Add Entity
+			EntityEnemy ee = new EntityEnemy();
+			ee.setPosition(randX, randY);
+			this._enemies.add(ee);
 		}
 	}
 	
@@ -116,6 +137,14 @@ public class World
 	public void setBlock(BlockPos pos, Block block)
 	{
 		this._blockData[countPos(pos)].setBlock(block);
+	}
+	
+	/**
+	 * @return Returns list of all enemies on this World.
+	 */
+	public List<EntityEnemy> getEnemies()
+	{
+		return this._enemies;
 	}
 	
 	public String toString()
