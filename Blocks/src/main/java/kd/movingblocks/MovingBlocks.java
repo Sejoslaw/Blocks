@@ -44,6 +44,7 @@ public class MovingBlocks
 	private Window _window;
 	/**
 	 * Canvas into which everything should be drawn. (mainly for taking graphics object)
+	 * May be NULL !!!!!
 	 */
 	private Canvas _canvas;
 	/**
@@ -216,11 +217,31 @@ public class MovingBlocks
 	}
 	
 	/**
+	 * Sets the internal game ticks.
+	 * 
+	 * @param ticks
+	 */
+	public void setTicks(int ticks)
+	{
+		this._ticks = ticks;
+	}
+	
+	/**
 	 * @return Returns the number of FPS's.
 	 */
 	public int getFPS()
 	{
 		return this._fps;
+	}
+	
+	/**
+	 * Sets the number of FPS's.
+	 * 
+	 * @param fps
+	 */
+	public void setFPS(int fps)
+	{
+		this._fps = fps;
 	}
 	
 	/**
@@ -260,7 +281,7 @@ public class MovingBlocks
 	/**
 	 * What should happen in each game tick. (Server-side operations)
 	 */
-	private void tick()
+	public void tick()
 	{
 		EventFactory.INSTANCE.processEvents();
 	}
@@ -279,7 +300,7 @@ public class MovingBlocks
 			return;
 		}
 		this._graphics = bs.getDrawGraphics();
-		renderStuff();
+		renderStuff(this._graphics);
 		
 		// Free resource after rendering
 		this._graphics.dispose();
@@ -289,22 +310,22 @@ public class MovingBlocks
 	/**
 	 * Render stuff here
 	 */
-	private void renderStuff()
+	public void renderStuff(Graphics g)
 	{
 		// Render Player
 		if (this._world.getDimensionId() == this._player.getWorld().getDimensionId())
 		{
-			_world.render(this._graphics);
-			MovingBlocks.INSTANCE.getPlayer().renderEntity(this._graphics);
+			_world.render(g);
+			MovingBlocks.INSTANCE.getPlayer().renderEntity(g);
 		}
 		else
 		{
 			this._world = this._player.getWorld();
-			_world.render(this._graphics);
-			MovingBlocks.INSTANCE.getPlayer().renderEntity(this._graphics);
+			_world.render(g);
+			MovingBlocks.INSTANCE.getPlayer().renderEntity(g);
 		}
 		// Rendering 2D screen elements for Player.
-		Camera.INSTANCE.renderScreen(this._graphics);
+		Camera.INSTANCE.renderScreen(g);
 	}
 	
 	/**

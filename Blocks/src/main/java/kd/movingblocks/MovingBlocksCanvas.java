@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  * 
  * @author <a href="mailto:k.dobrzynski94@gmail.com">Krzysztof Dobrzyñski</a> -> https://github.com/Sejoslaw
  */
-public class MovingBlocksMainFrame extends Canvas implements Runnable
+public class MovingBlocksCanvas extends Canvas implements Runnable
 {
 	private static final long serialVersionUID = 1920799881438758881L;
 	
@@ -24,17 +24,7 @@ public class MovingBlocksMainFrame extends Canvas implements Runnable
 	 */
 	private Thread _gameThread;
 	
-	public MovingBlocksMainFrame()
-	{
-		this.addKeyListener(MovingBlocks.INSTANCE.getKeyListener());
-		this.addMouseListener(MovingBlocks.INSTANCE.getMouseListener());
-		this.addMouseMotionListener(MovingBlocks.INSTANCE.getMouseListener());
-		this.addMouseWheelListener(MovingBlocks.INSTANCE.getMouseListener());
-		this.setFocusable(true);
-		this.setFocusTraversalKeysEnabled(false);
-	}
-	
-	public static void main(String[] args) 
+	public MovingBlocksCanvas()
 	{
 		String nick = "";
 		try
@@ -51,8 +41,13 @@ public class MovingBlocksMainFrame extends Canvas implements Runnable
 		}
 		
 		MovingBlocks.INSTANCE.setNick(nick);
-		MovingBlocksMainFrame frame = new MovingBlocksMainFrame();
-		frame.start();
+		
+		this.addKeyListener(MovingBlocks.INSTANCE.getKeyListener());
+		this.addMouseListener(MovingBlocks.INSTANCE.getMouseListener());
+		this.addMouseMotionListener(MovingBlocks.INSTANCE.getMouseListener());
+		this.addMouseWheelListener(MovingBlocks.INSTANCE.getMouseListener());
+		this.setFocusable(true);
+		this.setFocusTraversalKeysEnabled(false);
 	}
 	
 	public void run() 
@@ -81,11 +76,24 @@ public class MovingBlocksMainFrame extends Canvas implements Runnable
 	/**
 	 * Start game.
 	 */
-	private void start()
+	public void start()
 	{
 		MovingBlocks.INSTANCE.start();
 		_gameThread = new Thread(this, "MovingBlocks Canvas Thread");
 		_gameThread.start();
 		this.setPreferredSize(Settings.CANVAS_DIM);
+	}
+	
+	/**
+	 * Program main method
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) 
+	{
+		// Create new frame object
+		MovingBlocksCanvas frame = new MovingBlocksCanvas();
+		// Start frame
+		frame.start();
 	}
 }
